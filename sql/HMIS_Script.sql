@@ -75,7 +75,7 @@ ENGINE=InnoDB
 
 INSERT INTO `iycffeeding` (`code`,`description`)
 VALUES
-('EBF', 'For Exclusive breast feeding'),
+('EBF', 'For exclusive breast feeding'),
 ('RF', 'Replacement Feeding'),
 ('MF', 'Mixed Feeding')
 ;
@@ -106,9 +106,9 @@ ENGINE=InnoDB
 
 INSERT INTO `breathing` (`code`,`description`)
 VALUES
-('SS', 'If baby breathers after Stimulation and or Suction procedure'),
+('SS', 'If baby breathes after Stimulation and or Suction procedure'),
 ('BM', 'If baby breathes after Bag and Mask procedure'),
-('BMD', 'if baby dies Bag and Mask procedure')
+('BMD', 'If baby dies after Bag and Mask procedure')
 ;
 
 CREATE TABLE IF NOT EXISTS `bwindihospital_reduced`.`muacColor`(
