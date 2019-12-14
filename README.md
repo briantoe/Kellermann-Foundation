@@ -1,5 +1,5 @@
+# utdEPICS Kellermann Foundation Fall 2019 
 
-# Kellermann Foundation Fall 2019 
 
 ## Project Partner Description ##
 The Kellermann Foundation is a nonprofit organization that has aided the displaced Batwa pygmies in Uganda through projects in healthcare, education, and community development.
@@ -7,7 +7,7 @@ The Kellermann Foundation is a nonprofit organization that has aided the displac
 ## Project Description ##
 This project focuses on development of a web application to be used by the maternity ward which will allow for nurses in the ward to effectively enter patient data on one system, dissolving their current pen-and-paper system of recording patient information.
 
-## Current Members of this Project:
+## Members of this Project:
 
  - Brian To - Computer Science
  - Rosie Wang - Software Engineering
