@@ -1,5 +1,5 @@
 /* Need to create scipts to find the totals at the end of the HMIS data form*/
-
+-- testing access
 CREATE TABLE IF NOT EXISTS `bwindihospital_reduced`.`babyCondition`(
 	`code` VARCHAR(5) NOT NULL,
 	`description` VARCHAR(100) NULL DEFAULT NULL,
