@@ -1,3 +1,7 @@
+/*
+ * Model for maternity form
+ */
+
 package model;
 
 import java.io.Serializable;
@@ -5,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class HmisMaternity implements Serializable {
+public class Maternity implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer matId;
     private LocalDate dateOfAdmission;
@@ -101,6 +105,7 @@ public class HmisMaternity implements Serializable {
     private String counselingDischarged;
     private String materNutrCouns;
     private String conditionOfMotherAtDischarge;
+    private String motherTransferredWhere;
     private String nameOfPersonDischarging;
     private String cadreOfPersonDischarging;
     private LocalDate dateOfDischarge;
@@ -860,6 +865,14 @@ public class HmisMaternity implements Serializable {
         this.conditionOfMotherAtDischarge = conditionOfMotherAtDischarge;
     }
 
+    public String getMotherTransferredWhere() {
+        return motherTransferredWhere;
+    }
+
+    public void setMotherTransferredWhere(String motherTransferredWhere) {
+        this.motherTransferredWhere = motherTransferredWhere;
+    }
+
     public String getNameOfPersonDischarging() {
         return nameOfPersonDischarging;
     }
@@ -908,34 +921,34 @@ public class HmisMaternity implements Serializable {
         this.userId = userId;
     }
 
-    public HmisMaternity() {}
+    public Maternity() {}
 
-    public HmisMaternity(Integer matId, LocalDate dateOfAdmission, LocalTime timeOfAdmission, Integer admissionNo,
-                         String ancNo, Integer ipdNo, Integer nin, String clientSurname, String clientGivenName,
-                         Integer age, String clientCategory, String villageId, String villageName, String parishId,
-                         String parishName, String subcountyId, String subcountyName, String districtId,
-                         String districtName, String phoneNumber, Integer gravidity, Integer parity,
-                         Integer gestationAge, String term, String reasonForAdmission, Boolean revisit,
-                         Integer whoClinicalStage, Integer cd4Results, LocalDate cd4Date, Integer viralLoadResults,
-                         LocalDate viralLoadDate, String wInitialResult, String wTfv, String pInitialResult,
-                         String pTfv, String pArtCode, String artCode, String artNo, String ctxCode, String wSyphilis,
-                         String wHepatitisB, String pSyphilis, String pHepatitisB, String muac, Integer inrNo,
-                         String modeOfDelivery, LocalDate dateOfDelivery, LocalTime timeOfDelivery, Boolean oxytocin,
-                         Boolean misoprostol, Boolean ergometrine, String managementProcedure, String otherTreatment,
-                         String apgarScore, String sexOfBaby, String notBreathing, Boolean immediateSkinToSkin,
-                         String sourceOfWarmth, Boolean breastFed, Boolean teo, Boolean vitK, Boolean chlorhexidine,
-                         Float weight, String riskStatus, String arvsAdministered, Integer syrupDuration,
-                         String bcgImmunization, String polioImmunization, Integer familyPlanningMethod,
-                         LocalDate familyPlanningDate, String treatmentOffered, String babyFinalDiagnosis,
-                         String deliveredByName, String deliveredByCadre, String transferredByName,
-                         String transferredByWhere, String motherBleeding6, Integer motherBp6, String babyCheckedCord6,
-                         String babyBreastFeeding6, String babyBreathing6, String llnsGiven, String babyCondition,
-                         String motherFinalDiagnosis, String motherBleeding24, Integer motherBp24,
-                         String babyCheckedCord24, String babyBreastFeeding24, String babyBreathing24, String iycf,
-                         String iycfOption, String counselingDischarged, String materNutrCouns,
-                         String conditionOfMotherAtDischarge, String nameOfPersonDischarging,
-                         String cadreOfPersonDischarging, LocalDate dateOfDischarge, LocalTime timeOfDischarge,
-                         LocalDateTime recordDate, Integer userId) {
+    public Maternity(Integer matId, LocalDate dateOfAdmission, LocalTime timeOfAdmission, Integer admissionNo,
+                     String ancNo, Integer ipdNo, Integer nin, String clientSurname, String clientGivenName,
+                     Integer age, String clientCategory, String villageId, String villageName, String parishId,
+                     String parishName, String subcountyId, String subcountyName, String districtId,
+                     String districtName, String phoneNumber, Integer gravidity, Integer parity,
+                     Integer gestationAge, String term, String reasonForAdmission, Boolean revisit,
+                     Integer whoClinicalStage, Integer cd4Results, LocalDate cd4Date, Integer viralLoadResults,
+                     LocalDate viralLoadDate, String wInitialResult, String wTfv, String pInitialResult,
+                     String pTfv, String pArtCode, String artCode, String artNo, String ctxCode, String wSyphilis,
+                     String wHepatitisB, String pSyphilis, String pHepatitisB, String muac, Integer inrNo,
+                     String modeOfDelivery, LocalDate dateOfDelivery, LocalTime timeOfDelivery, Boolean oxytocin,
+                     Boolean misoprostol, Boolean ergometrine, String managementProcedure, String otherTreatment,
+                     String apgarScore, String sexOfBaby, String notBreathing, Boolean immediateSkinToSkin,
+                     String sourceOfWarmth, Boolean breastFed, Boolean teo, Boolean vitK, Boolean chlorhexidine,
+                     Float weight, String riskStatus, String arvsAdministered, Integer syrupDuration,
+                     String bcgImmunization, String polioImmunization, Integer familyPlanningMethod,
+                     LocalDate familyPlanningDate, String treatmentOffered, String babyFinalDiagnosis,
+                     String deliveredByName, String deliveredByCadre, String transferredByName,
+                     String transferredByWhere, String motherBleeding6, Integer motherBp6, String babyCheckedCord6,
+                     String babyBreastFeeding6, String babyBreathing6, String llnsGiven, String babyCondition,
+                     String motherFinalDiagnosis, String motherBleeding24, Integer motherBp24,
+                     String babyCheckedCord24, String babyBreastFeeding24, String babyBreathing24, String iycf,
+                     String iycfOption, String counselingDischarged, String materNutrCouns,
+                     String conditionOfMotherAtDischarge, String nameOfPersonDischarging,
+                     String cadreOfPersonDischarging, LocalDate dateOfDischarge, LocalTime timeOfDischarge,
+                     LocalDateTime recordDate, Integer userId) {
         this.matId = matId;
         this.ipdNo = ipdNo;
         this.recordDate = recordDate;
