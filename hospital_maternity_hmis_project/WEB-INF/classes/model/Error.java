@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Error
   implements Serializable
@@ -10,7 +10,7 @@ public class Error
   private String controller_Name;
   private String method_Name;
   private String error;
-  private LocalDateTime error_date;
+  private Date error_date;
 
   public String getController_Name()
   {
@@ -37,18 +37,18 @@ public class Error
     this.error = error;
   }
 
-  public LocalDateTime getError_date() {
+  public Date getError_date() {
     return this.error_date;
   }
 
-  public void setError_date(LocalDateTime error_date) {
+  public void setError_date(Date error_date) {
     this.error_date = error_date;
   }
 
   public Error() {
   }
 
-  public Error(String controller_Name, String method_Name, String error, LocalDateTime error_date) {
+  public Error(String controller_Name, String method_Name, String error, Date error_date) {
     this.controller_Name = controller_Name;
     this.method_Name = method_Name;
     this.error = error;
