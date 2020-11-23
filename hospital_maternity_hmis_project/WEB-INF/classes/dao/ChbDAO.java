@@ -17,17 +17,79 @@ import model.Error;
 import model.Vht;
 import model.Maternity;
 import model.Village;
+import model.Parish;
+import model.Subcounty;
 
 
-public class ChbDAO implements Serializable {
-
+public class ChbDAO implements Serializable
+{
     private static final long serialVersionUID = 1L;
     public static LocalDateTime now;
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME;
     static DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_DATE;
     static DateTimeFormatter timeFormatter = DateTimeFormatter.ISO_TIME;
 
+    // Selects all subcounties since there is only one district
+    public static List<Subcounty> Get_Subcounties() throws SQLException {
 
+        try {
+            Connection con;
+
+            Subcounty subcounty;
+
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
+            con = DriverManager.getConnection(url, "root", "potato");
+            now = LocalDateTime.now();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM subcounty ORDER BY SubcountyName ASC");
+
+            ResultSet rs = stmt.executeQuery();
+            List<Subcounty> subcounty_list = new ArrayList<>();
+
+            while(rs.next()){
+                subcounty = new Subcounty(rs.getString("SubcountyId"), rs.getString("SubcountyName"));
+                subcounty_list.add(subcounty);
+            }
+            con.close();
+            return subcounty_list;
+        } catch (Exception e) {
+            ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Subcounties", " Message: " + e.getMessage(), now));
+            return null;
+        }
+    }
+
+    // Selects all parishes within a subcounty
+    public static List<Parish> Get_Parishes() throws SQLException {
+
+        try {
+            Connection con;
+
+            Parish parish;
+
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
+            con = DriverManager.getConnection(url, "root", "potato");
+            now = LocalDateTime.now();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM parish WHERE SubcountyId IN (SELECT SubcountyId FROM subcounty) ORDER BY ParishName ASC");
+
+            ResultSet rs = stmt.executeQuery();
+            List<Parish> parish_list = new ArrayList<>();
+
+            while(rs.next()){
+                parish = new Parish(rs.getString("ParishId"), rs.getString("SubcountyId"), rs.getString("ParishName"));
+                parish_list.add(parish);
+            }
+            con.close();
+            return parish_list;
+        } catch (Exception e) {
+            ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Parishes", " Message: " + e.getMessage(), now));
+            return null;
+        }
+    }
+
+    // Selects all villages with a parish
     public static List<Village> Get_Villages() throws SQLException {
 
         try {
@@ -40,20 +102,19 @@ public class ChbDAO implements Serializable {
             con = DriverManager.getConnection(url, "root", "potato");
             now = LocalDateTime.now();
 
-//            PreparedStatement stmt = con.prepareStatement("select * from subcounty order by SubcountyName ASC");
-            PreparedStatement stmt = con.prepareStatement("select * from village Where ParishId In ('PARI001','PARI002','PARI003','PARI004','PARI005','PARI006','PARI007','PARI008','PARI009','PARI010','PARI016','PARI017','PARI047') order by VillageName ASC");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM village WHERE ParishId IN (SELECT ParishId FROM parish) ORDER BY VillageName ASC");
 
             ResultSet rs = stmt.executeQuery();
-            List <Village> village_list = new ArrayList <>();
+            List<Village> village_list = new ArrayList<>();
 
             while (rs.next()) {
-                village = new Village(rs.getString("VillageId"),rs.getString("ParishId"), rs.getString("VillageName"));
+                village = new Village(rs.getString("VillageId"), rs.getString("ParishId"),  rs.getString("VillageName"));
                 village_list.add(village);
             }
             con.close();
             return village_list;
-        } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Reception DAO", "Reception_Get_Subcounties", " Message: " + ex.getMessage(), now));
+        } catch (Exception e) {
+            ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Villages", " Message: " + e.getMessage(), now));
             return null;
         }
     }
@@ -67,13 +128,12 @@ public class ChbDAO implements Serializable {
             con = DriverManager.getConnection(url, "root", "potato");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * From vht,village Where vht.vhtVillage=village.VillageId");
+            PreparedStatement stmt = con.prepareStatement("SELECT * From vht, village Where vht.vhtVillage=village.VillageId");
 
             ResultSet rs = stmt.executeQuery();
             List <Vht> vht_list = new ArrayList <>();
 
             while (rs.next()) {
-
                 Vht vht = new Vht();
 
                 vht.setVhtId(rs.getInt("vhtId"));
@@ -109,8 +169,6 @@ public class ChbDAO implements Serializable {
 
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From maternity,village Where maternity.matVillage=village.VillageId");
-            //PreparedStatement stmt = con.prepareStatement("SELECT * From maternity");
-
 
             ResultSet rs = stmt.executeQuery();
             List <Maternity> maternity_list = new ArrayList<>();
@@ -769,8 +827,6 @@ public class ChbDAO implements Serializable {
 
     public static boolean Update_Existing_Maternity(Maternity existing_maternity) throws SQLException {
         try {
-//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             Connection con = DriverManager.getConnection(url, "root", "potato");
@@ -798,8 +854,6 @@ public class ChbDAO implements Serializable {
 
             stmt.setString(1, existing_maternity.getDateOfAdmission().format(dateFormatter));
             stmt.setString(2, existing_maternity.getTimeOfAdmission().format(timeFormatter));
-//            stmt.setString(1, existing_maternity.getDateOfAdmission().format(dateFormatter));
-//            stmt.setString(2, existing_maternity.getTimeOfAdmission().format(timeFormatter));
             stmt.setInt(3, existing_maternity.getAdmissionNo());
             stmt.setString(4, existing_maternity.getAncNo());
             stmt.setInt(5, existing_maternity.getIpdNo());
