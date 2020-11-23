@@ -928,8 +928,8 @@ INSERT INTO `login_history` (`Staff_Id`, `Login_Date`, `Login_Time`) VALUES
 /*!40000 ALTER TABLE `login_history` ENABLE KEYS */;
 
 
--- Dumping structure for table bwindihospital.parishes
-CREATE TABLE IF NOT EXISTS `parishes` (
+-- Dumping structure for table bwindihospital.parish
+CREATE TABLE IF NOT EXISTS `parish` (
   `ParishId` varchar(20) CHARACTER SET utf8 NOT NULL,
   `SubcountyId` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `ParishName` varchar(60) CHARACTER SET utf8 DEFAULT NULL,
@@ -937,10 +937,10 @@ CREATE TABLE IF NOT EXISTS `parishes` (
   KEY `SubcountyId` (`SubcountyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table bwindihospital.parishes: ~58 rows (approximately)
-DELETE FROM `parishes`;
-/*!40000 ALTER TABLE `parishes` DISABLE KEYS */;
-INSERT INTO `parishes` (`ParishId`, `SubcountyId`, `ParishName`) VALUES
+-- Dumping data for table bwindihospital.parish: ~58 rows (approximately)
+DELETE FROM `parish`;
+/*!40000 ALTER TABLE `parish` DISABLE KEYS */;
+INSERT INTO `parish` (`ParishId`, `SubcountyId`, `ParishName`) VALUES
 	('PARI001', 'SUBC002', 'Buremba'),
 	('PARI002', 'SUBC002', 'Mpungu'),
 	('PARI003', 'SUBC002', 'Ngaara'),
@@ -999,7 +999,7 @@ INSERT INTO `parishes` (`ParishId`, `SubcountyId`, `ParishName`) VALUES
 	('PARI078', 'SUBC001', 'Nkunda'),
 	('PARI079', 'SUBC031', 'Rwanga'),
 	('PARI080', 'SUBC031', 'Kihiihi Town Ward');
-/*!40000 ALTER TABLE `parishes` ENABLE KEYS */;
+/*!40000 ALTER TABLE `parish` ENABLE KEYS */;
 
 
 -- Dumping structure for table bwindihospital.roles

@@ -12,6 +12,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import model.Village;
+import model.Parish;
+import model.Subcounty;
 import model.Vht;
 import model.Maternity;
 
@@ -129,7 +131,25 @@ public class ChbBean
         try {
             return ChbDAO.Get_Villages();
         } catch (final Exception ex) {
-            System.err.println("vaccineBean Error: Method: get_villages " + ex.getMessage());
+            System.err.println("ChbBean Error: Method: get_villages " + ex.getMessage());
+        }
+        return null;
+    }
+
+    public List<Parish> get_parishes() {
+        try {
+            return ChbDAO.Get_Parishes();
+        } catch (final Exception e) {
+            System.err.println("ChbBean Error: Method: get_parishes " + e.getMessage());
+        }
+        return null;
+    }
+
+    public List<Subcounty> get_subcounties() {
+        try {
+            return ChbDAO.Get_Subcounties();
+        } catch (final Exception e) {
+            System.err.println("ChbBean Error: Method: get_subcounties" + e.getMessage());
         }
         return null;
     }
@@ -264,7 +284,7 @@ public class ChbBean
 
     }
 
-    public void save_new_vht(final Integer userId,final String Action) {
+    public void save_new_vht(final Integer userId, final String Action) {
         try {
 //            System.out.println("ChbBean.save_new_vht" + userId);
             if(Action.equals("Save")) {
@@ -281,7 +301,7 @@ public class ChbBean
         }
     }
 
-    public void save_new_maternity(final Integer userId,final String Action) {
+    public void save_new_maternity(final Integer userId, final String Action) {
         try {
             System.out.println("ChbBean.save_new_maternity" + userId);
             if(Action.equals("Save")) {
@@ -298,7 +318,7 @@ public class ChbBean
         }
     }
 
-    public String get_existing_vht(final Integer vhtId,final String destination) {
+    public String get_existing_vht(final Integer vhtId, final String destination) {
         try {
 //            existing_vht = ChbDAO.Get_Existing_Vht(existing_vht.getVhtId());
             existing_vht = ChbDAO.Get_Existing_Vht(vhtId);
@@ -309,7 +329,7 @@ public class ChbBean
         }
     }
 
-    public String get_existing_maternity(final Integer matId,final String destination) {
+    public String get_existing_maternity(final Integer matId, final String destination) {
         try {
             existing_maternity = ChbDAO.Get_Existing_Maternity(matId);
             return destination;
