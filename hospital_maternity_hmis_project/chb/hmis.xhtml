@@ -1,7 +1,7 @@
 <!-- The following codes mimics the implementation of "vht.xhtml".
      You may find some function call to java method does not make
 	 sense since we did not manage to finally integrate the java
-	 files and this "hmis.xhtml" file. Further modification to the
+	 files and this "maternity.xhtml" file. Further modification to the
 	 function call is needed -->
 <ui:composition template="/WEB-INF/templates/chb.xhtml" xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -17,11 +17,11 @@
 
     <ui:define name="content">
 
-        <h:form id="hmis_form">
+        <h:form id="maternity_form">
             <h:inputHidden value="#{usersBean.uid}" binding="#{userid}" />
             <style>
                 .ui-panelgrid {
-                    width: 75%;
+                    width: 100%;
                 }
 
                 .ui-panelgrid td,
@@ -32,205 +32,314 @@
             </style>
 
             <p:tabView id="tabPanel">
-                <p:tab title="Add new HMIS">
-                    <p:panel id="new_hmis">
+                <p:tab title="Add new Maternity">
+                    <p:panel id="new_maternity">
 
                         <p:panelGrid>
+                            <!-- ADMISSION information -->
                             <f:facet name="header">
                                 <p:row>
-                                    <p:column colspan="4">Admission Information</p:column>
+                                    <p:column colspan="5">
+                                        Admission Information
+                                    </p:column>
                                 </p:row>
                             </f:facet>
 
+                            <!-- date of admission, time of admission, admission number, anc number, ipd number -->
                             <p:row>
-                                <p:column>
-                                    Date of Admission
-                                    <br />
-                                    <p:calendar value="#{chbBean.new_hmis.dateOfAdmission}"></p:calendar>
+                                <p:column colspan="2">
+                                    <p:fieldset legend="Date / Time of Admission">
+                                        <p:panelGrid>
+                                            <p:row>
+                                            <p:column>
+                                                Date
+                                                <br />
+                                                <p:calendar value="#{chbBean.new_maternity.timeOfAdmission}" />
+                                            </p:column>
+
+                                            <p:column>
+                                                Time
+                                                <br />
+                                                <pe:timePicker value="#{chbBean.new_maternity.timeOfAdmission}" timeSeparator=":"
+                                                               startHours="0" endHours="23" startMinutes="00" endMinutes="59"
+                                                               intervalMinutes="1" showCloseButton="true" showDeselectButton="true"
+                                                               showNowButton="true" rows="6" showPeriod="true" style="width:100%;
+                                                   display:block; max-width:150px;" required="false" />
+                                            </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
                                 </p:column>
-                                <p:column>
-                                    Time of Admission
-                                    <br />
-                                    <p:inputText/>
-                                </p:column>
+
                                 <p:column>
                                     Admission No.
                                     <br />
-                                    <p:inputText/>
+                                    <p:inputText type="number" value="#{chbBean.new_maternity.admissionNo}" />
                                 </p:column>
+
                                 <p:column>
-                                    ANC No./Ref In No./C/Ref In
+                                    ANC NO / REF IN NO / C/REF IN
                                     <br />
-                                    <p:inputText/>
+                                    <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}" />
                                 </p:column>
-
-                            </p:row>
-
-                            <p:row>
 
                                 <p:column>
                                     IPD No.
                                     <br />
-                                    <p:inputText type="number" value="#{chbBean.new_hmis.ipd}" />
+                                    <p:inputText type="number" value="#{chbBean.new_maternity.ipdNo}" />
                                 </p:column>
-                                <p:column>
-                                    National Identification No.
-                                    <br />
-                                    <p:inputText/>
-                                </p:column>
-                            <p:column>
-                                Name:
-                                <br />
-                                <p:inputText type="text" value="#{chbBean.new_hmis.matName}" />
-                                <br />
-                                Client Catagory:
-                                <br />
-                                <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                <p:selectOneMenu><f:selectItem itemLabel="N" itemValue="" /></p:selectOneMenu>
-                                <p:selectOneMenu><f:selectItem itemLabel="R" itemValue="" /></p:selectOneMenu>
-                                <p:selectOneMenu><f:selectItem itemLabel="F" itemValue="" /></p:selectOneMenu>
-                            </p:column>
-                                <p:column>
-                                    Age:
-                                    <br />
-                                    <p:inputText type="number" value="#{chbBean.new_hmis.age}" />
-                                </p:column>
-
                             </p:row>
 
+                            <!-- national identification number, client surname, client given name, age, client category -->
                             <p:row>
-                                <p:column style="margin-left:10px;">
-                                    ADDRESS
+                                <p:column>
+                                    NIN
                                     <br />
-                                    <p style="margin-bottom: 0">
-                                        Village:
-                                        <br />
-                                        <p:selectOneMenu id="village" value="#{chbBean.new_hmis.villageId}" filter="true"
-                                                         filterMatchMode="contains" editable="false">
-                                            <f:selectItem itemLabel="Select" itemValue="" />
-                                            <f:selectItems value="#{chbBean.get_villages()}" var="village"
-                                                           itemLabel="#{village.villageName}" itemValue="#{village.villageId}" />
-                                            <!--<p:ajax listener="#{chbBean.get_village_hmis_list()}" update="village_vhts,phone_number,age,sex,isCBD"/> -->
-                                        </p:selectOneMenu>
-                                    </p>
-                                    <p style="margin-bottom: 0">
-                                        Parish:
-                                        <p:selectOneMenu id="parish" value="#{chbBean.new_hmis.villageId}" filter="true"
-                                                         filterMatchMode="contains" editable="false">
-                                            <f:selectItem itemLabel="Select" itemValue="" />
-                                            <f:selectItems value="#{chbBean.get_villages()}" var="village"
-                                                           itemLabel="#{village.villageName}" itemValue="#{village.villageId}" />
-                                            <!--<p:ajax listener="#{chbBean.get_village_hmis_list()}" update="village_vhts,phone_number,age,sex,isCBD"/> -->
-                                        </p:selectOneMenu>
-                                    </p>
-                                    <p style="margin-bottom: 0">
-                                        District:
-                                        <p:selectOneMenu id="district" value="#{chbBean.new_hmis.villageId}" filter="true"
-                                                         filterMatchMode="contains" editable="false">
-                                            <f:selectItem itemLabel="Select" itemValue="" />
-                                            <f:selectItems value="#{chbBean.get_villages()}" var="village"
-                                                           itemLabel="#{village.villageName}" itemValue="#{village.villageId}" />
-                                            <!--<p:ajax listener="#{chbBean.get_village_hmis_list()}" update="village_vhts,phone_number,age,sex,isCBD"/> -->
-                                        </p:selectOneMenu>
-                                    </p>
-                                    <p style="margin-bottom: 0">
-                                        Subcounty:
-                                        <p:selectOneMenu id="subcounty" value="#{chbBean.new_hmis.villageId}" filter="true"
-                                                         filterMatchMode="contains" editable="false">
-                                            <f:selectItem itemLabel="Select" itemValue="" />
-                                            <f:selectItems value="#{chbBean.get_villages()}" var="village"
-                                                           itemLabel="#{village.villageName}" itemValue="#{village.villageId}" />
-                                            <!--<p:ajax listener="#{chbBean.get_village_hmis_list()}" update="village_vhts,phone_number,age,sex,isCBD"/> -->
-                                        </p:selectOneMenu>
-                                    </p>
+                                    <p:inputText type="text" value ="#{chbBean.new_maternity.nin}" />
                                 </p:column>
 
-                                <p:column >
-                                        ANC Visit No.
-                                        <br />
-                                        <p:inputText/>
-                                    <br />
-                                    <h:outputLabel>Parity:</h:outputLabel>
-                                    <br />
+                                <p:column colspan="2">
+                                    <p:fieldset legend="Client Name">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    Surname
+                                                    <br />
+                                                    <p:inputText type="text" value = "#{chbBean.new_maternity.clientSurname}" />
+                                                </p:column>
 
-                                    <p:inputText type="text" value="#{chbBean.new_hmis.parity}" />
+                                                <p:column>
+                                                    Given Name
+                                                    <br />
+                                                    <p:inputText type="text" value = "#{chbBean.new_maternity.clientGivenName}" />
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
 
+                                <p:column>
+                                    Age
                                     <br />
+                                    <p:inputText type="number" value = "#{chbBean.new_maternity.age}" />
+                                </p:column>
 
-                                    <h:outputLabel>Gravida:</h:outputLabel>
+                                <p:column>
+                                    Client Category
                                     <br />
-                                    <p:inputText type="text" value="#{chbBean.new_hmis.gravida}" />
-                                    <br />
-                                    <br />
-                                    Term/Pre-Term:
-                                    <br />
-                                    <p:selectOneMenu value="#{chbBean.new_hmis.term}">
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.clientCategory}">
                                         <f:selectItem itemLabel="Select" itemValue="" />
-                                        <f:selectItem itemLabel="Term" itemValue="(T)" />
-                                        <f:selectItem itemLabel="Pre-Term" itemValue="(P)" />
+                                        <f:selectItem itemLabel="National" itemValue="N" />
+                                        <f:selectItem itemLabel="Foreigner" itemValue="F" />
+                                        <f:selectItem itemLabel="Refugee" itemValue="R" />
                                     </p:selectOneMenu>
                                 </p:column>
+                            </p:row>
+
+                            <!-- district, subcounty, parish, village, phone number -->
+                            <p:row>
+                                <p:column colspan="5">
+                                    <p:fieldset legend="Address">
+                                        <p:panelGrid>
+                                            <p:row>
+                                               <p:column>
+                                                    <h:outputLabel value="District:" />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.districtId}" filter="true" filterMatchMode="contains" editable="false" >
+                                                        <f:selectItem itemLabel="Kanungu" itemValue="DIST001" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <h:outputLabel value="Subcounty:" />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.subcountyId}" filter="true" filterMatchMode="contains" editable="false" >
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItems value="#{chbBean.get_subcounties()}" var="subcounty" itemLabel="#{subcounty.subcountyName}" itemValue="#{subcounty.subcountyId}" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <h:outputLabel value="Parish:" />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.parishId}" filter="true" filterMatchMode="contains" editable="false" >
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItems value="#{chbBean.get_parishes()}" var="parish" itemLabel="#{parish.parishName}" itemValue="#{parish.parishId}" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <h:outputLabel value="Village:" />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.villageId}" filter="true" filterMatchMode="contains" editable="false" >
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItems value="#{chbBean.get_villages()}" var="village" itemLabel="#{village.villageName}" itemValue="#{village.villageId}" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+
+                                                <p:column>
+                                                    Phone Number
+                                                    <br />
+                                                    <p:inputText type="number" value="new_maternity.phoneNumber" />
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
+                            </p:row>
+
+                            <!-- gravidity, parity, gestation age, term -->
+                            <p:row>
                                 <p:column>
-                                    Gestation:
-                                        <br />
-                                        <p:inputText value="#{chbBean.new_hmis.gestation}" />
+                                    Gravidity
                                     <br />
-                                    <br />
-                                    WHO CLINICAL STAGE/CD4 COUNTS
-                                    <br />
-                                    <br />
-                                    Test Date:
-                                    <br />
-                                    <p:calendar value="#{chbBean.new_hmis.hivTestDate}"></p:calendar>
-                                    <br />
-                                    <h:selectBooleanCheckbox value="#{chbBean.new_hmis.revisit}" />
-                                    Revisit
-                                </p:column>
-                                <p:column rowspan="2" colspan="1">
-                                    <br />
-                                    WHO Clinical Stage:
-                                    <br />
-                                    <p:inputText value="#{chbBean.new_hmis.whoClinicalStage}" />
-                                    <br />
-                                    <br />
-                                    CD4:
-                                    <br />
-                                    <p:inputText value="#{chbBean.new_hmis.cd4Count}" />
-                                    <br />
-                                    <br />
-                                    Viral Load:
-                                    <br />
-                                    <p:inputText value="#{chbBean.new_hmis.viralLoad}" />
+                                    <p:inputText type="number" value="#{chbBean.new_maternity.gravidity}" />
                                 </p:column>
 
-                            </p:row>
-                            <p:row>
-
-                            </p:row>
-
-                            <p:row>
-
-
-                                <p:column colspan="4">
-                                    REASON FOR ADMISSION:
+                                <p:column>
+                                    Parity
                                     <br />
+                                    <p:inputText type="number" value="#{chbBean.new_maternity.parity}" />
+                                </p:column>
+
+                                <p:column>
+                                    Gestation Age
                                     <br />
-                                    <p:inputTextarea cols="165" rows="6" value="#{chbBean.new_hmis.finalDiagnosis}" />
+                                    <p:inputText type="number" value="#{chbBean.new_maternity.gestationAge}" />
+                                </p:column>
+
+                                <p:column>
+                                    Term and Pre Term
+                                    <br />
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.term}">
+                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                        <f:selectItem itemLabel="term" itemValue="T" />
+                                        <f:selectItem itemLabel="pre-term" itemValue="P" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+                            <!-- reason for admission, who clinical staging -->
+                            <p:row>
+                                <p:column colspan="2">
+                                    Reason for Admission
+                                    <br />
+                                    <p:inputTextarea cols="50" rows="5" value="#{chbBean.new_maternity.reasonForAdmission}" />
+                                </p:column>
+
+                                <p:column colspan="3">
+                                    <p:fieldset legend="WHO Clinical Staging">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    <h:selectBooleanCheckbox value = "#{chbBean.new_maternity.revisit}" />
+                                                    Revisit
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    WHO Clinical Stage
+                                                    <br />
+                                                    <p:inputText type="number" value="#{chbBean.new_maternity.whoClinicalStage}" />
+                                                </p:column>
+
+                                                <p:column>
+                                                    CD4 Results
+                                                    <br />
+                                                    <p:inputText type="number" value="#{chbBean.new_maternity.cd4Results}" />
+                                                    <br />
+                                                    <br />
+                                                    CD4 Test Date
+                                                    <br />
+                                                    <p:calendar value="#{chbBean.new_maternity.cd4Date}" />
+                                                </p:column>
+
+                                                <p:column>
+                                                    Viral Load Results
+                                                    <br />
+                                                    <p:inputText type="number" value="#{chbBean.new_maternity.viralLoadResults}" />
+                                                    <br />
+                                                    <br />
+                                                    Viral Load Test Date
+                                                    <br />
+                                                    <p:calendar value="#{chbBean.new_maternity.viralLoadDate}" />
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
                                 </p:column>
                             </p:row>
 
                         </p:panelGrid>
 
-
-                        <br />
                         <p:panelGrid>
                             <!-- DELIVERY information -->
                             <f:facet name="header">
-
                                 <p:row>
-                                    <p:column colspan="4">Delivery Information</p:column>
+                                    <p:column colspan="5">Delivery Information</p:column>
                                 </p:row>
                             </f:facet>
+
+                            <!-- emtct for woman and partner -->
+                            <p:row>
+                                <p:column colspan="5">
+                                    <p:fieldset legend="eMTCT">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    <p:fieldset legend="Woman">
+                                                        <p:panelGrid>
+                                                            <p:row>
+                                                                <p:column>
+                                                                    Initial Result
+                                                                    <br />
+                                                                    <p:inputText type="text" value="#{chbBean.new_maternity.wInitialResult}" />
+                                                                </p:column>
+                                                                <p:column>
+                                                                    TFV
+                                                                    <br />
+                                                                    <p:inputText type="text" value="#{chbBean.new_maternity.wTfv}" />
+                                                                </p:column>
+                                                            </p:row>
+                                                        </p:panelGrid>
+                                                    </p:fieldset>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:fieldset legend="Partner">
+                                                        <p:panelGrid>
+                                                            <p:row>
+                                                                <p:column>
+                                                                    Initial Result
+                                                                    <br />
+                                                                    <p:inputText type="text" value="#{chbBean.new_maternity.pInitialResult}" />
+                                                                </p:column>
+                                                                <p:column>
+                                                                    TFV
+                                                                    <br />
+                                                                    <p:inputText type="text" value="#{chbBean.new_maternity.pTfv}" />
+                                                                </p:column>
+                                                                <p:column>
+                                                                    Art Code
+                                                                    <br />
+                                                                    <p:inputText type="text" value="#{chbBean.new_maternity.pArtCode}" />
+                                                                </p:column>
+                                                            </p:row>
+                                                        </p:panelGrid>
+                                                    </p:fieldset>
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column colspan="3">
+                                    <p:fieldset legend="ART Codes">
+                                        <p:panelGrid>
+                                            <p:row>
+
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
+                            </p:row>
+
                             <p:row>
                                 <p:column>
                                     eMTCT Codes
@@ -268,9 +377,9 @@
                                     <br/>
                                     <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
                                    <br/>
-                                    <h:selectBooleanCheckbox value="#{chbBean.new_hmis.revisit}" />
+                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.revisit}" />
                                     Revisit
-                                    <h:selectBooleanCheckbox value="#{chbBean.new_hmis.revisit}" />
+                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.revisit}" />
                                     Retest
                                     <br/>
                                     <br/>
@@ -298,18 +407,17 @@
                                 <p:column style=" width: 25%; max-width:27%;">
                                     Mode of Delivery:
                                     <br />
-                                    <p:inputText value="#{chbBean.new_hmis.deliveryMode}" />
+                                    <p:inputText value="#{chbBean.new_maternity.modeOfDelivery}" />
                                 </p:column>
                                 <p:column>
                                     Date of Delivery:
                                     <br />
-                                    <p:calendar value="#{chbBean.new_hmis.deliveryDate}"></p:calendar>
+                                    <p:calendar value="#{chbBean.new_maternity.dateOfDelivery}"></p:calendar>
                                 </p:column>
                                 <p:column>
                                     Time of Delivery:
                                     <br />
-                                    <!--                            <p:inputText value="#{chbBean.new_hmis.deliveryTime}"/>-->
-                                    <pe:timePicker value="#{chbBean.new_hmis.deliveryTime}" timeSeparator=":"
+                                    <pe:timePicker value="#{chbBean.new_maternity.timeOfDelivery}" timeSeparator=":"
                                                    startHours="1" endHours="24" startMinutes="00" endMinutes="59"
                                                    intervalMinutes="1" showCloseButton="true" showDeselectButton="true"
                                                    showNowButton="true" rows="6" showPeriod="true"
@@ -320,11 +428,11 @@
                                     <br />
                                     <h:form>
                                         <!-- <h:selectBooleanCheckbox value="#{user.rememberMe}" /> Remember Me -->
-                                        <h:selectBooleanCheckbox value="#{chbBean.new_hmis.ergometrine}" /> ERGOMETRINE
+                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.ergometrine}" /> ERGOMETRINE
                                         <br />
-                                        <h:selectBooleanCheckbox value="#{chbBean.new_hmis.pitocin}" /> PITOCIN
+                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.oxytocin}" /> OXYTOCIN
                                         <br />
-                                        <h:selectBooleanCheckbox value="#{chbBean.new_hmis.misoprostol}" /> MISOPROSTOL
+                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.misoprostol}" /> MISOPROSTOL
                                         <br/>
                                         Other:
                                         <p:inputText></p:inputText>
@@ -338,7 +446,7 @@
                                 <p:column>
                                     NUTRITION ASSESSMENT:
                                     <br />
-                                    <p:inputText type="number" value="#{chbBean.new_hmis.ancNum}" />
+                                    <p:inputText type="number" value="#{chbBean.new_maternity.ancNo}" />
                                 </p:column>
 
                             </p:row>
@@ -357,11 +465,11 @@
                                 <p:column style=" width: 25%; max-width:27%;">
                                     <h:outputLabel value="  APGAR SCORE (A/S): " />
                                     <br />
-                                    <p:inputText value="#{chbBean.new_hmis.apgarScore}" />
+                                    <p:inputText value="#{chbBean.new_maternity.apgarScore}" />
                                     <br/>
                                     <h:outputLabel value="SEX:" />
                                     <br />
-                                    <p:selectOneMenu value="#{chbBean.new_hmis.sexOfBaby}">
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.sexOfBaby}">
                                         <f:selectItem itemLabel="Select" itemValue="" />
                                         <f:selectItem itemLabel="Female" itemValue="F" />
                                         <f:selectItem itemLabel="Male" itemValue="M" />
@@ -369,7 +477,7 @@
                                     <br/>
                                     <h:outputLabel value=" NOT BREATHING AT BIRTH: " />
                                     <br />
-                                    <p:selectOneMenu value="#{chbBean.new_hmis.breathing}">
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.notBreathing}">
                                         <f:selectItems value="#{data.names}" />
                                         <f:selectItem style="width:100%;" itemLabel="Select" itemValue="" />
                                         <f:selectItem itemLabel="Stimulation and or Suction" itemValue="SS" />
@@ -412,7 +520,7 @@
                                     <br/>
                                     <h:outputLabel value=" Weight (Kg) " />
                                     <br />
-                                    <p:inputText value="#{chbBean.new_hmis.weight}" />
+                                    <p:inputText value="#{chbBean.new_maternity.weight}" />
                                 </p:column>
                                 <p:column>
                                     Risk Status
@@ -425,7 +533,7 @@
                                     <br/>
                                     <h:outputLabel value=" IMMUNISATION (BCG/POLIO 0): " />
                                     <br />
-                                    <h:selectBooleanCheckbox value="#{chbBean.new_hmis.immunized}" /> Baby Received BCG
+                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.bcgImmunization}" /> Baby Received BCG
                                     and Polio Shots
                                 </p:column>
                             </p:row>
@@ -446,12 +554,12 @@
                                 <p:column>
                                     <h:outputLabel value="Family Planning" />
                                     <br />
-                                    <p:inputText value="#{chbBean.new_hmis.familyPlanning}" />
+                                    <p:inputText value="#{chbBean.new_maternity.familyPlanningMethod}" />
                                 </p:column>
                                 <p:column>
                                     <h:outputLabel value=" CONDITION OF MOTHER ON DISCHARGE: " />
                                     <br />
-                                    <p:selectOneMenu value="#{chbBean.new_hmis.motherCondition}">
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.conditionOfMotherAtDischarge}">
                                         <f:selectItem itemLabel="Select" itemValue="" />
                                         <f:selectItem itemLabel="D" itemValue="D" />
                                         <f:selectItem itemLabel="DD" itemValue="DD" />
@@ -466,7 +574,7 @@
                                 <p:column>
                                     <h:outputLabel value="Baby condition" />
                                     <br />
-                                    <p:selectOneMenu value="#{chbBean.new_hmis.babyCondition}">
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.babyCondition}">
                                         <f:selectItem itemLabel="Select" itemValue="" />
                                         <f:selectItem itemLabel="MSB" itemValue="MSB" />
                                         <f:selectItem itemLabel="FSB" itemValue="FSB" />
@@ -479,34 +587,28 @@
 
                                     <h:outputLabel value=" DELIVERED BY: " />
                                     <br />
-                                    <p:inputText value="#{chbBean.new_hmis.deliveredBy}" />
+                                    <p:inputText value="#{chbBean.new_maternity.deliveredByName}" />
                                 </p:column>
                             </p:row>
                             <p:row>
-                                <p:column>
-                                    <h:outputLabel value=" PNC at 24H:  " />
-                                    <br />
-                                    <p:calendar value="#{chbBean.new_hmis.postNatalCare}"></p:calendar>
-
-                                </p:column>
                                 <p:column colspan="2">
                                     <h:outputLabel value=" COUNSELING AT DISCHARGE: " />
                                     <br />
                                     <h:form>
-                                        <p:selectOneMenu value="#{chbBean.new_hmis.counseled}">
+                                        <p:selectOneMenu value="#{chbBean.new_maternity.counselingDischarged}">
                                             <f:selectItem itemLabel="Select" itemValue="" />
                                             <f:selectItem itemLabel="Counseled" itemValue="C" />
                                             <f:selectItem itemLabel="Not Counseled" itemValue="NC" />
                                         </p:selectOneMenu>
                                         <br />
-                                        <h:selectBooleanCheckbox value="#{chbBean.new_hmis.matNutrCouns}" /> Maternal
+                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.materNutrCouns}" /> Maternal
                                         Nutritional Counseling
                                     </h:form>
                                 </p:column>
                                 <p:column>
                                     <h:outputLabel value=" NAME OF THE PERSON WHO DISCHARGED THE MOTHER:  " />
                                     <br />
-                                    <p:inputText value="#{chbBean.new_hmis.nameDischarge}" />
+                                    <p:inputText value="#{chbBean.new_maternity.nameOfPersonDischarging}" />
                                 </p:column>
                             </p:row>
                         </p:panelGrid>
@@ -515,73 +617,73 @@
                         <p:panel style="border:none;">
                             <!--The problem is here, it has to do with jsf update rendering
                             https://stackoverflow.com/questions/8634156/how-to-find-out-client-id-of-component-for-ajax-update-render-cannot-find-compo-->
-                            <p:commandButton value="Add HMIS Details" style="font-size: 12px;font-weight: bold;"
-                                             action="#{chbBean.save_new_hmis(userid.value,'Save')}"
-                                             update="new_hmis,hmis_list,:hmis_form:notification" />
+                            <p:commandButton value="Add Maternity Details" style="font-size: 12px;font-weight: bold;"
+                                             action="#{chbBean.save_new_maternity(userid.value,'Save')}"
+                                             update="new_maternity,maternity_list,:maternity_form:notification" />
                             <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
-                                             action="#{chbBean.save_new_hmis(userid.value,'Clear')}"
-                                             update="new_hmis,hmis_list,:hmis_form:notification" />
+                                             action="#{chbBean.save_new_maternity(userid.value,'Clear')}"
+                                             update="new_maternity,maternity_list,:maternity_form:notification" />
                         </p:panel>
                     </p:panel>
                 </p:tab>
 
-                <p:tab title="List existing HMIS">
-                    <p:panel id="hmis_list">
-                        <p:dataTable id="hmis_table" var="hmis_list" value="#{chbBean.get_hmis_list()}"
+                <p:tab title="List existing Maternity">
+                    <p:panel id="maternity_list">
+                        <p:dataTable id="maternity_table" var="maternity_list" value="#{chbBean.get_maternity_list()}"
                                      style=" background-color: #f7f7f7;width: 100%;" paginator="true" rows="10"
                                      paginatorPosition="bottom" tableStyle="table-layout: auto;"
-                                     filteredValue="#{chbBean.filteredHmis_list}">
+                                     filteredValue="#{chbBean.filteredMaternity_list}">
                             <f:facet name="header">
-                                List of HMISs
+                                List of Maternity
                             </f:facet>
 
                             <p:column headerText=" Date of Admission " styleClass="tblcol1">
-                                <h:outputText value="#{hmis_list.recordDate}" />
+                                <h:outputText value="#{maternity_list.recordDate}" />
                             </p:column>
 
-                            <p:column headerText=" IPD " styleClass="tblcol1" filterBy="#{hmis_list.ipd}"
+                            <p:column headerText=" IPD " styleClass="tblcol1" filterBy="#{maternity_list.ipd}"
                                       filterMatchMode="contains">
-                                <h:outputText value="#{hmis_list.ipd}" />
+                                <h:outputText value="#{maternity_list.ipdNo}" />
                             </p:column>
 
                             <p:column headerText=" Patient Name " styleClass="tblcol1">
-                                <h:outputText value="#{hmis_list.matName}" />
+                                <h:outputText value="#{maternity_list.clientGivenName}" />
                             </p:column>
 
                             <p:column headerText=" Village Name " styleClass="tblcol1"
-                                      filterBy="#{hmis_list.villageName}">
-                                <h:outputText value="#{hmis_list.villageName}" />
+                                      filterBy="#{maternity_list.villageName}">
+                                <h:outputText value="#{maternity_list.villageName}" />
                             </p:column>
 
                             <p:column headerText=" Delivery Date " styleClass="tblcol1">
-                                <h:outputText value="#{hmis_list.deliveryDate}" />
+                                <h:outputText value="#{maternity_list.dateofDelivery}" />
                             </p:column>
 
                             <p:column headerText=" Delivery Time " styleClass="tblcol1">
-                                <h:outputText value="#{hmis_list.deliveryTime}" />
+                                <h:outputText value="#{maternity_list.timeOfDelivery}" />
                             </p:column>
 
                             <!--                            <p:column headerText=" Codes for clients who come ot Maternity with known status " styleClass="tblcol1">
-                                <h:outputText value="#{hmis_list.userId}" />
+                                <h:outputText value="#{maternity_list.userId}" />
                             </p:column>-->
 
                             <!--<p:column headerText=" Date Of Discharge " styleClass="tblcol1" >
-                                <h:outputText value="#{hmis_list.dateOfDischarge}" />
+                                <h:outputText value="#{maternity_list.dateOfDischarge}" />
                             </p:column>-->
 
                             <p:column headerText=" Village " styleClass="tblcol1">
-                                <h:outputText value="#{hmis_list.villageId}" />
+                                <h:outputText value="#{maternity_list.villageId}" />
                             </p:column>
 
                             <p:column headerText=" Name of Person Discharging Patient " styleClass="tblcol1">
-                                <h:outputText value="#{hmis_list.nameDischarge}" />
+                                <h:outputText value="#{maternity_list.nameOfPersonDischarging}" />
                             </p:column>
 
                             <p:column styleClass="tblcol2">
-                                <!--update=":hmis_form2:tabPanel2,:hmis_form2:tabPanel2:existing_hmis2" removed temporarily-->
+                                <!--update=":maternity_form2:tabPanel2,:maternity_form2:tabPanel2:existing_maternity2" removed temporarily-->
                                 <p:commandLink value="Edit"
                                                style="font-family: 'Tangerine', serif; font-weight: bold; color: blue; width: 10%;"
-                                               action="#{chbBean.get_existing_hmis(hmis_list.ipd,'hmis_edit')}" immediate="true" />
+                                               action="#{chbBean.get_existing_maternity(maternity_list.matId,'maternity_edit')}" immediate="true" />
                             </p:column>
 
                         </p:dataTable>
@@ -592,7 +694,7 @@
                         <p:panel>
                             <h:commandLink>
                                 <p:graphicImage value="#{resource['images:excel.png']}" />
-                                <p:dataExporter type="xls" target="vht_table" fileName="vht_list" />
+                                <p:dataExporter type="xls" target="maternity_table" fileName="maternity_list" />
                             </h:commandLink>
                         </p:panel>
                     </h:panelGrid>

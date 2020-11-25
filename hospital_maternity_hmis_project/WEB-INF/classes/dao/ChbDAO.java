@@ -183,7 +183,7 @@ public class ChbDAO implements Serializable
                 maternity.setAdmissionNo(rs.getInt("admissionNo"));
                 maternity.setAncNo(rs.getString("ancNo"));
                 maternity.setIpdNo(rs.getInt("ipdNo"));
-                maternity.setNin(rs.getInt("nin"));
+                maternity.setNin(rs.getString("nin"));
                 maternity.setClientSurname(rs.getString("clientSurname"));
                 maternity.setClientGivenName(rs.getString("clientGivenName"));
                 maternity.setAge(rs.getInt("age"));
@@ -353,7 +353,7 @@ public class ChbDAO implements Serializable
                 maternity.setAdmissionNo(rs.getInt("admissionNo"));
                 maternity.setAncNo(rs.getString("ancNo"));
                 maternity.setIpdNo(rs.getInt("ipdNo"));
-                maternity.setNin(rs.getInt("nin"));
+                maternity.setNin(rs.getString("nin"));
                 maternity.setClientSurname(rs.getString("clientSurname"));
                 maternity.setClientGivenName(rs.getString("clientGivenName"));
                 maternity.setAge(rs.getInt("age"));
@@ -517,7 +517,7 @@ public class ChbDAO implements Serializable
             stmt.setInt(3, new_maternity.getAdmissionNo());
             stmt.setString(4, new_maternity.getAncNo());
             stmt.setInt(5, new_maternity.getIpdNo());
-            stmt.setInt(6, new_maternity.getNin());
+            stmt.setString(6, new_maternity.getNin());
             stmt.setString(7, new_maternity.getClientSurname());
             stmt.setString(8, new_maternity.getClientGivenName());
             stmt.setInt(9, new_maternity.getAge());
@@ -693,7 +693,7 @@ public class ChbDAO implements Serializable
                 maternity.setAdmissionNo(rs.getInt("admissionNo"));
                 maternity.setAncNo(rs.getString("ancNo"));
                 maternity.setIpdNo(rs.getInt("ipdNo"));
-                maternity.setNin(rs.getInt("nin"));
+                maternity.setNin(rs.getString("nin"));
                 maternity.setClientSurname(rs.getString("clientSurname"));
                 maternity.setClientGivenName(rs.getString("clientGivenName"));
                 maternity.setAge(rs.getInt("age"));
@@ -856,7 +856,7 @@ public class ChbDAO implements Serializable
             stmt.setInt(3, existing_maternity.getAdmissionNo());
             stmt.setString(4, existing_maternity.getAncNo());
             stmt.setInt(5, existing_maternity.getIpdNo());
-            stmt.setInt(6, existing_maternity.getNin());
+            stmt.setString(6, existing_maternity.getNin());
             stmt.setString(7, existing_maternity.getClientSurname());
             stmt.setString(8, existing_maternity.getClientGivenName());
             stmt.setInt(9, existing_maternity.getAge());
