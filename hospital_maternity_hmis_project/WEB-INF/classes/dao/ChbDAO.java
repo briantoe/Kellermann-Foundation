@@ -38,7 +38,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             date = new java.util.Date();
 
 //            PreparedStatement stmt = con.prepareStatement("select * from subcounty order by SubcountyName ASC");
@@ -65,7 +65,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             date = new java.util.Date();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From vht,village Where vht.vhtVillage=village.VillageId");
@@ -105,7 +105,7 @@ public class ChbDAO implements Serializable {
             System.out.println("ChbDAO.Get_Hmis_List");
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
 
             //PreparedStatement stmt = con.prepareStatement("SELECT * From hmis,village Where hmis.matVillage=village.VillageId");
@@ -191,7 +191,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             date = new java.util.Date();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From vht Where vhtVillage=?");
@@ -231,7 +231,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             date = new java.util.Date();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From hmis");
@@ -318,7 +318,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             PreparedStatement stmt = con.prepareStatement("insert into "
                     + "vht (vhtName,Age,Sex,vhtPhoneNumber,isCBD,vhtVillage,recordDate,userId) "
@@ -349,7 +349,7 @@ public class ChbDAO implements Serializable {
             date = new java.util.Date();
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            Connection con = DriverManager.getConnection(url, "root", "t00r");
+            Connection con = DriverManager.getConnection(url, "root", "potato");
             PreparedStatement stmt = con.prepareStatement("insert into hmis (recordDate, IPD, ancNum, ancRef, matName, villageID, " +
                     "matPhoneNumber, age, gravida, parity, weeksGestation, term, finalDiagnosis, whoClinicalStage, cd4Count, viralLoad," +
                     "revisit, deliveryMode, deliveryDate, deliveryTime, ergometrine, pitocin, misoprostol, otherMeds, emtctCode," +
@@ -476,7 +476,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             date = new java.util.Date();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From vht,village Where vht.vhtVillage=village.VillageId and vhtId=?");
@@ -514,7 +514,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             date = new java.util.Date();
             PreparedStatement stmt = con.prepareStatement("SELECT * From hmis,village Where hmis.villageID=village.VillageId and ipd=?");
             stmt.setObject(1, ipd);
@@ -596,7 +596,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             PreparedStatement stmt = con.prepareStatement("UPDATE vht SET "
                     + "Age=?,Sex=?,vhtPhoneNumber=?,isCBD=? Where vhtId=?");
@@ -624,7 +624,7 @@ public class ChbDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            Connection con = DriverManager.getConnection(url, "root", "t00r");
+            Connection con = DriverManager.getConnection(url, "root", "potato");
             PreparedStatement stmt = con.prepareStatement("UPDATE hmis SET dateOfAdmission=?,matVillage=?,ancNum=?,ancRef=?, matName=?, villageID=?, matPhoneNumber=?," +
                     "age=?, gravida=?, parity=?, weeksGestation=?, term=?, finalDiagnosis=?, whoClinicalStage=?, cd4Count=?, viralLoad=?, revisit=?, deliveryMode=?, " +
                     "deliveryDate=?, deliveryTime=?, ergometrine=?, pitocin=?, misoprostol=?, otherMeds=?, emtctCode=?, arvs=?, vitaminA=?," +
