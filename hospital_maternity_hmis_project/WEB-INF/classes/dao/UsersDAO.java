@@ -9,17 +9,18 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import model.Error;
 import model.Loggedin;
 import model.Users;
 
-public class UsersDAO
-        implements Serializable {
+public class UsersDAO implements Serializable {
 
-       private static final long serialVersionUID = 1L;
-    private static Date date;
+    private static final long serialVersionUID = 1L;
+    private static LocalDateTime datetime;
+    static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 
     public static boolean Users_Add_UserAccount(String recordid, String uid, String fullName, String userName, String password, String sex, Integer rid, Integer did, String status)
             throws SQLException {
@@ -31,7 +32,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("insert into users(record_Id,uid,fullName,userName,password,sex,did,status) values(?,?,?,?,?,?,?,?)");
 
@@ -50,7 +51,7 @@ public class UsersDAO
 
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Add_UserAccount", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Add_UserAccount", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -66,7 +67,8 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
+
 
             stmt = con.prepareStatement("select * from users where userName= ?");
             stmt.setString(1, userName);
@@ -80,7 +82,7 @@ public class UsersDAO
             con.close();
             return false;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "User_Exists", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "User_Exists", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -95,7 +97,8 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
+
 
             PreparedStatement ps = con.prepareStatement("insert into consultant_access(uid,opd,ipd) values(?,?,?)");
 
@@ -108,7 +111,7 @@ public class UsersDAO
 
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Consultant_Add_Access", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Consultant_Add_Access", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -124,7 +127,8 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
+
 
             String userStatus = "Active";
 
@@ -144,7 +148,7 @@ public class UsersDAO
             con.close();
             return null;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "login", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "login", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -161,7 +165,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select u.UID,u.FullName,u.UserName,u.Sex,u.`Status`,d.DepartmentName,r.Name,u.Password from users u inner join department d on u.DID=d.DID inner join roles r on u.RID=r.RID where u.userName= ? and u.password= ?");
             stmt.setString(1, userName);
@@ -170,7 +174,7 @@ public class UsersDAO
             ResultSet rs = stmt.executeQuery();
             Loggedin loggedin_user = new Loggedin();
 
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_Details", " Message: " + rs.toString(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_Details", " Message: " + rs.toString(), datetime));
 
             if (rs.next()) {
                 loggedin_user.setUser_id(rs.getString("UID"));
@@ -191,7 +195,7 @@ public class UsersDAO
             con.close();
             return null;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_Details", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_Details", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -206,7 +210,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set fullName=?,password=? where uid=?");
 
@@ -219,7 +223,7 @@ public class UsersDAO
 
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Update_Profile", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Update_Profile", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -234,7 +238,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set fullName=?,userName=?,password=?,sex=?,rid=?,did=?,status=? where uid=?");
 
@@ -251,7 +255,7 @@ public class UsersDAO
             con.close();
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Update_User_Account", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Update_User_Account", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -266,7 +270,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set password=? where uid=?");
 
@@ -277,7 +281,7 @@ public class UsersDAO
             con.close();
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Update_Pwd", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Update_Pwd", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -292,7 +296,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set Deleted=? where uid=?");
 
@@ -304,7 +308,7 @@ public class UsersDAO
 
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Delete_User_Account", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Delete_User_Account", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -320,7 +324,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select u.UID, u.FullName,u.UserName,u.Sex,u.`Status`,d.DepartmentName from users u inner join department d on u.DID=d.DID where u.Deleted='N'");
 
@@ -335,7 +339,7 @@ public class UsersDAO
             con.close();
             return userList;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_All", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_All", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -351,7 +355,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select uid,fullName,userName,sex,status from users where rid=(select rid from roles where name=?) and Deleted='N'");
             stmt.setString(1, category);
@@ -368,7 +372,7 @@ public class UsersDAO
 
             return userList;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "listAll", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "listAll", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -383,7 +387,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set status=? where uid=?");
 
@@ -396,7 +400,7 @@ public class UsersDAO
 
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "accountState", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "accountState", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -412,7 +416,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select uid,fullName,userName,sex,status from users where uid = (select toID from forwardmatrix where fromID=?)");
             stmt.setString(1, uid);
@@ -429,7 +433,7 @@ public class UsersDAO
 
             return userList;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "forwardTo", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "forwardTo", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -444,7 +448,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select * from users where uid=?");
             stmt.setString(1, uid);
@@ -462,7 +466,7 @@ public class UsersDAO
             }
 
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Getuser", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Getuser", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -475,7 +479,7 @@ public class UsersDAO
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             DateFormat dateFormat1 = new SimpleDateFormat("HH:mm:ss");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
@@ -484,13 +488,13 @@ public class UsersDAO
             PreparedStatement ps = con.prepareStatement("insert into login_history(Staff_Id,Login_Date,Login_Time) values(?,?,?)");
 
             ps.setString(1, uid);
-            ps.setString(2, dateFormat.format(date));
-            ps.setString(3, dateFormat1.format(date));
+            ps.setString(2, datetime.format(formatter));
+            ps.setString(3, datetime.format(formatter));
 
             ps.executeUpdate();
             con.close();
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "loginHistory", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "loginHistory", " Message: " + ex.getMessage(), datetime));
         }
     }
 
@@ -500,7 +504,7 @@ public class UsersDAO
         try {
             Connection con;
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             Users users;
 
@@ -509,7 +513,7 @@ public class UsersDAO
             con = DriverManager.getConnection(url, "root", "potato");
 
             PreparedStatement stmt = con.prepareStatement("select DISTINCT u.UID,u.FullName from users u inner join login_history l on u.UID=l.Staff_Id and l.Login_Date=? inner join roles r on u.RID = r.RID where u.RID=2");
-            stmt.setString(1, dateFormat.format(date));
+            stmt.setString(1, datetime.format(formatter));
 
             ResultSet rs = stmt.executeQuery();
             List <Users> userList = new ArrayList <Users>();
@@ -522,7 +526,7 @@ public class UsersDAO
 
             return userList;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "getAccoutants", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "getAccoutants", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -533,7 +537,7 @@ public class UsersDAO
         try {
             Connection con;
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             Users users;
 
@@ -543,7 +547,7 @@ public class UsersDAO
 
             PreparedStatement stmt = con.prepareStatement("select DISTINCT u.UID,u.FullName from forwardmatrix f inner join users u on f.ToID = u.UID and u.RID!=2 inner join login_history l on u.UID=l.Staff_Id and l.Login_Date=? where f.FromID=?");
 
-            stmt.setString(1, dateFormat.format(date));
+            stmt.setString(1, datetime.format(formatter));
             stmt.setString(2, uid);
 
             ResultSet rs = stmt.executeQuery();
@@ -556,7 +560,7 @@ public class UsersDAO
 
             return userList;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "FowardToActiveStaff_FrontDesk", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "FowardToActiveStaff_FrontDesk", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -571,7 +575,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select name from users u,roles r where u.RID=r.RID and u.uid=?");
             stmt.setString(1, uid);
@@ -588,7 +592,7 @@ public class UsersDAO
             return null;
         } catch (Exception ex) {
 
-            ErrorDAO.Error_Add(new Error("Users DAO", "userRole", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "userRole", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -603,7 +607,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("SELECT d.DepartmentName FROM users u inner join department d on u.DID=d.DID where u.UID = ?");
             stmt.setString(1, uid);
@@ -620,7 +624,7 @@ public class UsersDAO
 
         } catch (Exception ex) {
 
-            ErrorDAO.Error_Add(new Error("Users DAO", "User_Department", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "User_Department", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -652,7 +656,7 @@ public class UsersDAO
 
         } catch (Exception ex) {
 
-            ErrorDAO.Error_Add(new Error("Users DAO", "OPD_Enabled", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "OPD_Enabled", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -684,7 +688,7 @@ public class UsersDAO
 
         } catch (Exception ex) {
 
-            ErrorDAO.Error_Add(new Error("Users DAO", "OPD_Enabled", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "OPD_Enabled", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -698,7 +702,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select * from users where userName=? and uid=?");
 
@@ -715,7 +719,7 @@ public class UsersDAO
 
             return false;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "User_Exists", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "User_Exists", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -726,7 +730,7 @@ public class UsersDAO
         try {
             Connection con;
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             Users users;
 
@@ -736,7 +740,7 @@ public class UsersDAO
 
             PreparedStatement stmt = con.prepareStatement("select DISTINCT u.UID,u.FullName from users u inner join login_history l on u.UID=l.Staff_Id and l.Login_Date=? inner join roles r on u.RID = r.RID where u.RID=4");
 
-            stmt.setString(1, dateFormat.format(date));
+            stmt.setString(1, datetime.format(formatter));
 
             ResultSet rs = stmt.executeQuery();
             List <Users> userList = new ArrayList <Users>();
@@ -749,7 +753,7 @@ public class UsersDAO
 
             return userList;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_Disensary_Staff", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_Disensary_Staff", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -766,7 +770,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select * from users u where u.UID=?");
             stmt.setString(1, user_id);
@@ -780,7 +784,7 @@ public class UsersDAO
 
             return users;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_User", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Get_User", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -796,7 +800,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT sys_id,staff_id,staff_name,staff_gender,staff_status from surgery_staff where staff_type=? and staff_status!='Deleted'");
             stmt.setString(1, _type);
@@ -819,7 +823,7 @@ public class UsersDAO
             con.close();
             return userList;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Get_All", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Get_All", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -833,7 +837,7 @@ public class UsersDAO
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT staff_status from surgery_staff where sys_id=?");
             stmt.setString(1, sys_id);
@@ -849,7 +853,7 @@ public class UsersDAO
             con.close();
             return null;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Get_Profile_Status", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Get_Profile_Status", " Message: " + ex.getMessage(), datetime));
             return null;
         }
     }
@@ -864,7 +868,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("insert into surgery_staff(sys_id,staff_id,staff_name,staff_gender,staff_status,staff_type) values(?,?,?,?,?,?)");
 
@@ -880,7 +884,7 @@ public class UsersDAO
 
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Add_Profile", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Add_Profile", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
@@ -895,7 +899,7 @@ public class UsersDAO
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
-            date = new Date();
+            datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update surgery_staff set staff_status=? where sys_id=?");
 
@@ -907,7 +911,7 @@ public class UsersDAO
 
             return true;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Update_Profile", " Message: " + ex.getMessage(), date));
+            ErrorDAO.Error_Add(new Error("Users DAO", "Users_Surgery_Update_Profile", " Message: " + ex.getMessage(), datetime));
             return false;
         }
     }
