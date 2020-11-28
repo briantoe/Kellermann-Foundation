@@ -59,6 +59,7 @@ public class Maternity implements Serializable {
     private String modeOfDelivery;
     private LocalDate dateOfDelivery;
     private LocalTime timeOfDelivery;
+    private String liveBirths;
     private Boolean oxytocin;
     private Boolean misoprostol;
     private Boolean ergometrine;
@@ -67,7 +68,7 @@ public class Maternity implements Serializable {
     private String apgarScore;
     private String sexOfBaby;
     private String notBreathing;
-    private Boolean immediateSkinToSkin;
+    private String immediateSkinToSkin;
     private String sourceOfWarmth;
     private Boolean breastFed;
     private Boolean teo;
@@ -497,6 +498,14 @@ public class Maternity implements Serializable {
         this.timeOfDelivery = timeOfDelivery;
     }
 
+    public String getLiveBirths() {
+        return liveBirths;
+    }
+
+    public void setLiveBirths(String liveBirths) {
+        this.liveBirths = liveBirths;
+    }
+
     public Boolean getOxytocin() {
         return oxytocin;
     }
@@ -561,11 +570,11 @@ public class Maternity implements Serializable {
         this.notBreathing = notBreathing;
     }
 
-    public Boolean getImmediateSkinToSkin() {
+    public String getImmediateSkinToSkin() {
         return immediateSkinToSkin;
     }
 
-    public void setImmediateSkinToSkin(Boolean immediateSkinToSkin) {
+    public void setImmediateSkinToSkin(String immediateSkinToSkin) {
         this.immediateSkinToSkin = immediateSkinToSkin;
     }
 
@@ -933,17 +942,17 @@ public class Maternity implements Serializable {
                      LocalDate viralLoadDate, String wInitialResult, String wTfv, String pInitialResult,
                      String pTfv, String pArtCode, String artCode, String artNo, String ctxCode, String wSyphilis,
                      String wHepatitisB, String pSyphilis, String pHepatitisB, String muac, Integer inrNo,
-                     String modeOfDelivery, LocalDate dateOfDelivery, LocalTime timeOfDelivery, Boolean oxytocin,
-                     Boolean misoprostol, Boolean ergometrine, String managementProcedure, String otherTreatment,
-                     String apgarScore, String sexOfBaby, String notBreathing, Boolean immediateSkinToSkin,
-                     String sourceOfWarmth, Boolean breastFed, Boolean teo, Boolean vitK, Boolean chlorhexidine,
-                     Float weight, String riskStatus, String arvsAdministered, Integer syrupDuration,
-                     String bcgImmunization, String polioImmunization, Integer familyPlanningMethod,
-                     LocalDate familyPlanningDate, String treatmentOffered, String babyFinalDiagnosis,
-                     String deliveredByName, String deliveredByCadre, String transferredByName,
-                     String transferredByWhere, String motherBleeding6, Integer motherBp6, String babyCheckedCord6,
-                     String babyBreastFeeding6, String babyBreathing6, String llnsGiven, String babyCondition,
-                     String motherFinalDiagnosis, String motherBleeding24, Integer motherBp24,
+                     String modeOfDelivery, LocalDate dateOfDelivery, LocalTime timeOfDelivery, String liveBirths,
+                     Boolean oxytocin, Boolean misoprostol, Boolean ergometrine, String managementProcedure,
+                     String otherTreatment, String apgarScore, String sexOfBaby, String notBreathing,
+                     String immediateSkinToSkin, String sourceOfWarmth, Boolean breastFed, Boolean teo, Boolean vitK,
+                     Boolean chlorhexidine, Float weight, String riskStatus, String arvsAdministered,
+                     Integer syrupDuration, String bcgImmunization, String polioImmunization,
+                     Integer familyPlanningMethod, LocalDate familyPlanningDate, String treatmentOffered,
+                     String babyFinalDiagnosis, String deliveredByName, String deliveredByCadre,
+                     String transferredByName, String transferredByWhere, String motherBleeding6, Integer motherBp6,
+                     String babyCheckedCord6, String babyBreastFeeding6, String babyBreathing6, String llnsGiven,
+                     String babyCondition, String motherFinalDiagnosis, String motherBleeding24, Integer motherBp24,
                      String babyCheckedCord24, String babyBreastFeeding24, String babyBreathing24, String iycf,
                      String iycfOption, String counselingDischarged, String materNutrCouns,
                      String conditionOfMotherAtDischarge, String nameOfPersonDischarging,
@@ -998,6 +1007,7 @@ public class Maternity implements Serializable {
         this.modeOfDelivery = modeOfDelivery;
         this.dateOfDelivery = dateOfDelivery;
         this.timeOfDelivery = timeOfDelivery;
+        this.liveBirths = liveBirths;
         this.oxytocin = oxytocin;
         this.misoprostol = misoprostol;
         this.ergometrine = ergometrine;

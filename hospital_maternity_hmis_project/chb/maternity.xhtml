@@ -35,8 +35,8 @@
                 <p:tab title="Add new Maternity">
                     <p:panel id="new_maternity">
 
+                        <!-- ADMISSION information -->
                         <p:panelGrid>
-                            <!-- ADMISSION information -->
                             <f:facet name="header">
                                 <p:row>
                                     <p:column colspan="5">
@@ -154,20 +154,22 @@
                                                     <p:selectOneMenu value="#{chbBean.new_maternity.subcountyId}" filter="true" filterMatchMode="contains" editable="false" >
                                                         <f:selectItem itemLabel="Select" itemValue="" />
                                                         <f:selectItems value="#{chbBean.get_subcounties()}" var="subcounty" itemLabel="#{subcounty.subcountyName}" itemValue="#{subcounty.subcountyId}" />
+<!--                                                        <p:ajax update="parish"/>-->
                                                     </p:selectOneMenu>
                                                 </p:column>
 
                                                 <p:column>
                                                     <h:outputLabel value="Parish:" />
-                                                    <p:selectOneMenu value="#{chbBean.new_maternity.parishId}" filter="true" filterMatchMode="contains" editable="false" >
+                                                    <p:selectOneMenu id="parish" value="#{chbBean.new_maternity.parishId}" filter="true" filterMatchMode="contains" editable="false" >
                                                         <f:selectItem itemLabel="Select" itemValue="" />
                                                         <f:selectItems value="#{chbBean.get_parishes()}" var="parish" itemLabel="#{parish.parishName}" itemValue="#{parish.parishId}" />
+<!--                                                        <p:ajax update="village"/>-->
                                                     </p:selectOneMenu>
                                                 </p:column>
 
                                                 <p:column>
                                                     <h:outputLabel value="Village:" />
-                                                    <p:selectOneMenu value="#{chbBean.new_maternity.villageId}" filter="true" filterMatchMode="contains" editable="false" >
+                                                    <p:selectOneMenu id="village" value="#{chbBean.new_maternity.villageId}" filter="true" filterMatchMode="contains" editable="false" >
                                                         <f:selectItem itemLabel="Select" itemValue="" />
                                                         <f:selectItems value="#{chbBean.get_villages()}" var="village" itemLabel="#{village.villageName}" itemValue="#{village.villageId}" />
                                                     </p:selectOneMenu>
@@ -209,8 +211,8 @@
                                     <br />
                                     <p:selectOneMenu value="#{chbBean.new_maternity.term}">
                                         <f:selectItem itemLabel="Select" itemValue="" />
-                                        <f:selectItem itemLabel="term" itemValue="T" />
-                                        <f:selectItem itemLabel="pre-term" itemValue="P" />
+                                        <f:selectItem itemLabel="Term" itemValue="T" />
+                                        <f:selectItem itemLabel="Pre-term" itemValue="P" />
                                     </p:selectOneMenu>
                                 </p:column>
                             </p:row>
@@ -266,9 +268,10 @@
                             </p:row>
 
                         </p:panelGrid>
+                        <br />
 
+                        <!-- DELIVERY information -->
                         <p:panelGrid>
-                            <!-- DELIVERY information -->
                             <f:facet name="header">
                                 <p:row>
                                     <p:column colspan="5">Delivery Information</p:column>
@@ -328,222 +331,387 @@
                                 </p:column>
                             </p:row>
 
+                            <!-- ART Codes, Syphilis/Hep B, nutrition assessments -->
                             <p:row>
-                                <p:column colspan="3">
+                                <p:column colspan="1">
                                     <p:fieldset legend="ART Codes">
                                         <p:panelGrid>
                                             <p:row>
+                                                <p:column>
+                                                    Art Code
+                                                    <br />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.artCode}">
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItem itemLabel="ART" itemValue="ART" />
+                                                        <f:selectItem itemLabel="ART&#10003;" itemValue="ART&#10003;" />
+                                                        <f:selectItem itemLabel="ART-K" itemValue="ART-K" />
+                                                        <f:selectItem itemLabel="ARTK&#10003;" itemValue="F" />
+                                                        <f:selectItem itemLabel="NA" itemValue="NA" />
+                                                        <f:selectItem itemLabel="ND" itemValue="ND" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+                                            </p:row>
+                                            <p:row>
+                                                <p:column>
+                                                    Art No.
+                                                    <br />
+                                                    <p:inputText type="text" value="#{chbBean.new_maternity.artNo}" />
+                                                </p:column>
+                                            </p:row>
+                                            <p:row>
+                                                <p:column>
+                                                    CTX
+                                                    <br />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.artCode}">
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItem itemLabel="CTX" itemValue="ART" />
+                                                        <f:selectItem itemLabel="CTX&#10003;" itemValue="ART&#10003;" />
+                                                        <f:selectItem itemLabel="NA" itemValue="NA" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
 
+                                <p:column colspan="2">
+                                    <p:fieldset legend="Results for Syphilis and Hep B">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    <p:fieldset legend="Woman">
+                                                        <p:row>
+                                                            <p:column>
+                                                                Syphilis
+                                                                <br />
+                                                                <p:selectOneMenu value="#{chbBean.new_maternity.wSyphilis}">
+                                                                    <f:selectItem itemLabel="Select" itemValue="" />
+                                                                    <f:selectItem itemLabel="Rx" itemValue="Rx" />
+                                                                    <f:selectItem itemLabel="+Ve" itemValue="+Ve" />
+                                                                    <f:selectItem itemLabel="NR" itemValue="NR" />
+                                                                    <f:selectItem itemLabel="NT" itemValue="NT" />
+                                                                </p:selectOneMenu>
+                                                                <br />
+                                                                Hepatitis B
+                                                                <br />
+                                                                <p:selectOneMenu value="#{chbBean.new_maternity.wHepatitisB}">
+                                                                    <f:selectItem itemLabel="Select" itemValue="" />
+                                                                    <f:selectItem itemLabel="Rx" itemValue="Rx" />
+                                                                    <f:selectItem itemLabel="+Ve" itemValue="+Ve" />
+                                                                    <f:selectItem itemLabel="NR" itemValue="NR" />
+                                                                    <f:selectItem itemLabel="NT" itemValue="NT" />
+                                                                </p:selectOneMenu>
+                                                                <br />
+                                                            </p:column>
+                                                        </p:row>
+                                                    </p:fieldset>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:fieldset legend="Partner">
+                                                        <p:row>
+                                                            <p:column>
+                                                                Syphilis
+                                                                <br />
+                                                                <p:selectOneMenu value="#{chbBean.new_maternity.pSyphilis}">
+                                                                    <f:selectItem itemLabel="Select" itemValue="" />
+                                                                    <f:selectItem itemLabel="Rx" itemValue="Rx" />
+                                                                    <f:selectItem itemLabel="+Ve" itemValue="+Ve" />
+                                                                    <f:selectItem itemLabel="NR" itemValue="NR" />
+                                                                    <f:selectItem itemLabel="NT" itemValue="NT" />
+                                                                </p:selectOneMenu>
+                                                                <br />
+                                                                Hepatitis B
+                                                                <br />
+                                                                <p:selectOneMenu value="#{chbBean.new_maternity.pHepatitisB}">
+                                                                    <f:selectItem itemLabel="Select" itemValue="" />
+                                                                    <f:selectItem itemLabel="Rx" itemValue="Rx" />
+                                                                    <f:selectItem itemLabel="+Ve" itemValue="+Ve" />
+                                                                    <f:selectItem itemLabel="NR" itemValue="NR" />
+                                                                    <f:selectItem itemLabel="NT" itemValue="NT" />
+                                                                </p:selectOneMenu>
+                                                                <br />
+                                                            </p:column>
+                                                        </p:row>
+                                                    </p:fieldset>
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
+
+                                <p:column colspan="1">
+                                    <p:fieldset legend="Nutrition Assessment">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    <br />
+                                                    MUAC
+                                                    <br />
+                                                    <p:inputText type="text" value="#{chbBean.new_maternity.muac}" />
+                                                    <br />
+                                                    <br />
+                                                    Inr No.
+                                                    <br />
+                                                    <p:inputText type="text" value="#{chbBean.new_maternity.inrNo}" />
+                                                    <br />
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                    <br />
+                                </p:column>
+
+                                <p:column>
+                                    Mode of Delivery
+                                    <br />
+                                    <p:inputText type="text" value="#{chbBean.new_maternity.modeOfDelivery}" />
+                                    <br />
+                                </p:column>
+                            </p:row>
+
+                            <!-- date and time of delivery, active management, management procedure, other treatments -->
+                            <p:row>
+                                <p:column colspan="1">
+                                    <p:fieldset legend="Date and Time of Delivery">
+                                        <p:row>
+                                            <p:column>
+                                                Date of Delivery
+                                                <br />
+                                                <p:calendar value="#{chbBean.new_maternity.dateOfDelivery}" />
+                                                <br />
+                                            </p:column>
+
+                                            <p:column>
+                                                Time of Delivery
+                                                <br />
+                                                <pe:timePicker value="#{chbBean.new_maternity.timeOfAdmission}" timeSeparator=":"
+                                                               startHours="0" endHours="23" startMinutes="00" endMinutes="59"
+                                                               intervalMinutes="1" showCloseButton="true" showDeselectButton="true"
+                                                               showNowButton="true" rows="6" showPeriod="true" style="width:100%;
+                                                       display:block; max-width:150px;" required="false" />
+                                                <br />
+                                            </p:column>
+
+                                            <p:column>
+                                                Live Births
+                                                <br />
+                                                <p:inputText type="text" value="#{chbBean.new_maternity.liveBirths}" />
+                                                <br />
+                                            </p:column>
+                                        </p:row>
+                                    </p:fieldset>
+                                </p:column>
+
+                                <p:column colspan="1">
+                                    <p:fieldset legend="Active Management of 3rd Stage of Labour">
+                                        <p:row>
+                                            <p:column>
+                                                <h:selectBooleanCheckbox value = "#{chbBean.new_maternity.oxytocin}" />
+                                                Oxytocin
+                                                <br />
+                                                <br />
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:selectBooleanCheckbox value = "#{chbBean.new_maternity.misoprostol}" />
+                                                Misoprotol
+                                                <br />
+                                                <br />
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:selectBooleanCheckbox value = "#{chbBean.new_maternity.ergometrine}" />
+                                                Ergometrine
+                                                <br />
+                                                <br />
+                                            </p:column>
+                                        </p:row>
+                                    </p:fieldset>
+                                </p:column>
+
+                                <p:column>
+                                    Management Procedure for Complication(s)
+                                    <br />
+                                    <br />
+                                    <p:inputTextarea cols="25" rows="5" value="#{chbBean.new_maternity.managementProcedure}" />
+                                </p:column>
+
+                                <p:column>
+                                    Other Treatment Given
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <p:inputTextarea cols="25" rows="5" value="#{chbBean.new_maternity.otherTreatment}" />
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                        <br />
+
+                        <!-- CHILD information -->
+                        <p:panelGrid>
+                            <f:facet name="header">
+                                <p:row>
+                                    <p:column colspan="5">Child Information</p:column>
+                                </p:row>
+                            </f:facet>
+
+                            <p:row>
+                                <p:column>
+                                    Apgar Score
+                                    <br />
+                                    <p:inputText type="text" value="#{chbBean.new_maternity.apgarScore}" />
+                                </p:column>
+
+                                <p:column>
+                                    Sex
+                                    <br />
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.sexOfBaby}">
+                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                        <f:selectItem itemLabel="M" itemValue="M" />
+                                        <f:selectItem itemLabel="F" itemValue="F" />
+                                    </p:selectOneMenu>
+                                </p:column>
+
+                                <p:column>
+                                    Not Breathing at Birth / Resuscitation
+                                    <br />
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.notBreathing}">
+                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                        <f:selectItem itemLabel="SS" itemValue="SS" />
+                                        <f:selectItem itemLabel="BM" itemValue="BM" />
+                                        <f:selectItem itemLabel="BMD" itemValue="BMD" />
+                                        <f:selectItem itemLabel="NA" itemValue="NA" />
+                                    </p:selectOneMenu>
+                                </p:column>
+
+                                <p:column>
+                                    Immediate Skin to Skin
+                                    <br />
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.immediateSkinToSkin}">
+                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                        <f:selectItem itemLabel="Yes" itemValue="Y" />
+                                        <f:selectItem itemLabel="No" itemValue="N" />
+                                    </p:selectOneMenu>
+                                </p:column>
+
+                                <p:column>
+                                    Source of Warmth
+                                    <br />
+                                    <p:inputText type="text" value="#{chbBean.new_maternity.sourceOfWarmth}" />
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    Breast Fed Less or Equal to 1Hr
+                                    <br />
+                                    <p:selectOneMenu value="#{chbBean.new_maternity.breastFed}">
+                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                        <f:selectItem itemLabel="Yes" itemValue="Y" />
+                                        <f:selectItem itemLabel="No" itemValue="N" />
+                                    </p:selectOneMenu>
+                                </p:column>
+
+                                <p:column>
+                                    <p:fieldset legend="Routine Medication">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    <h:selectBooleanCheckbox value = "#{chbBean.new_maternity.chlorhexidine}" />
+                                                    Chlorhexidine
+                                                    <br />
+                                                    <h:selectBooleanCheckbox value = "#{chbBean.new_maternity.teo}" />
+                                                    TEO
+                                                    <br />
+                                                    <h:selectBooleanCheckbox value = "#{chbBean.new_maternity.vitK}" />
+                                                    Vit K
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
+
+                                <p:column>
+                                    Weight
+                                    <br />
+                                    <p:inputText type="number" value="#{chbBean.new_maternity.weight}" />
+                                </p:column>
+
+                                <p:column colspan="1">
+                                    <p:fieldset legend="Risk Status/ARVs Administered/Duration">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    Risk Status
+                                                    <br />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.riskStatus}">
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItem itemLabel="HIGH" itemValue="HIGH" />
+                                                        <f:selectItem itemLabel="LOW" itemValue="LOW" />
+                                                        <f:selectItem itemLabel="NA" itemValue="NA" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column>
+                                                    ARVs Administered
+                                                    <br />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.arvsAdministered}">
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItem itemLabel="Yes" itemValue="Y" />
+                                                        <f:selectItem itemLabel="No" itemValue="N" />
+                                                        <f:selectItem itemLabel="NA" itemValue="NA" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column>
+                                                    Duration
+                                                    <br />
+                                                    <p:inputText type="number" value="#{chbBean.new_maternity.syrupDuration}" />
+                                                </p:column>
+                                            </p:row>
+                                        </p:panelGrid>
+                                    </p:fieldset>
+                                </p:column>
+
+                                <p:column colspan="1">
+                                    <p:fieldset legend="Immunization (BCG/Polio)">
+                                        <p:panelGrid>
+                                            <p:row>
+                                                <p:column>
+                                                    BCG
+                                                    <br />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.bcgImmunization}">
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItem itemLabel="Y" itemValue="Y" />
+                                                        <f:selectItem itemLabel="N" itemValue="N" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
+                                            </p:row>
+
+                                            <p:row>
+                                                <p:column>
+                                                    Polio
+                                                    <br />
+                                                    <p:selectOneMenu value="#{chbBean.new_maternity.polioImmunization}">
+                                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                                        <f:selectItem itemLabel="Y" itemValue="Y" />
+                                                        <f:selectItem itemLabel="N" itemValue="N" />
+                                                    </p:selectOneMenu>
+                                                </p:column>
                                             </p:row>
                                         </p:panelGrid>
                                     </p:fieldset>
                                 </p:column>
                             </p:row>
-
-                            <p:row>
-                                <p:column>
-                                    eMTCT Codes
-                                    <br />
-                                    <br />
-                                    Mother:
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                    <br />
-                                    <br />
-                                    HIVST Kit Given
-                                    <br />
-                                    <h:selectBooleanCheckbox />
-                                    Yes
-                                    <h:selectBooleanCheckbox />
-                                    No
-                                    <br />
-                                    Partner:
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                </p:column>
-                                <p:column>
-                                    ART
-                                    <br />
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                    <br />
-                                    Art No.
-                                    <br />
-                                    <p:inputText></p:inputText>
-                                    <br />
-                                    CTX
-                                    <br />
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                </p:column>
-                                <p:column>
-                                    Syphilis and Hepatitis B Test Results
-                                    <br/>
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                   <br/>
-                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.revisit}" />
-                                    Revisit
-                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.revisit}" />
-                                    Retest
-                                    <br/>
-                                    <br/>
-                                    Measure of Wasting /Acute Malnutrition
-                                    <br/>
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                    <br/>
-                                </p:column>
-                                <p:column >
-                                    MANAGEMENT PROCEDURE FOR A COMPLICATION
-                                    <br />
-                                    <h:form>
-                                        <!-- <h:selectBooleanCheckbox value="#{user.rememberMe}" /> Remember Me -->
-                                        <h:selectBooleanCheckbox /> Manual Removal of Placenta
-                                        <br />
-                                        <h:selectBooleanCheckbox /> Dilation and Curettage
-                                        <br />
-                                        <h:selectBooleanCheckbox  /> Laparotomy
-                                        <br/>
-                                        <h:selectBooleanCheckbox  /> Hysterectomy
-                                    </h:form>
-                                </p:column>
-                            </p:row>
-                            <p:row>
-                                <p:column style=" width: 25%; max-width:27%;">
-                                    Mode of Delivery:
-                                    <br />
-                                    <p:inputText value="#{chbBean.new_maternity.modeOfDelivery}" />
-                                </p:column>
-                                <p:column>
-                                    Date of Delivery:
-                                    <br />
-                                    <p:calendar value="#{chbBean.new_maternity.dateOfDelivery}"></p:calendar>
-                                </p:column>
-                                <p:column>
-                                    Time of Delivery:
-                                    <br />
-                                    <pe:timePicker value="#{chbBean.new_maternity.timeOfDelivery}" timeSeparator=":"
-                                                   startHours="1" endHours="24" startMinutes="00" endMinutes="59"
-                                                   intervalMinutes="1" showCloseButton="true" showDeselectButton="true"
-                                                   showNowButton="true" rows="6" showPeriod="true"
-                                                   style="width:100%; display:block; max-width:150px;" required="false" />
-                                </p:column>
-                                <p:column rowspan="2" colspan="2">
-                                    MANAGEMENT OF 3RD STAGE OF LABOUR:
-                                    <br />
-                                    <h:form>
-                                        <!-- <h:selectBooleanCheckbox value="#{user.rememberMe}" /> Remember Me -->
-                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.ergometrine}" /> ERGOMETRINE
-                                        <br />
-                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.oxytocin}" /> OXYTOCIN
-                                        <br />
-                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.misoprostol}" /> MISOPROSTOL
-                                        <br/>
-                                        Other:
-                                        <p:inputText></p:inputText>
-                                    </h:form>
-                                </p:column>
-                            </p:row>
-
-                            <p:row>
-
-
-                                <p:column>
-                                    NUTRITION ASSESSMENT:
-                                    <br />
-                                    <p:inputText type="number" value="#{chbBean.new_maternity.ancNo}" />
-                                </p:column>
-
-                            </p:row>
                         </p:panelGrid>
-
                         <br />
+
+                        <!-- DISCHARGE information -->
                         <p:panelGrid>
-                            <!-- Child information -->
-                            <f:facet name="header">
-                                <p:row>
-                                    <p:column colspan="4">Child Information</p:column>
-                                </p:row>
-                            </f:facet>
-
-                            <p:row>
-                                <p:column style=" width: 25%; max-width:27%;">
-                                    <h:outputLabel value="  APGAR SCORE (A/S): " />
-                                    <br />
-                                    <p:inputText value="#{chbBean.new_maternity.apgarScore}" />
-                                    <br/>
-                                    <h:outputLabel value="SEX:" />
-                                    <br />
-                                    <p:selectOneMenu value="#{chbBean.new_maternity.sexOfBaby}">
-                                        <f:selectItem itemLabel="Select" itemValue="" />
-                                        <f:selectItem itemLabel="Female" itemValue="F" />
-                                        <f:selectItem itemLabel="Male" itemValue="M" />
-                                    </p:selectOneMenu>
-                                    <br/>
-                                    <h:outputLabel value=" NOT BREATHING AT BIRTH: " />
-                                    <br />
-                                    <p:selectOneMenu value="#{chbBean.new_maternity.notBreathing}">
-                                        <f:selectItems value="#{data.names}" />
-                                        <f:selectItem style="width:100%;" itemLabel="Select" itemValue="" />
-                                        <f:selectItem itemLabel="Stimulation and or Suction" itemValue="SS" />
-                                        <f:selectItem itemLabel="Bag and Mask" itemValue="BM" />
-                                        <f:selectItem itemLabel="BMD" itemValue="BMD" />
-                                    </p:selectOneMenu>
-                                </p:column>
-                                <p:column style=" width: 25%; max-width:27%;">
-                                    <h:outputLabel value="Immediate Skin to Skin Contact" />
-                                    <br />
-                                    <h:selectBooleanCheckbox />
-                                    Yes
-                                    <h:selectBooleanCheckbox />
-                                    No
-                                    <br />
-                                    <h:outputLabel value="Breastfed within 1 Hour" />
-                                    <br />
-                                    <h:selectBooleanCheckbox />
-                                    Yes
-                                    <h:selectBooleanCheckbox />
-                                    No
-                                    <br />
-                                    <h:outputLabel value=" ROUTINE MEDICATION " />
-                                    <br />
-                                    <h:selectBooleanCheckbox />
-                                    Yes
-                                    <h:selectBooleanCheckbox />
-                                    No
-                                    <br />
-
-                                </p:column>
-                                <p:column>
-                                    Source of Warmth
-                                    <br/>
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                    <br/>
-                                    Other:
-                                    <p:inputText></p:inputText>
-                                    <br/>
-                                    <br/>
-                                    <h:outputLabel value=" Weight (Kg) " />
-                                    <br />
-                                    <p:inputText value="#{chbBean.new_maternity.weight}" />
-                                </p:column>
-                                <p:column>
-                                    Risk Status
-                                    <br/>
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                    <br/>
-                                    Nevirapine given
-                                    <br/>
-                                    <p:selectOneMenu><f:selectItem itemLabel="Select    " itemValue="" /></p:selectOneMenu>
-                                    <br/>
-                                    <h:outputLabel value=" IMMUNISATION (BCG/POLIO 0): " />
-                                    <br />
-                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.bcgImmunization}" /> Baby Received BCG
-                                    and Polio Shots
-                                </p:column>
-                            </p:row>
-
-
-                        </p:panelGrid>
-
-                        <br />
-                        <p:panelGrid>
-                            <!-- DISCHARGE information -->
                             <f:facet name="header">
                                 <p:row>
                                     <p:column colspan="4">Discharge Information</p:column>
@@ -618,10 +786,10 @@
                             <!--The problem is here, it has to do with jsf update rendering
                             https://stackoverflow.com/questions/8634156/how-to-find-out-client-id-of-component-for-ajax-update-render-cannot-find-compo-->
                             <p:commandButton value="Add Maternity Details" style="font-size: 12px;font-weight: bold;"
-                                             action="#{chbBean.save_new_maternity(userid.value,'Save')}"
+                                             action="#{chbBean.save_new_maternity(userid.value, 'Save')}"
                                              update="new_maternity,maternity_list,:maternity_form:notification" />
                             <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
-                                             action="#{chbBean.save_new_maternity(userid.value,'Clear')}"
+                                             action="#{chbBean.save_new_maternity(userid.value, 'Clear')}"
                                              update="new_maternity,maternity_list,:maternity_form:notification" />
                         </p:panel>
                     </p:panel>
@@ -675,7 +843,7 @@
                                 <h:outputText value="#{maternity_list.villageId}" />
                             </p:column>
 
-                            <p:column headerText=" Name of Person Discharging Patient " styleClass="tblcol1">
+                            <p:column headerText="Name of Person Discharging Patient" styleClass="tblcol1">
                                 <h:outputText value="#{maternity_list.nameOfPersonDischarging}" />
                             </p:column>
 
@@ -683,7 +851,7 @@
                                 <!--update=":maternity_form2:tabPanel2,:maternity_form2:tabPanel2:existing_maternity2" removed temporarily-->
                                 <p:commandLink value="Edit"
                                                style="font-family: 'Tangerine', serif; font-weight: bold; color: blue; width: 10%;"
-                                               action="#{chbBean.get_existing_maternity(maternity_list.matId,'maternity_edit')}" immediate="true" />
+                                               action="#{chbBean.get_existing_maternity(maternity_list.matId, 'maternity_edit')}" immediate="true" />
                             </p:column>
 
                         </p:dataTable>

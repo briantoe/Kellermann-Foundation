@@ -72,7 +72,7 @@ public class ChbDAO implements Serializable
             con = DriverManager.getConnection(url, "root", "potato");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM parish WHERE SubcountyId IN (SELECT SubcountyId FROM subcounty) ORDER BY ParishName ASC");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM parish");
 
             ResultSet rs = stmt.executeQuery();
             List<Parish> parish_list = new ArrayList<>();
@@ -102,7 +102,7 @@ public class ChbDAO implements Serializable
             con = DriverManager.getConnection(url, "root", "potato");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM village WHERE ParishId IN (SELECT ParishId FROM parish) ORDER BY VillageName ASC");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM village");
 
             ResultSet rs = stmt.executeQuery();
             List<Village> village_list = new ArrayList<>();
@@ -161,7 +161,7 @@ public class ChbDAO implements Serializable
         try {
             Connection con;
 
-            System.out.println("ChbDAO.Get_Hmis_List");
+            System.out.println("ChbDAO.Get_Maternity_List");
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "potato");
@@ -172,7 +172,7 @@ public class ChbDAO implements Serializable
             ResultSet rs = stmt.executeQuery();
             List <Maternity> maternity_list = new ArrayList<>();
 
-            System.out.println("Null?"+rs.wasNull());
+            System.out.println("Null? " + rs.wasNull());
             while (rs.next()) {
 
                 Maternity maternity = new Maternity();
@@ -225,6 +225,7 @@ public class ChbDAO implements Serializable
                 maternity.setModeOfDelivery(rs.getString("modeOfDelivery"));
                 maternity.setDateOfDelivery(rs.getDate("dateOfDelivery").toLocalDate());
                 maternity.setTimeOfDelivery(rs.getTime("timeOfDelivery").toLocalTime());
+                maternity.setLiveBirths(rs.getString("liveBirths"));
                 maternity.setOxytocin(rs.getBoolean("oxytocin"));
                 maternity.setMisoprostol(rs.getBoolean("misoprostol"));
                 maternity.setErgometrine(rs.getBoolean("ergometrine"));
@@ -233,7 +234,7 @@ public class ChbDAO implements Serializable
                 maternity.setApgarScore(rs.getString("apgarScore"));
                 maternity.setSexOfBaby(rs.getString("sexOfBaby"));
                 maternity.setNotBreathing(rs.getString("notBreathing"));
-                maternity.setImmediateSkinToSkin(rs.getBoolean("immediateSkinToSkin"));
+                maternity.setImmediateSkinToSkin(rs.getString("immediateSkinToSkin"));
                 maternity.setSourceOfWarmth(rs.getString("sourceOfWarmth"));
                 maternity.setBreastFed(rs.getBoolean("breastFed"));
                 maternity.setTeo(rs.getBoolean("teo"));
@@ -391,6 +392,7 @@ public class ChbDAO implements Serializable
                 maternity.setModeOfDelivery(rs.getString("modeOfDelivery"));
                 maternity.setDateOfDelivery(rs.getDate("dateOfDelivery").toLocalDate());
                 maternity.setTimeOfDelivery(rs.getTime("timeOfDelivery").toLocalTime());
+                maternity.setLiveBirths(rs.getString("liveBirths"));
                 maternity.setOxytocin(rs.getBoolean("oxytocin"));
                 maternity.setMisoprostol(rs.getBoolean("misoprostol"));
                 maternity.setErgometrine(rs.getBoolean("ergometrine"));
@@ -399,7 +401,7 @@ public class ChbDAO implements Serializable
                 maternity.setApgarScore(rs.getString("apgarScore"));
                 maternity.setSexOfBaby(rs.getString("sexOfBaby"));
                 maternity.setNotBreathing(rs.getString("notBreathing"));
-                maternity.setImmediateSkinToSkin(rs.getBoolean("immediateSkinToSkin"));
+                maternity.setImmediateSkinToSkin(rs.getString("immediateSkinToSkin"));
                 maternity.setSourceOfWarmth(rs.getString("sourceOfWarmth"));
                 maternity.setBreastFed(rs.getBoolean("breastFed"));
                 maternity.setTeo(rs.getBoolean("teo"));
@@ -498,7 +500,7 @@ public class ChbDAO implements Serializable
                     + "phoneNumber, gravidity, parity, gestationAge, term, reasonForAdmission, revisit, "
                     + "whoClinicalStage, cd4Results, cd4Date, viralLoadResults, viralLoadDate, wInitialResult, wTFV, "
                     + "pInitialResult, pTFV, pArtCode, artCode, artNo, ctxCode, wSyphilis, wHepatitisB, muac, inrNo, "
-                    + "modeOfDelivery, dateOfDelivery, timeOfDelivery, oxytocin, misoprostol, ergometrine, "
+                    + "modeOfDelivery, dateOfDelivery, timeOfDelivery, liveBirths, oxytocin, misoprostol, ergometrine, "
                     + "managementProcedure, otherTreatment, apgarScore, sexOfBaby, notBreathing, immediateSkinToSkin, "
                     + "sourceOfWarmth, breastFed, teo, vitK, chlorhexidine, weight, riskStatus, arvsAdministered, "
                     + "syrupDuration, bcgImmunization, polioImmunization, familyPlanningMethod, familyPlanningDate, "
@@ -555,58 +557,59 @@ public class ChbDAO implements Serializable
             stmt.setString(41, new_maternity.getModeOfDelivery());
             stmt.setString(42, new_maternity.getDateOfDelivery().format(dateFormatter));
             stmt.setString(43, new_maternity.getTimeOfDelivery().format(timeFormatter));
-            stmt.setBoolean(44, new_maternity.getOxytocin());
-            stmt.setBoolean(45, new_maternity.getMisoprostol());
-            stmt.setBoolean(46, new_maternity.getErgometrine());
-            stmt.setString(47, new_maternity.getManagementProcedure());
-            stmt.setString(48, new_maternity.getOtherTreatment());
-            stmt.setString(49, new_maternity.getApgarScore());
-            stmt.setString(50, new_maternity.getSexOfBaby());
-            stmt.setString(51, new_maternity.getNotBreathing());
-            stmt.setBoolean(52, new_maternity.getImmediateSkinToSkin());
-            stmt.setString(53, new_maternity.getSourceOfWarmth());
-            stmt.setBoolean(54, new_maternity.getBreastFed());
-            stmt.setBoolean(55, new_maternity.getTeo());
-            stmt.setBoolean(56, new_maternity.getVitK());
-            stmt.setBoolean(57, new_maternity.getChlorhexidine());
-            stmt.setDouble(58, new_maternity.getWeight());
-            stmt.setString(59, new_maternity.getRiskStatus());
-            stmt.setString(60, new_maternity.getArvsAdministered());
-            stmt.setInt(61, new_maternity.getSyrupDuration());
-            stmt.setString(62, new_maternity.getBcgImmunization());
-            stmt.setString(63, new_maternity.getPolioImmunization());
-            stmt.setInt(64, new_maternity.getFamilyPlanningMethod());
-            stmt.setString(65, new_maternity.getFamilyPlanningDate().format(dateFormatter));
-            stmt.setString(66, new_maternity.getTreatmentOffered());
-            stmt.setString(67, new_maternity.getBabyFinalDiagnosis());
-            stmt.setString(68, new_maternity.getDeliveredByName());
-            stmt.setString(69, new_maternity.getDeliveredByCadre());
-            stmt.setString(70, new_maternity.getTransferredByName());
-            stmt.setString(71, new_maternity.getTransferredByWhere());
-            stmt.setString(72, new_maternity.getMotherBleeding6());
-            stmt.setInt(73, new_maternity.getMotherBp6());
-            stmt.setString(74, new_maternity.getBabyCheckedCord6());
-            stmt.setString(75, new_maternity.getBabyBreastFeeding6());
-            stmt.setString(76, new_maternity.getBabyBreathing6());
-            stmt.setString(77, new_maternity.getLlnsGiven());
-            stmt.setString(78, new_maternity.getBabyCondition());
-            stmt.setString(79, new_maternity.getMotherFinalDiagnosis());
-            stmt.setString(80, new_maternity.getMotherBleeding24());
-            stmt.setInt(81, new_maternity.getMotherBp24());
-            stmt.setString(82, new_maternity.getBabyCheckedCord24());
-            stmt.setString(83, new_maternity.getBabyBreastFeeding24());
-            stmt.setString(84, new_maternity.getBabyBreathing24());
-            stmt.setString(85, new_maternity.getIycf());
-            stmt.setString(86, new_maternity.getIycfOption());
-            stmt.setString(87, new_maternity.getCounselingDischarged());
-            stmt.setString(88, new_maternity.getMaterNutrCouns());
-            stmt.setString(89, new_maternity.getConditionOfMotherAtDischarge());
-            stmt.setString(90, new_maternity.getNameOfPersonDischarging());
-            stmt.setString(91, new_maternity.getCadreOfPersonDischarging());
-            stmt.setString(92, new_maternity.getDateOfDischarge().format(dateFormatter));
-            stmt.setString(93, new_maternity.getTimeOfDischarge().format(timeFormatter));
-            stmt.setString(94, now.format(dateTimeFormatter));
-            stmt.setInt(95, userId);
+            stmt.setString(44, new_maternity.getLiveBirths());
+            stmt.setBoolean(45, new_maternity.getOxytocin());
+            stmt.setBoolean(46, new_maternity.getMisoprostol());
+            stmt.setBoolean(47, new_maternity.getErgometrine());
+            stmt.setString(48, new_maternity.getManagementProcedure());
+            stmt.setString(49, new_maternity.getOtherTreatment());
+            stmt.setString(50, new_maternity.getApgarScore());
+            stmt.setString(51, new_maternity.getSexOfBaby());
+            stmt.setString(52, new_maternity.getNotBreathing());
+            stmt.setString(53, new_maternity.getImmediateSkinToSkin());
+            stmt.setString(54, new_maternity.getSourceOfWarmth());
+            stmt.setBoolean(55, new_maternity.getBreastFed());
+            stmt.setBoolean(56, new_maternity.getTeo());
+            stmt.setBoolean(57, new_maternity.getVitK());
+            stmt.setBoolean(58, new_maternity.getChlorhexidine());
+            stmt.setDouble(59, new_maternity.getWeight());
+            stmt.setString(60, new_maternity.getRiskStatus());
+            stmt.setString(61, new_maternity.getArvsAdministered());
+            stmt.setInt(62, new_maternity.getSyrupDuration());
+            stmt.setString(63, new_maternity.getBcgImmunization());
+            stmt.setString(64, new_maternity.getPolioImmunization());
+            stmt.setInt(65, new_maternity.getFamilyPlanningMethod());
+            stmt.setString(66, new_maternity.getFamilyPlanningDate().format(dateFormatter));
+            stmt.setString(67, new_maternity.getTreatmentOffered());
+            stmt.setString(68, new_maternity.getBabyFinalDiagnosis());
+            stmt.setString(69, new_maternity.getDeliveredByName());
+            stmt.setString(70, new_maternity.getDeliveredByCadre());
+            stmt.setString(71, new_maternity.getTransferredByName());
+            stmt.setString(72, new_maternity.getTransferredByWhere());
+            stmt.setString(73, new_maternity.getMotherBleeding6());
+            stmt.setInt(74, new_maternity.getMotherBp6());
+            stmt.setString(75, new_maternity.getBabyCheckedCord6());
+            stmt.setString(76, new_maternity.getBabyBreastFeeding6());
+            stmt.setString(77, new_maternity.getBabyBreathing6());
+            stmt.setString(78, new_maternity.getLlnsGiven());
+            stmt.setString(79, new_maternity.getBabyCondition());
+            stmt.setString(80, new_maternity.getMotherFinalDiagnosis());
+            stmt.setString(81, new_maternity.getMotherBleeding24());
+            stmt.setInt(82, new_maternity.getMotherBp24());
+            stmt.setString(83, new_maternity.getBabyCheckedCord24());
+            stmt.setString(84, new_maternity.getBabyBreastFeeding24());
+            stmt.setString(85, new_maternity.getBabyBreathing24());
+            stmt.setString(86, new_maternity.getIycf());
+            stmt.setString(87, new_maternity.getIycfOption());
+            stmt.setString(88, new_maternity.getCounselingDischarged());
+            stmt.setString(89, new_maternity.getMaterNutrCouns());
+            stmt.setString(90, new_maternity.getConditionOfMotherAtDischarge());
+            stmt.setString(91, new_maternity.getNameOfPersonDischarging());
+            stmt.setString(92, new_maternity.getCadreOfPersonDischarging());
+            stmt.setString(93, new_maternity.getDateOfDischarge().format(dateFormatter));
+            stmt.setString(94, new_maternity.getTimeOfDischarge().format(timeFormatter));
+            stmt.setString(95, now.format(dateTimeFormatter));
+            stmt.setInt(96, userId);
 
 //            if(new_maternity.getDeliveryDate()==null)
 //            {
@@ -735,6 +738,7 @@ public class ChbDAO implements Serializable
                 maternity.setModeOfDelivery(rs.getString("modeOfDelivery"));
                 maternity.setDateOfDelivery(rs.getDate("dateOfDelivery").toLocalDate());
                 maternity.setTimeOfDelivery(rs.getTime("timeOfDelivery").toLocalTime());
+                maternity.setLiveBirths(rs.getString("liveBirths"));
                 maternity.setOxytocin(rs.getBoolean("oxytocin"));
                 maternity.setMisoprostol(rs.getBoolean("misoprostol"));
                 maternity.setErgometrine(rs.getBoolean("ergometrine"));
@@ -743,7 +747,7 @@ public class ChbDAO implements Serializable
                 maternity.setApgarScore(rs.getString("apgarScore"));
                 maternity.setSexOfBaby(rs.getString("sexOfBaby"));
                 maternity.setNotBreathing(rs.getString("notBreathing"));
-                maternity.setImmediateSkinToSkin(rs.getBoolean("immediateSkinToSkin"));
+                maternity.setImmediateSkinToSkin(rs.getString("immediateSkinToSkin"));
                 maternity.setSourceOfWarmth(rs.getString("sourceOfWarmth"));
                 maternity.setBreastFed(rs.getBoolean("breastFed"));
                 maternity.setTeo(rs.getBoolean("teo"));
@@ -838,7 +842,7 @@ public class ChbDAO implements Serializable
                     "parity=?, gestationAge=?, term=?, reasonForAdmission=?, revisit=?, whoClinicalStage=?," +
                     "cd4Results=?, cd4Date=?, viralLoadResults=?, viralLoadDate=?, wInitialResult=?, wTFV=?," +
                     "pInitialResult=?, pTFV=?, pArtCode=?, artCode=?, artNo=?, ctxCode=?, wSyphilis=?, wHepatitisB=?," +
-                    "muac=?, inrNo=?, modeOfDelivery=?, dateOfDelivery=?, timeOfDelivery=?, oxytocin=?," +
+                    "muac=?, inrNo=?, modeOfDelivery=?, dateOfDelivery=?, timeOfDelivery=?, liveBirths = ?, oxytocin=?," +
                     "misoprostol=?, ergometrine=?, managementProcedure=?, otherTreatment=?, apgarScore=?," +
                     "sexOfBaby=?, notBreathing=?, immediateSkinToSkin=?, sourceOfWarmth=?, breastFed=?, teo=?, vitK=?," +
                     "chlorhexidine=?, weight=?, riskStatus=?, arvsAdministered=?, syrupDuration=?," +
@@ -894,57 +898,58 @@ public class ChbDAO implements Serializable
             stmt.setString(41, existing_maternity.getModeOfDelivery());
             stmt.setString(42, existing_maternity.getDateOfDelivery().format(dateFormatter));
             stmt.setString(43, existing_maternity.getTimeOfDelivery().format(timeFormatter));
-            stmt.setBoolean(44, existing_maternity.getOxytocin());
-            stmt.setBoolean(45, existing_maternity.getMisoprostol());
-            stmt.setBoolean(46, existing_maternity.getErgometrine());
-            stmt.setString(47, existing_maternity.getManagementProcedure());
-            stmt.setString(48, existing_maternity.getOtherTreatment());
-            stmt.setString(49, existing_maternity.getApgarScore());
-            stmt.setString(50, existing_maternity.getSexOfBaby());
-            stmt.setString(51, existing_maternity.getNotBreathing());
-            stmt.setBoolean(52, existing_maternity.getImmediateSkinToSkin());
-            stmt.setString(53, existing_maternity.getSourceOfWarmth());
-            stmt.setBoolean(54, existing_maternity.getBreastFed());
-            stmt.setBoolean(55, existing_maternity.getTeo());
-            stmt.setBoolean(56, existing_maternity.getVitK());
-            stmt.setBoolean(57, existing_maternity.getChlorhexidine());
-            stmt.setDouble(58, existing_maternity.getWeight());
-            stmt.setString(59, existing_maternity.getRiskStatus());
-            stmt.setString(60, existing_maternity.getArvsAdministered());
-            stmt.setInt(61, existing_maternity.getSyrupDuration());
-            stmt.setString(62, existing_maternity.getBcgImmunization());
-            stmt.setString(63, existing_maternity.getPolioImmunization());
-            stmt.setInt(64, existing_maternity.getFamilyPlanningMethod());
-            stmt.setString(65, existing_maternity.getFamilyPlanningDate().format(dateFormatter));
-            stmt.setString(66, existing_maternity.getTreatmentOffered());
-            stmt.setString(67, existing_maternity.getBabyFinalDiagnosis());
-            stmt.setString(68, existing_maternity.getDeliveredByName());
-            stmt.setString(69, existing_maternity.getDeliveredByCadre());
-            stmt.setString(70, existing_maternity.getTransferredByName());
-            stmt.setString(71, existing_maternity.getTransferredByWhere());
-            stmt.setString(72, existing_maternity.getMotherBleeding6());
-            stmt.setInt(73, existing_maternity.getMotherBp6());
-            stmt.setString(74, existing_maternity.getBabyCheckedCord6());
-            stmt.setString(75, existing_maternity.getBabyBreastFeeding6());
-            stmt.setString(76, existing_maternity.getBabyBreathing6());
-            stmt.setString(77, existing_maternity.getLlnsGiven());
-            stmt.setString(78, existing_maternity.getBabyCondition());
-            stmt.setString(79, existing_maternity.getMotherFinalDiagnosis());
-            stmt.setString(80, existing_maternity.getMotherBleeding24());
-            stmt.setInt(81, existing_maternity.getMotherBp24());
-            stmt.setString(82, existing_maternity.getBabyCheckedCord24());
-            stmt.setString(83, existing_maternity.getBabyBreastFeeding24());
-            stmt.setString(84, existing_maternity.getBabyBreathing24());
-            stmt.setString(85, existing_maternity.getIycf());
-            stmt.setString(86, existing_maternity.getIycfOption());
-            stmt.setString(87, existing_maternity.getCounselingDischarged());
-            stmt.setString(88, existing_maternity.getMaterNutrCouns());
-            stmt.setString(89, existing_maternity.getConditionOfMotherAtDischarge());
-            stmt.setString(90, existing_maternity.getNameOfPersonDischarging());
-            stmt.setString(91, existing_maternity.getCadreOfPersonDischarging());
-            stmt.setString(92, existing_maternity.getDateOfDischarge().format(dateFormatter));
-            stmt.setString(93, existing_maternity.getTimeOfDischarge().format(timeFormatter));
-            stmt.setInt(94, existing_maternity.getMatId());
+            stmt.setString(44, existing_maternity.getLiveBirths());
+            stmt.setBoolean(45, existing_maternity.getOxytocin());
+            stmt.setBoolean(46, existing_maternity.getMisoprostol());
+            stmt.setBoolean(47, existing_maternity.getErgometrine());
+            stmt.setString(48, existing_maternity.getManagementProcedure());
+            stmt.setString(49, existing_maternity.getOtherTreatment());
+            stmt.setString(50, existing_maternity.getApgarScore());
+            stmt.setString(51, existing_maternity.getSexOfBaby());
+            stmt.setString(52, existing_maternity.getNotBreathing());
+            stmt.setString(53, existing_maternity.getImmediateSkinToSkin());
+            stmt.setString(54, existing_maternity.getSourceOfWarmth());
+            stmt.setBoolean(55, existing_maternity.getBreastFed());
+            stmt.setBoolean(56, existing_maternity.getTeo());
+            stmt.setBoolean(57, existing_maternity.getVitK());
+            stmt.setBoolean(58, existing_maternity.getChlorhexidine());
+            stmt.setDouble(59, existing_maternity.getWeight());
+            stmt.setString(60, existing_maternity.getRiskStatus());
+            stmt.setString(61, existing_maternity.getArvsAdministered());
+            stmt.setInt(62, existing_maternity.getSyrupDuration());
+            stmt.setString(63, existing_maternity.getBcgImmunization());
+            stmt.setString(64, existing_maternity.getPolioImmunization());
+            stmt.setInt(65, existing_maternity.getFamilyPlanningMethod());
+            stmt.setString(66, existing_maternity.getFamilyPlanningDate().format(dateFormatter));
+            stmt.setString(67, existing_maternity.getTreatmentOffered());
+            stmt.setString(68, existing_maternity.getBabyFinalDiagnosis());
+            stmt.setString(69, existing_maternity.getDeliveredByName());
+            stmt.setString(70, existing_maternity.getDeliveredByCadre());
+            stmt.setString(71, existing_maternity.getTransferredByName());
+            stmt.setString(72, existing_maternity.getTransferredByWhere());
+            stmt.setString(73, existing_maternity.getMotherBleeding6());
+            stmt.setInt(74, existing_maternity.getMotherBp6());
+            stmt.setString(75, existing_maternity.getBabyCheckedCord6());
+            stmt.setString(76, existing_maternity.getBabyBreastFeeding6());
+            stmt.setString(77, existing_maternity.getBabyBreathing6());
+            stmt.setString(78, existing_maternity.getLlnsGiven());
+            stmt.setString(79, existing_maternity.getBabyCondition());
+            stmt.setString(80, existing_maternity.getMotherFinalDiagnosis());
+            stmt.setString(81, existing_maternity.getMotherBleeding24());
+            stmt.setInt(82, existing_maternity.getMotherBp24());
+            stmt.setString(83, existing_maternity.getBabyCheckedCord24());
+            stmt.setString(84, existing_maternity.getBabyBreastFeeding24());
+            stmt.setString(85, existing_maternity.getBabyBreathing24());
+            stmt.setString(86, existing_maternity.getIycf());
+            stmt.setString(87, existing_maternity.getIycfOption());
+            stmt.setString(88, existing_maternity.getCounselingDischarged());
+            stmt.setString(89, existing_maternity.getMaterNutrCouns());
+            stmt.setString(90, existing_maternity.getConditionOfMotherAtDischarge());
+            stmt.setString(91, existing_maternity.getNameOfPersonDischarging());
+            stmt.setString(92, existing_maternity.getCadreOfPersonDischarging());
+            stmt.setString(93, existing_maternity.getDateOfDischarge().format(dateFormatter));
+            stmt.setString(94, existing_maternity.getTimeOfDischarge().format(timeFormatter));
+            stmt.setInt(95, existing_maternity.getMatId());
 
             stmt.executeUpdate();
             con.close();

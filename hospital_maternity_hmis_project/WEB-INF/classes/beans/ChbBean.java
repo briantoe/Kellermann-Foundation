@@ -279,7 +279,7 @@ public class ChbBean
             existing_maternity.setDateOfDischarge(null);
             existing_maternity.setTimeOfDischarge(null);
         } catch (final Exception var2) {
-            System.err.println("ChbBean Error: Method: get_village_vht_list" + var2.getMessage());
+            System.err.println("ChbBean Error: Method: get_village_maternity_list" + var2.getMessage());
         }
 
     }
