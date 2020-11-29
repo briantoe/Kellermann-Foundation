@@ -261,7 +261,7 @@ public class ChbBean
             existing_maternity.setBabyCheckedCord6(null);
             existing_maternity.setBabyBreastFeeding6(null);
             existing_maternity.setBabyBreathing6(null);
-            existing_maternity.setLlnsGiven(null);
+            existing_maternity.setLlinsGiven(null);
             existing_maternity.setBabyCondition(null);
             existing_maternity.setMotherFinalDiagnosis(null);
             existing_maternity.setMotherBleeding24(null);
@@ -452,7 +452,7 @@ public class ChbBean
             existing_maternity.setBabyCheckedCord6(null);
             existing_maternity.setBabyBreastFeeding6(null);
             existing_maternity.setBabyBreathing6(null);
-            existing_maternity.setLlnsGiven(null);
+            existing_maternity.setLlinsGiven(null);
             existing_maternity.setBabyCondition(null);
             existing_maternity.setMotherFinalDiagnosis(null);
             existing_maternity.setMotherBleeding24(null);

@@ -259,7 +259,7 @@ public class ChbDAO implements Serializable
                 maternity.setBabyCheckedCord6(rs.getString("babyCheckedCord6"));
                 maternity.setBabyBreastFeeding6(rs.getString("babyBreastFeeding6"));
                 maternity.setBabyBreathing6(rs.getString("babyBreathing6"));
-                maternity.setLlnsGiven(rs.getString("llnsGiven"));
+                maternity.setLlinsGiven(rs.getString("llinsGiven"));
                 maternity.setBabyCondition(rs.getString("babyCondition"));
                 maternity.setMotherFinalDiagnosis(rs.getString("motherFinalDiagnosis"));
                 maternity.setMotherBleeding24(rs.getString("motherBleeding24"));
@@ -426,7 +426,7 @@ public class ChbDAO implements Serializable
                 maternity.setBabyCheckedCord6(rs.getString("babyCheckedCord6"));
                 maternity.setBabyBreastFeeding6(rs.getString("babyBreastFeeding6"));
                 maternity.setBabyBreathing6(rs.getString("babyBreathing6"));
-                maternity.setLlnsGiven(rs.getString("llnsGiven"));
+                maternity.setLlinsGiven(rs.getString("llinsGiven"));
                 maternity.setBabyCondition(rs.getString("babyCondition"));
                 maternity.setMotherFinalDiagnosis(rs.getString("motherFinalDiagnosis"));
                 maternity.setMotherBleeding24(rs.getString("motherBleeding24"));
@@ -506,7 +506,7 @@ public class ChbDAO implements Serializable
                     + "syrupDuration, bcgImmunization, polioImmunization, familyPlanningMethod, familyPlanningDate, "
                     + "treatmentOffered, babyFinalDiagnosis, deliveredByName, deliveredByCadre, transferredByName, "
                     + "transferredByWhere, motherBleeding6, motherBP6, babyCheckedCord6, babyBreastFeeding6, "
-                    + "babyBreathing6, llnsGiven, babyCondition, motherFinalDiagnosis, motherBleeding24, motherBP24, "
+                    + "babyBreathing6, llinsGiven, babyCondition, motherFinalDiagnosis, motherBleeding24, motherBP24, "
                     + "babyCheckedCord24, babyBreastFeeding24, babyBreathing24, iycf, iycfOption, "
                     + "counselingDischarged, materNutrCouns. conditionOfMotherAtDischarge, nameOfPersonDischarging, "
                     + "cadreOfPersonDischarging, dateOfDischarge, timeOfDischarge, userID)"
@@ -591,7 +591,7 @@ public class ChbDAO implements Serializable
             stmt.setString(75, new_maternity.getBabyCheckedCord6());
             stmt.setString(76, new_maternity.getBabyBreastFeeding6());
             stmt.setString(77, new_maternity.getBabyBreathing6());
-            stmt.setString(78, new_maternity.getLlnsGiven());
+            stmt.setString(78, new_maternity.getLlinsGiven());
             stmt.setString(79, new_maternity.getBabyCondition());
             stmt.setString(80, new_maternity.getMotherFinalDiagnosis());
             stmt.setString(81, new_maternity.getMotherBleeding24());
@@ -772,7 +772,7 @@ public class ChbDAO implements Serializable
                 maternity.setBabyCheckedCord6(rs.getString("babyCheckedCord6"));
                 maternity.setBabyBreastFeeding6(rs.getString("babyBreastFeeding6"));
                 maternity.setBabyBreathing6(rs.getString("babyBreathing6"));
-                maternity.setLlnsGiven(rs.getString("llnsGiven"));
+                maternity.setLlinsGiven(rs.getString("llinsGiven"));
                 maternity.setBabyCondition(rs.getString("babyCondition"));
                 maternity.setMotherFinalDiagnosis(rs.getString("motherFinalDiagnosis"));
                 maternity.setMotherBleeding24(rs.getString("motherBleeding24"));
@@ -849,7 +849,7 @@ public class ChbDAO implements Serializable
                     "bcgImmunization=?, polioImmunization=?, familyPlanningMethod=?, familyPlanningDate=?," +
                     "treatmentOffered=?, babyFinalDiagnosis=?, deliveredByName=?, deliveredByCadre=?," +
                     "transferredByName=?, transferredByWhere=?, motherBleeding6=?, motherBP6=?, babyCheckedCord6=?," +
-                    "babyBreastFeeding6=?, babyBreathing6=?, llnsGiven=?, babyCondition=?, motherFinalDiagnosis=?," +
+                    "babyBreastFeeding6=?, babyBreathing6=?, llinsGiven=?, babyCondition=?, motherFinalDiagnosis=?," +
                     "motherBleeding24=?, motherBP24=?, babyCheckedCord24=?, babyBreastFeeding24=?, babyBreathing24=?," +
                     "iycf=?, iycfOption=?, counselingDischarged=?, materNutrCouns=?, conditionOfMotherAtDischarge=?," +
                     "nameOfPersonDischarging=?, cadreOfPersonDischarging=?, dateOfDischarge=?, timeOfDischarge=?" +
@@ -932,7 +932,7 @@ public class ChbDAO implements Serializable
             stmt.setString(75, existing_maternity.getBabyCheckedCord6());
             stmt.setString(76, existing_maternity.getBabyBreastFeeding6());
             stmt.setString(77, existing_maternity.getBabyBreathing6());
-            stmt.setString(78, existing_maternity.getLlnsGiven());
+            stmt.setString(78, existing_maternity.getLlinsGiven());
             stmt.setString(79, existing_maternity.getBabyCondition());
             stmt.setString(80, existing_maternity.getMotherFinalDiagnosis());
             stmt.setString(81, existing_maternity.getMotherBleeding24());

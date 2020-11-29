@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Maternity implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -81,6 +82,7 @@ public class Maternity implements Serializable {
     private String bcgImmunization;
     private String polioImmunization;
     private Integer familyPlanningMethod;
+    private String familyPlanningOther;
     private LocalDate familyPlanningDate;
     private String treatmentOffered;
     private String babyFinalDiagnosis;
@@ -93,7 +95,7 @@ public class Maternity implements Serializable {
     private String babyCheckedCord6;
     private String babyBreastFeeding6;
     private String babyBreathing6;
-    private String llnsGiven;
+    private String llinsGiven;
     private String babyCondition;
     private String motherFinalDiagnosis;
     private String motherBleeding24;
@@ -770,12 +772,12 @@ public class Maternity implements Serializable {
         this.babyBreathing6 = babyBreathing6;
     }
 
-    public String getLlnsGiven() {
-        return llnsGiven;
+    public String getLlinsGiven() {
+        return llinsGiven;
     }
 
-    public void setLlnsGiven(String llnsGiven) {
-        this.llnsGiven = llnsGiven;
+    public void setLlinsGiven(String llinsGiven) {
+        this.llinsGiven = llinsGiven;
     }
 
     public String getBabyCondition() {
@@ -951,7 +953,7 @@ public class Maternity implements Serializable {
                      Integer familyPlanningMethod, LocalDate familyPlanningDate, String treatmentOffered,
                      String babyFinalDiagnosis, String deliveredByName, String deliveredByCadre,
                      String transferredByName, String transferredByWhere, String motherBleeding6, Integer motherBp6,
-                     String babyCheckedCord6, String babyBreastFeeding6, String babyBreathing6, String llnsGiven,
+                     String babyCheckedCord6, String babyBreastFeeding6, String babyBreathing6, String llinsGiven,
                      String babyCondition, String motherFinalDiagnosis, String motherBleeding24, Integer motherBp24,
                      String babyCheckedCord24, String babyBreastFeeding24, String babyBreathing24, String iycf,
                      String iycfOption, String counselingDischarged, String materNutrCouns,
@@ -1041,7 +1043,7 @@ public class Maternity implements Serializable {
         this.babyCheckedCord6 = babyCheckedCord6;
         this.babyBreastFeeding6 = babyBreastFeeding6;
         this.babyBreathing6 = babyBreathing6;
-        this.llnsGiven = llnsGiven;
+        this.llinsGiven = llinsGiven;
         this.babyCondition = babyCondition;
         this.motherFinalDiagnosis = motherFinalDiagnosis;
         this.motherBleeding24 = motherBleeding24;
