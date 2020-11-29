@@ -303,7 +303,7 @@ public class ChbBean
 
     public void save_new_maternity(final Integer userId, final String Action) {
         try {
-            System.out.println("ChbBean.save_new_maternity" + userId);
+            System.out.println("ChbBean.save_new_maternity " + userId);
             if(Action.equals("Save")) {
                 if(ChbDAO.Save_New_Maternity(new_maternity,userId)) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Maternity Details Saved Successfully", "Success"));
@@ -366,6 +366,7 @@ public class ChbBean
 
     public String update_existing_maternity(final String Action) {
         try {
+            System.out.println("ChbBean.update_existing_maternity");
             if (Action.equals("Update")) {
                 if (ChbDAO.Update_Existing_Maternity(existing_maternity)) {
                     FacesContext.getCurrentInstance().addMessage((String)null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Maternity Details Updated Successfully", "Success"));
