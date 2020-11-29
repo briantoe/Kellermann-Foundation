@@ -283,7 +283,7 @@ public class ChbDAO implements Serializable
             con.close();
             return maternity_list;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new model.Error("ChbDAO", "Get_Hmis_List", " Message: " + ex.getMessage(), now));
+            ErrorDAO.Error_Add(new model.Error("ChbDAO", "Get_Maternity_List", " Message: " + ex.getMessage(), now));
             return null;
         }
     }
@@ -451,7 +451,7 @@ public class ChbDAO implements Serializable
             con.close();
             return maternity_list;
         } catch (Exception ex) {
-            ErrorDAO.Error_Add(new model.Error("ChbDAO", "Get_Hmis_List", " Message: " + ex.getMessage(), now));
+            ErrorDAO.Error_Add(new model.Error("ChbDAO", "Get_Maternity_List", " Message: " + ex.getMessage(), now));
             return null;
         }
     }
@@ -514,8 +514,14 @@ public class ChbDAO implements Serializable
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,)");
 
-            stmt.setString(1, new_maternity.getDateOfAdmission().format(dateFormatter));
-            stmt.setString(2, new_maternity.getTimeOfAdmission().format(timeFormatter));
+            if(new_maternity.getDateOfAdmission() == null)
+                stmt.setNull(1, java.sql.Types.DATE);
+            else
+                stmt.setString(1, new_maternity.getDateOfAdmission().format(dateFormatter));
+            if(new_maternity.getTimeOfAdmission() == null)
+                stmt.setNull(2, java.sql.Types.TIME);
+            else
+                stmt.setTime(2, Time.valueOf(new_maternity.getTimeOfAdmission()));
             stmt.setInt(3, new_maternity.getAdmissionNo());
             stmt.setString(4, new_maternity.getAncNo());
             stmt.setInt(5, new_maternity.getIpdNo());
@@ -537,9 +543,15 @@ public class ChbDAO implements Serializable
             stmt.setBoolean(21, new_maternity.getRevisit());
             stmt.setInt(22, new_maternity.getWhoClinicalStage());
             stmt.setInt(23, new_maternity.getCd4Results());
-            stmt.setString(24, new_maternity.getCd4Date().format(dateTimeFormatter));
+            if(new_maternity.getCd4Date()  ==  null)
+                stmt.setNull(24, java.sql.Types.DATE);
+            else
+                stmt.setDate(24, Date.valueOf(new_maternity.getCd4Date().format(dateTimeFormatter)));
             stmt.setInt(25, new_maternity.getViralLoadResults());
-            stmt.setString(26, new_maternity.getViralLoadDate().format(dateTimeFormatter));
+            if(new_maternity.getViralLoadDate()  ==  null)
+                stmt.setNull(26, java.sql.Types.DATE);
+            else
+                stmt.setDate(26, Date.valueOf(new_maternity.getViralLoadDate().format(dateTimeFormatter)));
             stmt.setString(27, new_maternity.getwInitialResult());
             stmt.setString(28, new_maternity.getwTfv());
             stmt.setString(29, new_maternity.getpInitialResult());
@@ -555,8 +567,14 @@ public class ChbDAO implements Serializable
             stmt.setString(39, new_maternity.getMuac());
             stmt.setInt(40, new_maternity.getInrNo());
             stmt.setString(41, new_maternity.getModeOfDelivery());
-            stmt.setString(42, new_maternity.getDateOfDelivery().format(dateFormatter));
-            stmt.setString(43, new_maternity.getTimeOfDelivery().format(timeFormatter));
+            if(new_maternity.getDateOfDelivery()  ==  null)
+                stmt.setNull(42, java.sql.Types.DATE);
+            else
+                stmt.setString(42, new_maternity.getDateOfDelivery().format(dateFormatter));
+            if(new_maternity.getTimeOfDelivery()  ==  null)
+                stmt.setNull(43, java.sql.Types.DATE);
+            else
+                stmt.setString(43, new_maternity.getTimeOfDelivery().format(timeFormatter));
             stmt.setString(44, new_maternity.getLiveBirths());
             stmt.setBoolean(45, new_maternity.getOxytocin());
             stmt.setBoolean(46, new_maternity.getMisoprostol());
@@ -579,7 +597,10 @@ public class ChbDAO implements Serializable
             stmt.setString(63, new_maternity.getBcgImmunization());
             stmt.setString(64, new_maternity.getPolioImmunization());
             stmt.setInt(65, new_maternity.getFamilyPlanningMethod());
-            stmt.setString(66, new_maternity.getFamilyPlanningDate().format(dateFormatter));
+            if(new_maternity.getFamilyPlanningDate()  ==  null)
+                stmt.setNull(66, java.sql.Types.DATE);
+            else
+                stmt.setString(66, new_maternity.getFamilyPlanningDate().format(dateFormatter));
             stmt.setString(67, new_maternity.getTreatmentOffered());
             stmt.setString(68, new_maternity.getBabyFinalDiagnosis());
             stmt.setString(69, new_maternity.getDeliveredByName());
@@ -606,8 +627,14 @@ public class ChbDAO implements Serializable
             stmt.setString(90, new_maternity.getConditionOfMotherAtDischarge());
             stmt.setString(91, new_maternity.getNameOfPersonDischarging());
             stmt.setString(92, new_maternity.getCadreOfPersonDischarging());
-            stmt.setString(93, new_maternity.getDateOfDischarge().format(dateFormatter));
-            stmt.setString(94, new_maternity.getTimeOfDischarge().format(timeFormatter));
+            if(new_maternity.getDateOfDischarge()  ==  null)
+                stmt.setNull(93, java.sql.Types.DATE);
+            else
+                stmt.setString(93, new_maternity.getDateOfDischarge().format(dateFormatter));
+            if(new_maternity.getTimeOfDischarge()  ==  null)
+                stmt.setNull(94, java.sql.Types.DATE);
+            else
+                stmt.setString(94, new_maternity.getTimeOfDischarge().format(timeFormatter));
             stmt.setString(95, now.format(dateTimeFormatter));
             stmt.setInt(96, userId);
 
@@ -629,7 +656,7 @@ public class ChbDAO implements Serializable
         } catch (Exception var6) {
             //for debugging
             //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR: "+ var6.getMessage(), "Success"));
-            ErrorDAO.Error_Add(new Error("ChbDAO", "Save_New_Hmis", " Message: " + var6.getMessage(), now));
+            ErrorDAO.Error_Add(new Error("ChbDAO", "Save_New_Maternity", " Message: " + var6.getMessage(), now));
             return false;
         }
     }
@@ -681,7 +708,7 @@ public class ChbDAO implements Serializable
             con = DriverManager.getConnection(url, "root", "potato");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * From hmis,village Where hmis.villageID=village.VillageId and ipd=?");
+            PreparedStatement stmt = con.prepareStatement("SELECT * From maternity,village Where hmis.villageID=village.VillageId and ipd=?");
 
             stmt.setObject(1, matId);
 
