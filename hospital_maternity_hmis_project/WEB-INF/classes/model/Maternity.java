@@ -82,7 +82,6 @@ public class Maternity implements Serializable {
     private String bcgImmunization;
     private String polioImmunization;
     private Integer familyPlanningMethod;
-    private String familyPlanningOther;
     private LocalDate familyPlanningDate;
     private String treatmentOffered;
     private String babyFinalDiagnosis;
