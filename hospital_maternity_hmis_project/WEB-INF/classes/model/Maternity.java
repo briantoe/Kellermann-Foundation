@@ -70,7 +70,7 @@ public class Maternity implements Serializable {
     private String notBreathing;
     private String immediateSkinToSkin;
     private String sourceOfWarmth;
-    private Boolean breastFed;
+    private String breastFed;
     private Boolean teo;
     private Boolean vitK;
     private Boolean chlorhexidine;
@@ -586,11 +586,11 @@ public class Maternity implements Serializable {
         this.sourceOfWarmth = sourceOfWarmth;
     }
 
-    public Boolean getBreastFed() {
+    public String getBreastFed() {
         return breastFed;
     }
 
-    public void setBreastFed(Boolean breastFed) {
+    public void setBreastFed(String breastFed) {
         this.breastFed = breastFed;
     }
 
@@ -945,7 +945,7 @@ public class Maternity implements Serializable {
                      String modeOfDelivery, LocalDate dateOfDelivery, LocalTime timeOfDelivery, String liveBirths,
                      Boolean oxytocin, Boolean misoprostol, Boolean ergometrine, String managementProcedure,
                      String otherTreatment, String apgarScore, String sexOfBaby, String notBreathing,
-                     String immediateSkinToSkin, String sourceOfWarmth, Boolean breastFed, Boolean teo, Boolean vitK,
+                     String immediateSkinToSkin, String sourceOfWarmth, String breastFed, Boolean teo, Boolean vitK,
                      Boolean chlorhexidine, Float weight, String riskStatus, String arvsAdministered,
                      Integer syrupDuration, String bcgImmunization, String polioImmunization,
                      Integer familyPlanningMethod, LocalDate familyPlanningDate, String treatmentOffered,
