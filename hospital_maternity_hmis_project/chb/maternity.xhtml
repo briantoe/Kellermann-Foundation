@@ -20,17 +20,7 @@
 
         <h:form id="maternity_form">
             <h:inputHidden value="#{usersBean.uid}" binding="#{userid}" />
-            <style>
-                .ui-panelgrid {
-                    width: 100%;
-                }
-
-                .ui-panelgrid td,
-                .ui-panelgrid tr {
-                    border-style: none !important
-                }
-
-            </style>
+            <h:outputStylesheet name="css/maternity.css" />
 
             <p:tabView id="tabPanel">
                 <p:tab title="Add new Maternity">

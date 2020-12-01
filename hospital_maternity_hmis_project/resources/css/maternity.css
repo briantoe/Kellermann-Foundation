@@ -1,0 +1,12 @@
+.ui-panelgrid {
+    width: 100%;
+}
+
+.ui-panelgrid td,
+.ui-panelgrid tr {
+    border-style: none !important
+}
+
+.ui-fieldset .ui-fieldset-legend {
+    background: none;
+}
