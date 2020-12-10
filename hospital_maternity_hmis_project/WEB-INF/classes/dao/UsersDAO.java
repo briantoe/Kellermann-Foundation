@@ -68,6 +68,7 @@ public class UsersDAO
             con = DriverManager.getConnection(url, "root", "afsart");
             date = new Date();
 
+
             stmt = con.prepareStatement("select * from users where userName= ?");
             stmt.setString(1, userName);
 
@@ -97,6 +98,7 @@ public class UsersDAO
             con = DriverManager.getConnection(url, "root", "afsart");
             date = new Date();
 
+
             PreparedStatement ps = con.prepareStatement("insert into consultant_access(uid,opd,ipd) values(?,?,?)");
 
             ps.setString(1, uid);
@@ -125,6 +127,7 @@ public class UsersDAO
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
             con = DriverManager.getConnection(url, "root", "afsart");
             date = new Date();
+
 
             String userStatus = "Active";
 
