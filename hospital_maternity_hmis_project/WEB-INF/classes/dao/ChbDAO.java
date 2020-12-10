@@ -508,11 +508,11 @@ public class ChbDAO implements Serializable
                     + "transferredByWhere, motherBleeding6, motherBP6, babyCheckedCord6, babyBreastFeeding6, "
                     + "babyBreathing6, llinsGiven, babyCondition, motherFinalDiagnosis, motherBleeding24, motherBP24, "
                     + "babyCheckedCord24, babyBreastFeeding24, babyBreathing24, iycf, iycfOption, "
-                    + "counselingDischarged, materNutrCouns. conditionOfMotherAtDischarge, nameOfPersonDischarging, "
+                    + "counselingDischarged, materNutrCouns, conditionOfMotherAtDischarge, motherTransferredWhere, nameOfPersonDischarging, "
                     + "cadreOfPersonDischarging, dateOfDischarge, timeOfDischarge, recordDate, userID)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?, ?)");
+                    + "?,?,?,?,?,?)");
 
             if(new_maternity.getDateOfAdmission() == null)
                 stmt.setNull(1, Types.DATE);
@@ -628,30 +628,19 @@ public class ChbDAO implements Serializable
             stmt.setString(88, new_maternity.getCounselingDischarged());
             stmt.setString(89, new_maternity.getMaterNutrCouns());
             stmt.setString(90, new_maternity.getConditionOfMotherAtDischarge());
-            stmt.setString(91, new_maternity.getNameOfPersonDischarging());
-            stmt.setString(92, new_maternity.getCadreOfPersonDischarging());
+            stmt.setString(91, new_maternity.getMotherTransferredWhere());
+            stmt.setString(92, new_maternity.getNameOfPersonDischarging());
+            stmt.setString(93, new_maternity.getCadreOfPersonDischarging());
             if(new_maternity.getDateOfDischarge()  ==  null)
-                stmt.setNull(93, java.sql.Types.DATE);
-            else
-                stmt.setString(93, new_maternity.getDateOfDischarge().format(dateFormatter));
-            if(new_maternity.getTimeOfDischarge()  ==  null)
                 stmt.setNull(94, java.sql.Types.DATE);
             else
-                stmt.setString(94, new_maternity.getTimeOfDischarge().format(timeFormatter));
-            stmt.setString(95, now.format(dateTimeFormatter));
-            stmt.setObject(96, userId);
-
-//            if(new_maternity.getDeliveryDate()==null)
-//            {
-//                stmt.setNull(19, java.sql.Types.DATE);
-//            }
-//            else {
-//                stmt.setString(19, dateFormat.format(new_maternity.getDeliveryDate()));
-//            }
-//            if(new_maternity.getDeliveryTime()==null)
-//            {
-//                stmt.setNull(20, java.sql.Types.TIME);
-//            }
+                stmt.setString(95, new_maternity.getDateOfDischarge().format(dateFormatter));
+            if(new_maternity.getTimeOfDischarge()  ==  null)
+                stmt.setNull(95, java.sql.Types.DATE);
+            else
+                stmt.setString(95, new_maternity.getTimeOfDischarge().format(timeFormatter));
+            stmt.setString(96, now.format(dateTimeFormatter));
+            stmt.setObject(97, userId);
 
             stmt.executeUpdate();
             con.close();
