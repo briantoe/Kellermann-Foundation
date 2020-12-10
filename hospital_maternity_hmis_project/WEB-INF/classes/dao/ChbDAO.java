@@ -39,7 +39,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM subcounty ORDER BY SubcountyName ASC");
@@ -69,7 +69,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM parish");
@@ -99,7 +99,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM village");
@@ -125,7 +125,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From vht, village Where vht.vhtVillage=village.VillageId");
@@ -164,7 +164,7 @@ public class ChbDAO implements Serializable
             System.out.println("ChbDAO.Get_Maternity_List");
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From maternity,village Where maternity.matVillage=village.VillageId");
@@ -294,7 +294,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From vht Where vhtVillage=?");
@@ -335,7 +335,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From maternity WHERE matVillage = ?");
 
@@ -462,7 +462,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("insert into vht"
@@ -491,7 +491,7 @@ public class ChbDAO implements Serializable
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            Connection con = DriverManager.getConnection(url, "root", "potato");
+            Connection con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("insert into maternity"
@@ -659,7 +659,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From vht,village Where vht.vhtVillage=village.VillageId and vhtId=?");
@@ -697,7 +697,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From maternity,village Where hmis.villageID=village.VillageId and ipd=?");
@@ -826,7 +826,7 @@ public class ChbDAO implements Serializable
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "potato");
+            con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("UPDATE vht SET "
@@ -851,7 +851,7 @@ public class ChbDAO implements Serializable
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            Connection con = DriverManager.getConnection(url, "root", "potato");
+            Connection con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("UPDATE maternity SET " +

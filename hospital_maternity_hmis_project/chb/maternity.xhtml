@@ -1139,53 +1139,36 @@
                                 List of Maternity
                             </f:facet>
 
-                            <p:column headerText=" Date of Admission " styleClass="tblcol1">
-                                <h:outputText value="#{maternity_list.recordDate}" />
+                            <p:column headerText="MAT Id" styleClass="tblcol1">
+                                <h:outputText value="#{maternity_list.matId}" />
                             </p:column>
 
-                            <p:column headerText=" IPD " styleClass="tblcol1" filterBy="#{maternity_list.ipd}"
+                            <p:column headerText="Given Name" styleClass="tblcol1" filterBy="#{maternity_list.clientSurname}"
                                       filterMatchMode="contains">
-                                <h:outputText value="#{maternity_list.ipdNo}" />
-                            </p:column>
-
-                            <p:column headerText=" Patient Name " styleClass="tblcol1">
                                 <h:outputText value="#{maternity_list.clientGivenName}" />
                             </p:column>
 
-                            <p:column headerText=" Village Name " styleClass="tblcol1"
+                            <p:column headerText="Surname" styleClass="tblcol1" filterBy="#{maternity_list.clientSurname}"
+                                      filterMatchMode="contains">
+                                <h:outputText value="#{maternity_list.clientSurname}" />
+                            </p:column>
+
+                            <p:column headerText="Village Name" styleClass="tblcol1"
                                       filterBy="#{maternity_list.villageName}">
                                 <h:outputText value="#{maternity_list.villageName}" />
                             </p:column>
 
-                            <p:column headerText=" Delivery Date " styleClass="tblcol1">
-                                <h:outputText value="#{maternity_list.dateofDelivery}" />
-                            </p:column>
-
-                            <p:column headerText=" Delivery Time " styleClass="tblcol1">
-                                <h:outputText value="#{maternity_list.timeOfDelivery}" />
-                            </p:column>
-
-                            <!--                            <p:column headerText=" Codes for clients who come ot Maternity with known status " styleClass="tblcol1">
-                                <h:outputText value="#{maternity_list.userId}" />
-                            </p:column>-->
-
-                            <!--<p:column headerText=" Date Of Discharge " styleClass="tblcol1" >
-                                <h:outputText value="#{maternity_list.dateOfDischarge}" />
-                            </p:column>-->
-
-                            <p:column headerText=" Village " styleClass="tblcol1">
-                                <h:outputText value="#{maternity_list.villageId}" />
-                            </p:column>
-
-                            <p:column headerText="Name of Person Discharging Patient" styleClass="tblcol1">
-                                <h:outputText value="#{maternity_list.nameOfPersonDischarging}" />
+                            <p:column headerText="Record Date" styleClass="tblcol1">
+                                <h:outputText value="#{maternity_list.recordDate}" />
                             </p:column>
 
                             <p:column styleClass="tblcol2">
                                 <!--update=":maternity_form2:tabPanel2,:maternity_form2:tabPanel2:existing_maternity2" removed temporarily-->
                                 <p:commandLink value="Edit"
                                                style="font-family: 'Tangerine', serif; font-weight: bold; color: blue; width: 10%;"
-                                               action="#{chbBean.get_existing_maternity(maternity_list.matId, 'maternity_edit')}" immediate="true" />
+                                               action="#{chbBean.get_existing_maternity(maternity_list.matId, 'maternity_edit')}"
+                                               update=":maternity_form:tabPanel:existing_maternity,:maternity_form:tabPanel"
+                                               immediate="true" />
                             </p:column>
 
                         </p:dataTable>
