@@ -106,7 +106,11 @@
                             </p:column>  
 
                             <p:column  styleClass="tblcol2">
-                                <p:commandLink value="Edit" style="font-family: 'Tangerine', serif; font-weight: bold; color: blue; width: 10%;" action="#{chbBean.get_existing_vht(vht_list.vhtId,'vht_edit')}" update=":vht_form:tabPanel:existing_vht,:vht_form:tabPanel" immediate="true" />
+                                <p:commandLink value="Edit"
+                                               style="font-family: 'Tangerine', serif; font-weight: bold; color: blue; width: 10%;"
+                                               action="#{chbBean.get_existing_vht(vht_list.vhtId,'vht_edit')}"
+                                               update=":vht_form:tabPanel:existing_vht,:vht_form:tabPanel"
+                                               immediate="true" />
                             </p:column>
 
                         </p:dataTable>

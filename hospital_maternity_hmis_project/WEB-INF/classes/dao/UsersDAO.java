@@ -31,7 +31,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("insert into users(record_Id,uid,fullName,userName,password,sex,did,status) values(?,?,?,?,?,?,?,?)");
@@ -66,7 +66,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
 
@@ -96,7 +96,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
 
@@ -126,7 +126,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
 
@@ -164,7 +164,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select u.UID,u.FullName,u.UserName,u.Sex,u.`Status`,d.DepartmentName,r.Name,u.Password from users u inner join department d on u.DID=d.DID inner join roles r on u.RID=r.RID where u.userName= ? and u.password= ?");
@@ -209,7 +209,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set fullName=?,password=? where uid=?");
@@ -237,7 +237,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set fullName=?,userName=?,password=?,sex=?,rid=?,did=?,status=? where uid=?");
@@ -269,7 +269,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set password=? where uid=?");
@@ -295,7 +295,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set Deleted=? where uid=?");
@@ -323,7 +323,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select u.UID, u.FullName,u.UserName,u.Sex,u.`Status`,d.DepartmentName from users u inner join department d on u.DID=d.DID where u.Deleted='N'");
@@ -354,7 +354,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select uid,fullName,userName,sex,status from users where rid=(select rid from roles where name=?) and Deleted='N'");
@@ -386,7 +386,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update users set status=? where uid=?");
@@ -415,7 +415,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select uid,fullName,userName,sex,status from users where uid = (select toID from forwardmatrix where fromID=?)");
@@ -447,7 +447,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select * from users where uid=?");
@@ -483,7 +483,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             PreparedStatement ps = con.prepareStatement("insert into login_history(Staff_Id,Login_Date,Login_Time) values(?,?,?)");
 
@@ -510,7 +510,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             PreparedStatement stmt = con.prepareStatement("select DISTINCT u.UID,u.FullName from users u inner join login_history l on u.UID=l.Staff_Id and l.Login_Date=? inner join roles r on u.RID = r.RID where u.RID=2");
             stmt.setString(1, datetime.format(formatter));
@@ -543,7 +543,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             PreparedStatement stmt = con.prepareStatement("select DISTINCT u.UID,u.FullName from forwardmatrix f inner join users u on f.ToID = u.UID and u.RID!=2 inner join login_history l on u.UID=l.Staff_Id and l.Login_Date=? where f.FromID=?");
 
@@ -574,7 +574,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select name from users u,roles r where u.RID=r.RID and u.uid=?");
@@ -606,7 +606,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("SELECT d.DepartmentName FROM users u inner join department d on u.DID=d.DID where u.UID = ?");
@@ -638,7 +638,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             stmt = con.prepareStatement("SELECT c.opd FROM users u inner join consultant_access c on u.UID=c.uid where u.UID = ?");
             stmt.setString(1, uid);
@@ -670,7 +670,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             stmt = con.prepareStatement("SELECT c.ipd FROM users u inner join consultant_access c on u.UID=c.uid where u.UID = ?");
             stmt.setString(1, uid);
@@ -701,7 +701,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("select * from users where userName=? and uid=?");
@@ -736,7 +736,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
 
             PreparedStatement stmt = con.prepareStatement("select DISTINCT u.UID,u.FullName from users u inner join login_history l on u.UID=l.Staff_Id and l.Login_Date=? inner join roles r on u.RID = r.RID where u.RID=4");
 
@@ -769,7 +769,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             stmt = con.prepareStatement("select * from users u where u.UID=?");
@@ -799,7 +799,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT sys_id,staff_id,staff_name,staff_gender,staff_status from surgery_staff where staff_type=? and staff_status!='Deleted'");
@@ -836,7 +836,7 @@ public class UsersDAO implements Serializable {
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT staff_status from surgery_staff where sys_id=?");
@@ -867,7 +867,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("insert into surgery_staff(sys_id,staff_id,staff_name,staff_gender,staff_status,staff_type) values(?,?,?,?,?,?)");
@@ -898,7 +898,7 @@ public class UsersDAO implements Serializable {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
-            con = DriverManager.getConnection(url, "root", "t00r");
+            con = DriverManager.getConnection(url, "root", "potato");
             datetime = LocalDateTime.now();
 
             PreparedStatement ps = con.prepareStatement("update surgery_staff set staff_status=? where sys_id=?");
