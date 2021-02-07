@@ -89,8 +89,8 @@ Run `bwindihospital_reduced.sql` first, `then HMIS_Script.sql`. You will need to
 
 Open the UsersDAO.java file located in **Kellermann-Foundation\hospital_maternity_hmis_project\WEB-INF\classes\dao**
 The UsersDAO file is what authenticates users, you must change your credentials inside to be able to log in to the HMIS database.
-Inside the file, there are multiple password fields however the default password does not match the password you set for Tomcat so use the find function and replace all instances of the default password (potato) with the password you set for for Tomcat.
-You may also have to change the password in ChbDAO.java
+Inside the file, there are multiple password fields however the default password does not match the password you set for Tomcat so use the find function and replace all instances of the default password (t00r) with the password you set for for Tomcat.
+Repeat the same process for the file ChbDAO.
 
 >If you don't remember your password, you can edit your **users.xml** file inside your **\Tomcat\conf** folder. Mine was located at **C:\Program Files\Apache Software Foundation\Tomcat 9.0\conf**
 
