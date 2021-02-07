@@ -1,16 +1,15 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-public class Error
-  implements Serializable
+public class Error implements Serializable
 {
   private static final long serialVersionUID = 1L;
   private String controller_Name;
   private String method_Name;
   private String error;
-  private Date error_date;
+  private LocalDateTime error_date;
 
   public String getController_Name()
   {
@@ -37,18 +36,18 @@ public class Error
     this.error = error;
   }
 
-  public Date getError_date() {
+  public LocalDateTime getError_date() {
     return this.error_date;
   }
 
-  public void setError_date(Date error_date) {
+  public void setError_date(LocalDateTime error_date) {
     this.error_date = error_date;
   }
 
   public Error() {
   }
 
-  public Error(String controller_Name, String method_Name, String error, Date error_date) {
+  public Error(String controller_Name, String method_Name, String error, LocalDateTime error_date) {
     this.controller_Name = controller_Name;
     this.method_Name = method_Name;
     this.error = error;
