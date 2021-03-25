@@ -51,7 +51,8 @@
                                                                 <br/>
                                                                 <!--                                                    <p:calendar value="#{chbBean.new_maternity.dateOfAdmission}" />-->
                                                                 <p:datePicker
-                                                                        value="#{chbBean.new_maternity.dateOfAdmission}"/>
+                                                                        value="#{chbBean.new_maternity.dateOfAdmission}"
+                                                                        readonlyInput="true"/>
                                                             </p:column>
 
                                                             <p:column>
@@ -65,6 +66,7 @@
                                                                         intervalMinutes="1" showCloseButton="true"
                                                                         showDeselectButton="true"
                                                                         showNowButton="true" rows="6" showPeriod="true"
+                                                                        readonlyInput="true"
                                                                         style="width:100%;
                                                                    display:block; max-width:150px;" required="false"/>
                                                             </p:column>
