@@ -171,7 +171,6 @@ public class ChbDAO implements Serializable
             ResultSet rs = stmt.executeQuery();
             List <Maternity> maternity_list = new ArrayList<>();
 
-            System.out.println("Null? " + rs.wasNull());
             while (rs.next()) {
 
                 Maternity maternity = new Maternity();

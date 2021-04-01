@@ -154,8 +154,7 @@ public class UsersBean
                 return "admin";
             }
 
-            Users user = new Users();
-            user = UsersDAO.User_Login(this.userName, encryptpass(this.password));
+            Users user = UsersDAO.User_Login(this.userName, encryptpass(this.password));
 
             if (user != null) {
                 this.fullName = user.getFullName();

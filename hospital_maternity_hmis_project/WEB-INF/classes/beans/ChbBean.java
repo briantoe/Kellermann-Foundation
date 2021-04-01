@@ -165,7 +165,6 @@ public class ChbBean
 
     public List<Maternity> get_maternity_list() {
         try {
-            System.out.println("MaternityList:"+ChbDAO.Get_Maternity_List());
             return ChbDAO.Get_Maternity_List();
         } catch (final Exception ex) {
             System.err.println("ChbBean Error: Method: get_maternity_list" + ex.getMessage());
