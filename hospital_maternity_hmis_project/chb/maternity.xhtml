@@ -1333,6 +1333,13 @@
                                 List of Maternity
                             </f:facet>
 
+                            <p:column headerText="" styleClass="tblcol1">
+                                <p:commandButton value="Edit"
+                                                 style="font-size: 12px;font-weight: bold;"
+                                                 action="#{chbBean.setNew_maternity(maternity_list)}">
+                                </p:commandButton>
+                            </p:column>
+
                             <p:column headerText="MAT Id" styleClass="tblcol1">
                                 <h:outputText value="#{maternity_list.matId}"/>
                             </p:column>
