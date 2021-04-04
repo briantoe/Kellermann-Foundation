@@ -1336,7 +1336,8 @@
                             <p:column headerText="" styleClass="tblcol1">
                                 <p:commandButton value="Edit"
                                                  style="font-size: 12px;font-weight: bold;"
-                                                 action="#{chbBean.setNew_maternity(maternity_list)}">
+                                                 action="#{chbBean.setNew_maternity(maternity_list)}"
+                                                 update=":maternity_form:tabPanel">
                                 </p:commandButton>
                             </p:column>
 
