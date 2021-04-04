@@ -22,7 +22,7 @@
             <h:inputHidden value="#{usersBean.uid}" binding="#{userid}"/>
             <h:outputStylesheet name="css/maternity.css"/>
 
-            <p:tabView id="tabPanel">
+            <p:tabView id="tabPanel" activeIndex="#{chbBean.mainIndex}">
                 <p:tab title="Add new Maternity">
                     <p:panel id="new_maternity">
 
@@ -1338,6 +1338,7 @@
                                                  style="font-size: 12px;font-weight: bold;"
                                                  action="#{chbBean.setNew_maternity(maternity_list)}"
                                                  update=":maternity_form:tabPanel">
+                                    <f:actionListener binding="#{chbBean.setMainIndex(0)}"/>
                                 </p:commandButton>
                             </p:column>
 
