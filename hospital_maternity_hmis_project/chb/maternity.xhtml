@@ -79,19 +79,29 @@
                                                 Admission No.
                                                 <br/>
                                                 <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.admissionNo}"/>
+                                                             value="#{chbBean.new_maternity.admissionNo}" id="admission_no"
+                                                             required="true" requiredMessage="Please enter an admission number"/>
+                                                <br/>
+                                                <h:message errorStyle="color: red" for="admission_no"/>
                                             </p:column>
 
                                             <p:column>
                                                 ANC NO / REF IN NO / C/REF IN
                                                 <br/>
-                                                <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}"/>
+                                                <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}" id="anc_no"
+                                                             required="true" requiredMessage="Please enter a valid number"/>
+                                                <br/>
+                                                <h:message errorStyle="color: red" for="anc_no"/>
                                             </p:column>
 
                                             <p:column>
                                                 IPD No.
                                                 <br/>
-                                                <p:inputText type="number" value="#{chbBean.new_maternity.ipdNo}"/>
+                                                <p:inputText type="number"
+                                                             value="#{chbBean.new_maternity.ipdNo}" id="ipd_no"
+                                                             required="true" requiredMessage="Please enter a valid IPD number"/>
+                                                <br/>
+                                                <h:message errorStyle="color: red" for="ipd_no"/>
                                             </p:column>
                                         </p:row>
 
@@ -100,7 +110,10 @@
                                             <p:column>
                                                 NIN
                                                 <br/>
-                                                <p:inputText type="text" value="#{chbBean.new_maternity.nin}"/>
+                                                <p:inputText type="text" value="#{chbBean.new_maternity.nin}" id="nin"
+                                                             required="true" requiredMessage="Please enter a valid NIN"/>
+                                                <br/>
+                                                <h:message errorStyle="color:red" for="nin"/>
                                             </p:column>
 
                                             <p:column colspan="2">
@@ -111,14 +124,20 @@
                                                                 Surname
                                                                 <br/>
                                                                 <p:inputText type="text"
-                                                                             value="#{chbBean.new_maternity.clientSurname}"/>
+                                                                             value="#{chbBean.new_maternity.clientSurname}" id="surname"
+                                                                             required="true" requiredMessage="Please enter a surname"/>
+                                                                <br/>
+                                                                <h:message errorStyle="color:red" for="surname"/>
                                                             </p:column>
 
                                                             <p:column>
                                                                 Given Name
                                                                 <br/>
                                                                 <p:inputText type="text"
-                                                                             value="#{chbBean.new_maternity.clientGivenName}"/>
+                                                                             value="#{chbBean.new_maternity.clientGivenName}" id="given_name"
+                                                                             required="true" requiredMessage="Please enter a name"/>
+                                                                <br/>
+                                                                <h:message errorStyle="color:red" for="given_name"/>
                                                             </p:column>
                                                         </p:row>
                                                     </p:panelGrid>
@@ -128,7 +147,11 @@
                                             <p:column>
                                                 Age
                                                 <br/>
-                                                <p:inputText type="number" value="#{chbBean.new_maternity.age}"/>
+                                                <p:inputText type="number"
+                                                             value="#{chbBean.new_maternity.age}" id="age"
+                                                             required="true" requiredMessage="Please enter a valid age"/>
+                                                <br/>
+                                                <h:message errorStyle="color:red" for="age"/>
                                             </p:column>
 
                                             <p:column>
@@ -210,7 +233,8 @@
                                                                 Phone Number
                                                                 <br/>
                                                                 <p:inputText type="number"
-                                                                             value="new_maternity.phoneNumber"/>
+                                                                             value="new_maternity.phoneNumber"
+                                                                             maxlength="10"/>
                                                             </p:column>
                                                         </p:row>
                                                     </p:panelGrid>
@@ -223,20 +247,31 @@
                                             <p:column>
                                                 Gravidity
                                                 <br/>
-                                                <p:inputText type="number" value="#{chbBean.new_maternity.gravidity}"/>
+                                                <p:inputText type="number"
+                                                             value="#{chbBean.new_maternity.gravidity}" id="gravidity"
+                                                             required="true" requiredMessage="Please enter a valid number"/>
+                                                <br/>
+                                                <h:message errorStyle="color:red" for="gravidity"/>
                                             </p:column>
 
                                             <p:column>
                                                 Parity
                                                 <br/>
-                                                <p:inputText type="number" value="#{chbBean.new_maternity.parity}"/>
+                                                <p:inputText type="number"
+                                                             value="#{chbBean.new_maternity.parity}" id="parity"
+                                                             required="true" requiredMessage="Please enter a valid number"/>
+                                                <br/>
+                                                <h:message errorStyle="color:red" for="parity"/>
                                             </p:column>
 
                                             <p:column>
                                                 Gestation Age
                                                 <br/>
                                                 <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.gestationAge}"/>
+                                                             value="#{chbBean.new_maternity.gestationAge}" id="gestation_age"
+                                                             required="true" requiredMessage="Please enter a valid number"/>
+                                                <br/>
+                                                <h:message errorStyle="color:red" for="gestation_age"/>
                                             </p:column>
 
                                             <p:column>
@@ -285,7 +320,8 @@
                                                                 <br/>
                                                                 CD4 Test Date
                                                                 <br/>
-                                                                <p:calendar value="#{chbBean.new_maternity.cd4Date}"/>
+                                                                <p:calendar readonlyInput="true"
+                                                                            value="#{chbBean.new_maternity.cd4Date}"/>
                                                             </p:column>
 
                                                             <p:column>
@@ -298,6 +334,7 @@
                                                                 Viral Load Test Date
                                                                 <br/>
                                                                 <p:calendar
+                                                                        readonlyInput="true"
                                                                         value="#{chbBean.new_maternity.viralLoadDate}"/>
                                                             </p:column>
                                                         </p:row>
@@ -609,6 +646,7 @@
                                                             Date of Delivery
                                                             <br/>
                                                             <p:calendar
+                                                                    readonlyInput="true"
                                                                     value="#{chbBean.new_maternity.dateOfDelivery}"/>
                                                             <br/>
                                                         </p:column>
@@ -617,6 +655,7 @@
                                                             Time of Delivery
                                                             <br/>
                                                             <pe:timePicker
+                                                                    readonlyInput="true"
                                                                     value="#{chbBean.new_maternity.timeOfDelivery}"
                                                                     timeSeparator=":"
                                                                     startHours="0" endHours="23" startMinutes="00"
@@ -926,6 +965,7 @@
                                                                 Date
                                                                 <br/>
                                                                 <p:calendar
+                                                                        readonlyInput="true"
                                                                         value="#{chbBean.new_maternity.familyPlanningDate}"/>
                                                             </p:column>
                                                         </p:row>
@@ -1281,12 +1321,14 @@
                                                             Date
                                                             <br/>
                                                             <p:calendar
+                                                                    readonlyInput="true"
                                                                     value="#{chbBean.new_maternity.dateOfDischarge}"/>
                                                             <br/>
                                                             <br/>
                                                             Time
                                                             <br/>
                                                             <pe:timePicker
+                                                                    readonlyInput="true"
                                                                     value="#{chbBean.new_maternity.timeOfDischarge}"
                                                                     timeSeparator=":"
                                                                     startHours="0" endHours="23" startMinutes="00"
