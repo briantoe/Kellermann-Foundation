@@ -35,6 +35,8 @@ public class ChbBean
     private List<Maternity> filteredMaternity_list;
     private List<Maternity> village_maternity_list;
 
+    private int mainIndex = 0;
+
     public ChbBean() {
         new_vht = new Vht();
         existing_vht = new Vht();
@@ -45,6 +47,14 @@ public class ChbBean
         existing_maternity = new Maternity();
         maternity_list = new ArrayList <Maternity>();
         village_maternity_list = new ArrayList <Maternity>();
+    }
+
+    public void setMainIndex(int index) {
+        mainIndex = index;
+    }
+
+    public int getMainIndex() {
+        return mainIndex;
     }
 
     public Vht getNew_vht() {
@@ -165,7 +175,6 @@ public class ChbBean
 
     public List<Maternity> get_maternity_list() {
         try {
-            System.out.println("MaternityList:"+ChbDAO.Get_Maternity_List());
             return ChbDAO.Get_Maternity_List();
         } catch (final Exception ex) {
             System.err.println("ChbBean Error: Method: get_maternity_list" + ex.getMessage());

@@ -166,12 +166,11 @@ public class ChbDAO implements Serializable
             con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * From maternity, village Where maternity.matVillage = village.villageId");
+            PreparedStatement stmt = con.prepareStatement("SELECT * From maternity");
 
             ResultSet rs = stmt.executeQuery();
             List <Maternity> maternity_list = new ArrayList<>();
 
-            System.out.println("Null? " + rs.wasNull());
             while (rs.next()) {
 
                 Maternity maternity = new Maternity();
@@ -181,7 +180,12 @@ public class ChbDAO implements Serializable
                 maternity.setDateOfAdmission(rs.getDate("dateOfAdmission").toLocalDate());
                 maternity.setClientGivenName(rs.getString("clientGivenName"));
                 maternity.setClientSurname(rs.getString("clientSurname"));
-                maternity.setVillageName(rs.getString("villageName"));
+
+                ResultSet villageData = con.prepareStatement(String.format("SELECT VillageName From village WHERE VillageId LIKE '%s'", rs.getString("matVillage")))
+                                           .executeQuery();
+                if(villageData.next()) {
+                    maternity.setVillageName(villageData.getString("VillageName"));
+                }
                 maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
                 /*
                 maternity.setMatId(rs.getInt("maternityID"));
