@@ -36,6 +36,8 @@ public class ChbBean
     private List<Maternity> village_maternity_list;
 
     private int mainIndex = 0;
+    private boolean isEditing = false;
+    private String editMatID;
 
     public ChbBean() {
         new_vht = new Vht();
@@ -47,6 +49,29 @@ public class ChbBean
         existing_maternity = new Maternity();
         maternity_list = new ArrayList <Maternity>();
         village_maternity_list = new ArrayList <Maternity>();
+    }
+
+    public void retrieveForm(Maternity maternity) {
+        isEditing = true;
+        editMatID = String.valueOf(maternity.getMatId()); // TODO: Change this once MatIDs are stored as strings.
+        this.new_maternity = maternity;
+        setMainIndex(0);
+    }
+
+    public String getEditMatID() {
+        return editMatID;
+    }
+
+    public void setEditMatID(String editMatID) {
+        this.editMatID = editMatID;
+    }
+
+    public boolean isEditing() {
+        return isEditing;
+    }
+
+    public void setEditing(boolean editing) {
+        isEditing = editing;
     }
 
     public void setMainIndex(int index) {
@@ -310,21 +335,30 @@ public class ChbBean
         }
     }
 
-    public void save_new_maternity(final Integer userId, final String Action) {
+    public void save_maternity(final Integer userId) {
         try {
-            System.out.println("ChbBean.save_new_maternity " + userId);
-            if(Action.equals("Save")) {
-                if(ChbDAO.Save_New_Maternity(new_maternity,userId)) {
+            if(isEditing) {
+                if(ChbDAO.Update_Existing_Maternity(new_maternity)) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Edited Maternity Details Saved Successfully", "Success"));
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Transaction Error. Contact System Administrator If Error Persists", "Failure"));
+                }
+            } else {
+                if (ChbDAO.Save_New_Maternity(new_maternity, userId)) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Maternity Details Saved Successfully", "Success"));
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Transaction Error. Contact System Administrator If Error Persists", "Failure"));
                 }
             }
-            new_maternity = new Maternity();
-//            tabView.setActiveIndex(0);
+            clear_maternity();
         } catch (final Exception ex) {
             System.err.println("ChbBean Error: Method: save_new_maternity " + ex.getMessage());
         }
+    }
+
+    public void clear_maternity() {
+        isEditing = false;
+        new_maternity = new Maternity();
     }
 
     public String get_existing_vht(final Integer vhtId, final String destination) {
