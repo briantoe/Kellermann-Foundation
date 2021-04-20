@@ -106,7 +106,6 @@
                                                              required="true"
                                                              requiredMessage="Please enter a valid IPD number"/>
                                                 <br/>
-                                                <h:message errorStyle="color: red" for="ipd_no"/>
                                             </p:column>
                                         </p:row>
 
@@ -1459,7 +1458,7 @@
             </p:tabView>
 
 
-            <p:growl id="notification" sticky="true"/>
+            <p:growl id="notification" sticky="false" globalOnly="true" />
         </h:form>
 
     </ui:define>
