@@ -1375,8 +1375,8 @@
                                          update="new_maternity,maternity_list,:maternity_form:notification"/>
                         <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
                                          action="#{chbBean.clear_maternity()}"
-                                         update="new_maternity,maternity_list,:maternity_form:notification"
-                                         immediate="true"/>
+                                         update="new_maternity,maternity_list,:maternity_form"
+                                         process="@this"/>
                     </p:panel>
 
                 </p:tab>
@@ -1396,7 +1396,7 @@
                                 <p:commandButton value="Edit"
                                                  style="font-size: 12px;font-weight: bold;"
                                                  action="#{chbBean.retrieveForm(maternity_list)}"
-                                                 update=":maternity_form" immediate="true"/>
+                                                 update=":maternity_form" process="@this"/>
                             </p:column>
 
                             <!-- TODO: Add filter and change MatID's to use strings.-->
