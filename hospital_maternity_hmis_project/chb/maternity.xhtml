@@ -79,13 +79,8 @@
                                                 Admission No.
                                                 <br/>
                                                 <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.admissionNo}"
-                                                             id="admission_no"
-                                                             required="true"
-                                                             requiredMessage="Please enter an admission number"
-                                                             validatorMessage="Please enter a valid number">
-                                                    <f:validateLongRange minimum="0"/>
-                                                </p:inputText>
+                                                             value="#{chbBean.new_maternity.admissionNo}" id="admission_no"
+                                                             required="true" requiredMessage="Please enter an admission number"/>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="admission_no"/>
                                             </p:column>
@@ -93,10 +88,8 @@
                                             <p:column>
                                                 ANC NO / REF IN NO / C/REF IN
                                                 <br/>
-                                                <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}"
-                                                             id="anc_no"
-                                                             required="true"
-                                                             requiredMessage="Please enter a valid number"/>
+                                                <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}" id="anc_no"
+                                                             required="true" requiredMessage="Please enter a valid number"/>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="anc_no"/>
                                             </p:column>
@@ -106,15 +99,16 @@
                                                 <br/>
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.ipdNo}" id="ipd_no"
-                                                             required="true"
-                                                             requiredMessage="Please enter a valid IPD number"/>
+                                                             required="true" requiredMessage="Please enter a valid IPD number"/>
                                                 <br/>
+                                                <h:message errorStyle="color: red" for="ipd_no"/>
                                             </p:column>
                                         </p:row>
 
                                         <!-- national identification number, client surname, client given name, age, client category -->
                                         <p:row>
-                                            <p:column style="vertical-align: top">
+                                            <p:column>
+                                                NIN
                                                 <br/>
                                                 <h:panelGrid columns="1" columnClasses="topAligned" style="width:200px">
                                                     <h:panelGroup layout="block">
@@ -146,10 +140,8 @@
                                                                 Surname
                                                                 <br/>
                                                                 <p:inputText type="text"
-                                                                             value="#{chbBean.new_maternity.clientSurname}"
-                                                                             id="surname"
-                                                                             required="true"
-                                                                             requiredMessage="Please enter a surname"/>
+                                                                             value="#{chbBean.new_maternity.clientSurname}" id="surname"
+                                                                             required="true" requiredMessage="Please enter a surname"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color:red" for="surname"/>
                                                             </p:column>
@@ -158,10 +150,8 @@
                                                                 Given Name
                                                                 <br/>
                                                                 <p:inputText type="text"
-                                                                             value="#{chbBean.new_maternity.clientGivenName}"
-                                                                             id="given_name"
-                                                                             required="true"
-                                                                             requiredMessage="Please enter a name"/>
+                                                                             value="#{chbBean.new_maternity.clientGivenName}" id="given_name"
+                                                                             required="true" requiredMessage="Please enter a name"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color:red" for="given_name"/>
                                                             </p:column>
@@ -175,8 +165,7 @@
                                                 <br/>
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.age}" id="age"
-                                                             required="true"
-                                                             requiredMessage="Please enter a valid age"/>
+                                                             required="true" requiredMessage="Please enter a valid age"/>
                                                 <br/>
                                                 <h:message errorStyle="color:red" for="age"/>
                                             </p:column>
@@ -276,8 +265,7 @@
                                                 <br/>
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.gravidity}" id="gravidity"
-                                                             required="true"
-                                                             requiredMessage="Please enter a valid number"/>
+                                                             required="true" requiredMessage="Please enter a valid number"/>
                                                 <br/>
                                                 <h:message errorStyle="color:red" for="gravidity"/>
                                             </p:column>
@@ -287,8 +275,7 @@
                                                 <br/>
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.parity}" id="parity"
-                                                             required="true"
-                                                             requiredMessage="Please enter a valid number"/>
+                                                             required="true" requiredMessage="Please enter a valid number"/>
                                                 <br/>
                                                 <h:message errorStyle="color:red" for="parity"/>
                                             </p:column>
@@ -297,10 +284,8 @@
                                                 Gestation Age
                                                 <br/>
                                                 <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.gestationAge}"
-                                                             id="gestation_age"
-                                                             required="true"
-                                                             requiredMessage="Please enter a valid number"/>
+                                                             value="#{chbBean.new_maternity.gestationAge}" id="gestation_age"
+                                                             required="true" requiredMessage="Please enter a valid number"/>
                                                 <br/>
                                                 <h:message errorStyle="color:red" for="gestation_age"/>
                                             </p:column>
@@ -1461,7 +1446,7 @@
             </p:tabView>
 
 
-            <p:growl id="notification" sticky="false" globalOnly="true" />
+            <p:growl id="notification" sticky="true"/>
         </h:form>
 
     </ui:define>
