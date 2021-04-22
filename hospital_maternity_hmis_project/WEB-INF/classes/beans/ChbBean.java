@@ -36,6 +36,8 @@ public class ChbBean
     private List<Maternity> village_maternity_list;
 
     private int mainIndex = 0;
+    private boolean isEditing = false;
+    private String editMatID;
 
     public ChbBean() {
         new_vht = new Vht();
@@ -47,6 +49,29 @@ public class ChbBean
         existing_maternity = new Maternity();
         maternity_list = new ArrayList <Maternity>();
         village_maternity_list = new ArrayList <Maternity>();
+    }
+
+    public void retrieveForm(Maternity maternity) {
+        isEditing = true;
+        editMatID = String.valueOf(maternity.getMatId()); // TODO: Change this once MatIDs are stored as strings.
+        this.new_maternity = maternity;
+        setMainIndex(0);
+    }
+
+    public String getEditMatID() {
+        return editMatID;
+    }
+
+    public void setEditMatID(String editMatID) {
+        this.editMatID = editMatID;
+    }
+
+    public boolean isEditing() {
+        return isEditing;
+    }
+
+    public void setEditing(boolean editing) {
+        isEditing = editing;
     }
 
     public void setMainIndex(int index) {
@@ -310,21 +335,30 @@ public class ChbBean
         }
     }
 
-    public void save_new_maternity(final Integer userId, final String Action) {
+    public void save_maternity(final Integer userId) {
         try {
-            System.out.println("ChbBean.save_new_maternity " + userId);
-            if(Action.equals("Save")) {
-                if(ChbDAO.Save_New_Maternity(new_maternity,userId)) {
+            if(isEditing) {
+                if(ChbDAO.Update_Existing_Maternity(new_maternity)) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Edited Maternity Details Saved Successfully", "Success"));
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Transaction Error. Contact System Administrator If Error Persists", "Failure"));
+                }
+            } else {
+                if (ChbDAO.Save_New_Maternity(new_maternity, userId)) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Maternity Details Saved Successfully", "Success"));
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Transaction Error. Contact System Administrator If Error Persists", "Failure"));
                 }
             }
-            new_maternity = new Maternity();
-//            tabView.setActiveIndex(0);
+            clear_maternity();
         } catch (final Exception ex) {
             System.err.println("ChbBean Error: Method: save_new_maternity " + ex.getMessage());
         }
+    }
+
+    public void clear_maternity() {
+        isEditing = false;
+        new_maternity = new Maternity();
     }
 
     public String get_existing_vht(final Integer vhtId, final String destination) {
@@ -372,118 +406,4 @@ public class ChbBean
             return null;
         }
     }
-
-    public String update_existing_maternity(final String Action) {
-        try {
-            System.out.println("ChbBean.update_existing_maternity");
-            if (Action.equals("Update")) {
-                if (ChbDAO.Update_Existing_Maternity(existing_maternity)) {
-                    FacesContext.getCurrentInstance().addMessage((String)null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Maternity Details Updated Successfully", "Success"));
-                } else {
-                    FacesContext.getCurrentInstance().addMessage((String)null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Transaction Error. Contact System Administrator If Error Persists", "Failure"));
-                }
-            }
-
-            existing_maternity = new Maternity();
-            existing_maternity.setMatId(null);
-            existing_maternity.setVillageId(null);
-            existing_maternity.setParishId(null);
-            existing_maternity.setSubcountyId(null);
-            existing_maternity.setDistrictId(null);
-            existing_maternity.setDateOfAdmission(null);
-            existing_maternity.setTimeOfAdmission(null);
-            existing_maternity.setAdmissionNo(null);
-            existing_maternity.setAncNo(null);
-            existing_maternity.setIpdNo(null);
-            existing_maternity.setNin(null);
-            existing_maternity.setClientSurname(null);
-            existing_maternity.setClientGivenName(null);
-            existing_maternity.setAge(null);
-            existing_maternity.setClientCategory(null);
-            existing_maternity.setVillageId(null);
-            existing_maternity.setPhoneNumber(null);
-            existing_maternity.setGravidity(null);
-            existing_maternity.setParity(null);
-            existing_maternity.setGestationAge(null);
-            existing_maternity.setTerm(null);
-            existing_maternity.setReasonForAdmission(null);
-            existing_maternity.setRevisit(null);
-            existing_maternity.setWhoClinicalStage(null);
-            existing_maternity.setCd4Date(null);
-            existing_maternity.setCd4Date(null);
-            existing_maternity.setViralLoadResults(null);
-            existing_maternity.setViralLoadDate(null);
-            existing_maternity.setwInitialResult(null);
-            existing_maternity.setwTfv(null);
-            existing_maternity.setpInitialResult(null);
-            existing_maternity.setpTfv(null);
-            existing_maternity.setpArtCode(null);
-            existing_maternity.setArtCode(null);
-            existing_maternity.setArtNo(null);
-            existing_maternity.setCtxCode(null);
-            existing_maternity.setwSyphilis(null);
-            existing_maternity.setwHepatitisB(null);
-            existing_maternity.setpSyphilis(null);
-            existing_maternity.setpHepatitisB(null);
-            existing_maternity.setMuac(null);
-            existing_maternity.setInrNo(null);
-            existing_maternity.setModeOfDelivery(null);
-            existing_maternity.setDateOfDelivery(null);
-            existing_maternity.setTimeOfDelivery(null);
-            existing_maternity.setOxytocin(null);
-            existing_maternity.setMisoprostol(null);
-            existing_maternity.setErgometrine(null);
-            existing_maternity.setManagementProcedure(null);
-            existing_maternity.setOtherTreatment(null);
-            existing_maternity.setApgarScore(null);
-            existing_maternity.setSexOfBaby(null);
-            existing_maternity.setNotBreathing(null);
-            existing_maternity.setImmediateSkinToSkin(null);
-            existing_maternity.setSourceOfWarmth(null);
-            existing_maternity.setBreastFed(null);
-            existing_maternity.setTeo(null);
-            existing_maternity.setVitK(null);
-            existing_maternity.setChlorhexidine(null);
-            existing_maternity.setWeight(null);
-            existing_maternity.setRiskStatus(null);
-            existing_maternity.setArvsAdministered(null);
-            existing_maternity.setSyrupDuration(null);
-            existing_maternity.setBcgImmunization(null);
-            existing_maternity.setPolioImmunization(null);
-            existing_maternity.setFamilyPlanningDate(null);
-            existing_maternity.setTreatmentOffered(null);
-            existing_maternity.setBabyFinalDiagnosis(null);
-            existing_maternity.setDeliveredByName(null);
-            existing_maternity.setDeliveredByCadre(null);
-            existing_maternity.setTransferredByName(null);
-            existing_maternity.setTransferredByWhere(null);
-            existing_maternity.setMotherBleeding6(null);
-            existing_maternity.setMotherBp6(null);
-            existing_maternity.setBabyCheckedCord6(null);
-            existing_maternity.setBabyBreastFeeding6(null);
-            existing_maternity.setBabyBreathing6(null);
-            existing_maternity.setLlinsGiven(null);
-            existing_maternity.setBabyCondition(null);
-            existing_maternity.setMotherFinalDiagnosis(null);
-            existing_maternity.setMotherBleeding24(null);
-            existing_maternity.setMotherBp24(null);
-            existing_maternity.setBabyCheckedCord24(null);
-            existing_maternity.setBabyBreastFeeding24(null);
-            existing_maternity.setBabyBreathing24(null);
-            existing_maternity.setIycf(null);
-            existing_maternity.setIycfOption(null);
-            existing_maternity.setCounselingDischarged(null);
-            existing_maternity.setMaterNutrCouns(null);
-            existing_maternity.setConditionOfMotherAtDischarge(null);
-            existing_maternity.setNameOfPersonDischarging(null);
-            existing_maternity.setCadreOfPersonDischarging(null);
-            existing_maternity.setDateOfDischarge(null);
-            existing_maternity.setTimeOfDischarge(null);
-            return "maternity";
-        } catch (final Exception var3) {
-            System.err.println("ChbBean Error: Method: update_existing_maternity " + var3.getMessage());
-            return null;
-        }
-    }
-
 }
