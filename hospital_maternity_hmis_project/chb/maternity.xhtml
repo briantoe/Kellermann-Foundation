@@ -25,6 +25,18 @@
             <p:tabView id="tabPanel" activeIndex="#{chbBean.mainIndex}">
                 <p:tab title="Add new Maternity">
                     <p:panel id="new_maternity">
+                        <p:panel style="border:none;">
+                            <!--The problem is here, it has to do with jsf update rendering
+                            https://stackoverflow.com/questions/8634156/how-to-find-out-client-id-of-component-for-ajax-update-render-cannot-find-compo-->
+                            <p:commandButton value="Save Maternity Form"
+                                             style="font-size: 12px;font-weight: bold;"
+                                             action="#{chbBean.save_maternity(userid.value)}"
+                                             update="new_maternity,maternity_list,:maternity_form:notification"/>
+                            <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
+                                             action="#{chbBean.clear_maternity()}"
+                                             update="new_maternity,maternity_list,:maternity_form"
+                                             process="@this"/>
+                        </p:panel>
 
                         <p:tabView id="admissionPanel">
 
@@ -1364,19 +1376,6 @@
                                 </p:panel>
                             </p:tab>
                         </p:tabView>
-                    </p:panel>
-
-                    <p:panel style="border:none;">
-                        <!--The problem is here, it has to do with jsf update rendering
-                        https://stackoverflow.com/questions/8634156/how-to-find-out-client-id-of-component-for-ajax-update-render-cannot-find-compo-->
-                        <p:commandButton value="Save Maternity Form"
-                                         style="font-size: 12px;font-weight: bold;"
-                                         action="#{chbBean.save_maternity(userid.value)}"
-                                         update="new_maternity,maternity_list,:maternity_form:notification"/>
-                        <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
-                                         action="#{chbBean.clear_maternity()}"
-                                         update="new_maternity,maternity_list,:maternity_form"
-                                         process="@this"/>
                     </p:panel>
 
                 </p:tab>
