@@ -10,8 +10,3 @@
 .ui-fieldset .ui-fieldset-legend {
     background: none;
 }
-
-.ui_error_message {
-    color:red;
-    position:absolute;
-}

@@ -27,20 +27,40 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e75d11c-b657-45ce-9d0e-08e5c5993788" name="Default Changelist" comment="">
+    <list default="true" id="5e75d11c-b657-45ce-9d0e-08e5c5993788" name="Default Changelist" comment="Disable growl error messages for input fields with ids">
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WEB-INF/classes/dao/ChbDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WEB-INF/classes/dao/ChbDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WEB-INF/classes/dao/UsersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WEB-INF/classes/dao/UsersDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chb/hmis.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/chb/hmis.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chb/maternity.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/chb/maternity.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/maternity.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/maternity.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="spring2021" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -66,11 +86,17 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nguye\IdeaProjects\Kellermann-Foundation\hospital_maternity_hmis_project\resources" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 8.5.60" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.60" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/BHMS" />
+    <configuration name="Tomcat 9.0" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8082/BHMS" />
+      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="BHMS">
@@ -106,6 +132,21 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
           <option name="USE_DEFAULT" value="true" />
@@ -169,7 +210,60 @@
       <workItem from="1587966320510" duration="367000" />
       <workItem from="1606252658907" duration="10761000" />
       <workItem from="1606272919256" duration="5292000" />
+      <workItem from="1616709061296" duration="3192000" />
+      <workItem from="1616713414451" duration="4783000" />
+      <workItem from="1616986574952" duration="4984000" />
+      <workItem from="1617066533291" duration="4134000" />
+      <workItem from="1617311199405" duration="7486000" />
+      <workItem from="1617671284728" duration="12775000" />
+      <workItem from="1617883326842" duration="2906000" />
+      <workItem from="1617916657164" duration="612000" />
+      <workItem from="1618941909446" duration="15376000" />
+      <workItem from="1619114954324" duration="594000" />
     </task>
+    <task id="LOCAL-00001" summary="Split the maternity form into tabs. &#10;Changes made only to front-end. &#10;Needs to reconcile those changes to the back-end data storage.">
+      <created>1616712069387</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1616712069387</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changed the date and time picker in the Admission Information on the Maternity form to &quot;readonly&quot; so that users can't simply type any random strings into it. Users are still able to pick the time and date using the pop-up">
+      <created>1616714004254</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1616714004254</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changed the date and time picker in the Admission Information on the Maternity form to &quot;readonly&quot; so that users can't simply type any random strings into it. Users are still able to pick the time and date using the pop-up">
+      <created>1616716654897</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616716654897</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added detection of empty input fields">
+      <created>1617685120221</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617685120221</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Made NIN Optional via a checkbox">
+      <created>1618953013761</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618953013761</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Disable growl error messages for input fields with ids">
+      <created>1618955750994</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618955750994</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +274,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Data-Validation" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -189,67 +295,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="414" y="175" width="1092" height="814" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605986258024">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="414" y="175" width="1092" height="814" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605986258024" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606256647296">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606256647296" />
-    <state width="547" height="276" key="GridCell.Tab.0.bottom" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.0.center" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.0.left" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.0.right" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.1.bottom" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.1.center" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.1.left" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.1.right" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.2.bottom" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.2.center" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.2.left" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state width="547" height="276" key="GridCell.Tab.2.right" timestamp="1606278231810">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="547" height="276" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606278231810" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606254708890">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606254708890" />
+    <MESSAGE value="Split the maternity form into tabs. &#10;Changes made only to front-end. &#10;Needs to reconcile those changes to the back-end data storage." />
+    <MESSAGE value="Changed the date and time picker in the Admission Information on the Maternity form to &quot;readonly&quot; so that users can't simply type any random strings into it. Users are still able to pick the time and date using the pop-up" />
+    <MESSAGE value="Added detection of empty input fields" />
+    <MESSAGE value="Made NIN Optional via a checkbox" />
+    <MESSAGE value="Disable growl error messages for input fields with ids" />
+    <option name="LAST_COMMIT_MESSAGE" value="Disable growl error messages for input fields with ids" />
   </component>
 </project>

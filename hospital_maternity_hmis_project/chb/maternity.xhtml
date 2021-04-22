@@ -82,7 +82,10 @@
                                                              value="#{chbBean.new_maternity.admissionNo}"
                                                              id="admission_no"
                                                              required="true"
-                                                             requiredMessage="Please enter an admission number"/>
+                                                             requiredMessage="Please enter an admission number"
+                                                             validatorMessage="Please enter a valid number">
+                                                    <f:validateLongRange minimum="0"/>
+                                                </p:inputText>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="admission_no"/>
                                             </p:column>
