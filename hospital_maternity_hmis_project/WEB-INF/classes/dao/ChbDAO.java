@@ -72,7 +72,7 @@ public class ChbDAO implements Serializable
             con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM parish");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM parishes");
 
             ResultSet rs = stmt.executeQuery();
             List<Parish> parish_list = new ArrayList<>();
@@ -187,7 +187,7 @@ public class ChbDAO implements Serializable
                     maternity.setVillageName(villageData.getString("VillageName"));
                 }
                 maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
-                /*
+
                 maternity.setMatId(rs.getInt("maternityID"));
                 maternity.setDateOfAdmission(rs.getDate("dateOfAdmission").toLocalDate());
                 maternity.setTimeOfAdmission(rs.getTime("timeOfAdmission").toLocalTime());
@@ -289,7 +289,7 @@ public class ChbDAO implements Serializable
                 maternity.setTimeOfDischarge(rs.getTime("timeOfDischarge").toLocalTime());
                 maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
                 maternity.setUserId(rs.getInt("userID"));
-                */
+
                 maternity_list.add(maternity);
             }
             con.close();
@@ -732,7 +732,6 @@ public class ChbDAO implements Serializable
                 maternity.setVillageName(rs.getString("villageName"));
                 maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
 
-                /*
                 maternity.setMatId(rs.getInt("matId"));
                 maternity.setDateOfAdmission(rs.getDate("dateOfAdmission").toLocalDate());
                 maternity.setTimeOfAdmission(rs.getTime("timeOfAdmission").toLocalTime());
@@ -834,8 +833,6 @@ public class ChbDAO implements Serializable
                 maternity.setTimeOfDischarge(rs.getTime("timeOfDischarge").toLocalTime());
                 maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
                 maternity.setUserId(rs.getInt("userID"));
-
-                 */
             }
             con.close();
             return maternity;
