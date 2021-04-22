@@ -89,7 +89,7 @@ Run `bwindihospital_reduced.sql` first, `then HMIS_Script.sql`. You will need to
 
 Build & Run the program and this time, you will be able to log in with the credentials:
 > **Username:** emmanual
-> **Password:** *tomcat password*
+> **Password:** bwindi
 
 Congratulations, you're finished, you will never have to do this ever again! (hopefully)
 
