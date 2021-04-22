@@ -110,10 +110,26 @@
                                             <p:column>
                                                 NIN
                                                 <br/>
-                                                <p:inputText type="text" value="#{chbBean.new_maternity.nin}" id="nin"
-                                                             required="false" requiredMessage="Please enter a valid NIN"/>
-                                                <br/>
-                                                <h:message errorStyle="color:red" for="nin"/>
+                                                <h:panelGrid columns="1" columnClasses="topAligned" style="width:200px">
+                                                    <h:panelGroup layout="block">
+                                                        <h:selectBooleanCheckbox binding="#{showNinBox}">
+                                                            <f:ajax render="ninPanel"/>
+                                                        </h:selectBooleanCheckbox>
+                                                        I have a NIN
+                                                    </h:panelGroup>
+
+                                                    <h:panelGroup id="ninPanel">
+                                                        <ui:fragment
+                                                                rendered="#{not empty showNinBox.value and showNinBox.value}">
+                                                            NIN
+                                                            <br/>
+                                                            <p:inputText type="text"
+                                                                         value="#{chbBean.new_maternity.nin}"
+                                                                         id="nin"/>
+                                                        </ui:fragment>
+                                                    </h:panelGroup>
+
+                                                </h:panelGrid>
                                             </p:column>
 
                                             <p:column colspan="2">
@@ -1359,7 +1375,8 @@
                                          update="new_maternity,maternity_list,:maternity_form:notification"/>
                         <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
                                          action="#{chbBean.clear_maternity()}"
-                                         update="new_maternity,maternity_list,:maternity_form:notification"/>
+                                         update="new_maternity,maternity_list,:maternity_form:notification"
+                                         immediate="true"/>
                     </p:panel>
 
                 </p:tab>
@@ -1379,7 +1396,7 @@
                                 <p:commandButton value="Edit"
                                                  style="font-size: 12px;font-weight: bold;"
                                                  action="#{chbBean.retrieveForm(maternity_list)}"
-                                                 update=":maternity_form"/>
+                                                 update=":maternity_form" immediate="true"/>
                             </p:column>
 
                             <!-- TODO: Add filter and change MatID's to use strings.-->
@@ -1428,7 +1445,7 @@
             </p:tabView>
 
 
-            <p:growl id="notification" sticky="true"/>
+            <p:growl id="notification" sticky="true" globalOnly="true"/>
         </h:form>
 
     </ui:define>
