@@ -1355,16 +1355,16 @@
                         https://stackoverflow.com/questions/8634156/how-to-find-out-client-id-of-component-for-ajax-update-render-cannot-find-compo-->
                         <p:commandButton value="Save Maternity Form"
                                          style="font-size: 12px;font-weight: bold;"
-                                         action="#{chbBean.save_new_maternity(userid.value, 'Save')}"
+                                         action="#{chbBean.save_maternity(userid.value)}"
                                          update="new_maternity,maternity_list,:maternity_form:notification"/>
                         <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
-                                         action="#{chbBean.save_new_maternity(userid.value, 'Clear')}"
+                                         action="#{chbBean.clear_maternity()}"
                                          update="new_maternity,maternity_list,:maternity_form:notification"/>
                     </p:panel>
 
                 </p:tab>
 
-
+                <!-- TODO: Add a banner to notify the user that a form is being edited and which form. -->
                 <p:tab title="List existing Maternity">
                     <p:panel id="maternity_list">
                         <p:dataTable id="maternity_table" var="maternity_list" value="#{chbBean.get_maternity_list()}"
@@ -1378,13 +1378,11 @@
                             <p:column headerText="" styleClass="tblcol1">
                                 <p:commandButton value="Edit"
                                                  style="font-size: 12px;font-weight: bold;"
-                                                 action="#{chbBean.setNew_maternity(maternity_list)}"
-                                                 update=":maternity_form:tabPanel">
-                                    <f:actionListener binding="#{chbBean.setMainIndex(0)}"/>
-                                </p:commandButton>
+                                                 action="#{chbBean.retrieveForm(maternity_list)}"
+                                                 update=":maternity_form"/>
                             </p:column>
 
-                            // TODO: Add filter and change MatID's to use strings.
+                            <!-- TODO: Add filter and change MatID's to use strings.-->
                             <p:column headerText="MAT Id" styleClass="tblcol1">
                                 <h:outputText value="#{maternity_list.matId}"/>
                             </p:column>
@@ -1406,7 +1404,7 @@
                                 <h:outputText value="#{maternity_list.villageName}"/>
                             </p:column>
 
-                            // TODO: Maybe add a filter for a range of dates and times?
+                            <!-- TODO: Maybe add a filter for a range of dates and times? -->
                             <p:column headerText="Record Date" styleClass="tblcol1">
                                 <h:outputText value="#{maternity_list.recordDate}"/>
                             </p:column>
