@@ -27,11 +27,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e75d11c-b657-45ce-9d0e-08e5c5993788" name="Default Changelist" comment="Disable growl error messages for input fields with ids">
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="5e75d11c-b657-45ce-9d0e-08e5c5993788" name="Default Changelist" comment="Added some (not all yet) data validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chb/maternity.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/chb/maternity.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/maternity.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/maternity.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +42,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/spring2021" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -94,6 +95,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 9.0" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8082/BHMS" />
       <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
@@ -219,7 +233,7 @@
       <workItem from="1617883326842" duration="2906000" />
       <workItem from="1617916657164" duration="612000" />
       <workItem from="1618941909446" duration="15376000" />
-      <workItem from="1619114954324" duration="594000" />
+      <workItem from="1619114954324" duration="1221000" />
     </task>
     <task id="LOCAL-00001" summary="Split the maternity form into tabs. &#10;Changes made only to front-end. &#10;Needs to reconcile those changes to the back-end data storage.">
       <created>1616712069387</created>
@@ -263,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618955750994</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added some (not all yet) data validation">
+      <created>1619118389409</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1619118389409</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +321,7 @@
     <MESSAGE value="Added detection of empty input fields" />
     <MESSAGE value="Made NIN Optional via a checkbox" />
     <MESSAGE value="Disable growl error messages for input fields with ids" />
-    <option name="LAST_COMMIT_MESSAGE" value="Disable growl error messages for input fields with ids" />
+    <MESSAGE value="Added some (not all yet) data validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some (not all yet) data validation" />
   </component>
 </project>
