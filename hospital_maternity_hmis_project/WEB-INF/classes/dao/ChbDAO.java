@@ -583,12 +583,12 @@ public class ChbDAO implements Serializable
         if(maternity.getCd4Date()  ==  null)
             stmt.setNull(24, Types.DATE);
         else
-            stmt.setDate(24, Date.valueOf(maternity.getCd4Date().format(dateTimeFormatter)));
+            stmt.setDate(24, Date.valueOf(maternity.getCd4Date()));
         stmt.setObject(25, maternity.getViralLoadResults());
         if(maternity.getViralLoadDate()  ==  null)
             stmt.setNull(26, Types.DATE);
         else
-            stmt.setDate(26, Date.valueOf(maternity.getViralLoadDate().format(dateTimeFormatter)));
+            stmt.setDate(26, Date.valueOf(maternity.getViralLoadDate()));
         stmt.setString(27, maternity.getwInitialResult());
         stmt.setString(28, maternity.getwTfv());
         stmt.setString(29, maternity.getpInitialResult());
@@ -671,7 +671,7 @@ public class ChbDAO implements Serializable
         if(maternity.getDateOfDischarge()  ==  null)
             stmt.setNull(94, java.sql.Types.DATE);
         else
-            stmt.setString(95, maternity.getDateOfDischarge().format(dateFormatter));
+            stmt.setString(94, maternity.getDateOfDischarge().format(dateFormatter));
         if(maternity.getTimeOfDischarge()  ==  null)
             stmt.setNull(95, java.sql.Types.DATE);
         else
