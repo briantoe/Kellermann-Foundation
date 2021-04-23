@@ -558,7 +558,11 @@ public class ChbDAO implements Serializable
         stmt.setObject(3, maternity.getAdmissionNo());
         stmt.setString(4, maternity.getAncNo());
         stmt.setObject(5, maternity.getIpdNo());
-        stmt.setString(6, maternity.getNin());
+        if(maternity.getHasNin()) {
+            stmt.setString(6, maternity.getNin());
+        } else {
+            stmt.setString(6, null);
+        }
         stmt.setString(7, maternity.getClientSurname());
         stmt.setString(8, maternity.getClientGivenName());
         stmt.setObject(9, maternity.getAge());
