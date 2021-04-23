@@ -187,8 +187,6 @@ public class ChbDAO implements Serializable
                     maternity.setVillageName(villageData.getString("VillageName"));
                 }
                 maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
-                /*
-                maternity.setMatId(rs.getInt("maternityID"));
                 maternity.setDateOfAdmission(rs.getDate("dateOfAdmission").toLocalDate());
                 maternity.setTimeOfAdmission(rs.getTime("timeOfAdmission").toLocalTime());
                 maternity.setAdmissionNo(rs.getInt("admissionNo"));
@@ -200,13 +198,13 @@ public class ChbDAO implements Serializable
                 maternity.setAge(rs.getInt("age"));
                 maternity.setClientCategory(rs.getString("clientCategory"));
                 maternity.setVillageId(rs.getString("matVillage"));
-                maternity.setVillageName(rs.getString("villageName"));
+                // maternity.setVillageName(rs.getString("villageName")); TODO: Fix the corr. getter method
                 maternity.setParishId(rs.getString("matParish"));
-                maternity.setParishName(rs.getString("parishName"));
+                // maternity.setParishName(rs.getString("parishName")); TODO: Fix the corr. getter method
                 maternity.setSubcountyId(rs.getString("matSubcounty"));
-                maternity.setSubcountyName(rs.getString("subcountyName"));
+                // maternity.setSubcountyName(rs.getString("subcountyName")); TODO: Fix the corr. getter method
                 maternity.setDistrictId(rs.getString("matDistrict"));
-                maternity.setDistrictName(rs.getString("districtName"));
+                // maternity.setDistrictName(rs.getString("districtName")); TODO: Fix the corr. getter method
                 maternity.setPhoneNumber(rs.getString("phoneNumber"));
                 maternity.setGravidity(rs.getInt("gravidity"));
                 maternity.setParity(rs.getInt("parity"));
@@ -216,9 +214,11 @@ public class ChbDAO implements Serializable
                 maternity.setRevisit(rs.getBoolean("revisit"));
                 maternity.setWhoClinicalStage(rs.getInt("whoClinicalStage"));
                 maternity.setCd4Results(rs.getInt("cd4Results"));
-                maternity.setCd4Date(rs.getDate("cd4Date").toLocalDate());
+                if(rs.getDate("cd4Date") != null)
+                    maternity.setCd4Date(rs.getDate("cd4Date").toLocalDate());
                 maternity.setViralLoadResults(rs.getInt("viralLoadResults"));
-                maternity.setViralLoadDate(rs.getDate("viralLoadDate").toLocalDate());
+                if(rs.getDate("viralLoadDate") != null)
+                    maternity.setViralLoadDate(rs.getDate("viralLoadDate").toLocalDate());
                 maternity.setwInitialResult(rs.getString("wInitialResult"));
                 maternity.setwTfv(rs.getString("wTfv"));
                 maternity.setpInitialResult(rs.getString("pInitialResult"));
@@ -234,8 +234,10 @@ public class ChbDAO implements Serializable
                 maternity.setMuac(rs.getString("muac"));
                 maternity.setInrNo(rs.getInt("inrNo"));
                 maternity.setModeOfDelivery(rs.getString("modeOfDelivery"));
-                maternity.setDateOfDelivery(rs.getDate("dateOfDelivery").toLocalDate());
-                maternity.setTimeOfDelivery(rs.getTime("timeOfDelivery").toLocalTime());
+                if(rs.getDate("dateOfDelivery") != null)
+                    maternity.setDateOfDelivery(rs.getDate("dateOfDelivery").toLocalDate());
+                if(rs.getTime("timeOfDelivery") != null)
+                    maternity.setTimeOfDelivery(rs.getTime("timeOfDelivery").toLocalTime());
                 maternity.setLiveBirths(rs.getString("liveBirths"));
                 maternity.setOxytocin(rs.getBoolean("oxytocin"));
                 maternity.setMisoprostol(rs.getBoolean("misoprostol"));
@@ -258,7 +260,8 @@ public class ChbDAO implements Serializable
                 maternity.setBcgImmunization(rs.getString("bcgImmunization"));
                 maternity.setPolioImmunization(rs.getString("polioImmunization"));
                 maternity.setFamilyPlanningMethod(rs.getInt("familyPlanningMethod"));
-                maternity.setFamilyPlanningDate(rs.getDate("familyPlanningDate").toLocalDate());
+                if(rs.getDate("familyPlanningDate") != null)
+                    maternity.setFamilyPlanningDate(rs.getDate("familyPlanningDate").toLocalDate());
                 maternity.setTreatmentOffered(rs.getString("treatmentOffered"));
                 maternity.setBabyFinalDiagnosis(rs.getString("babyFinalDiagnosis"));
                 maternity.setDeliveredByName(rs.getString("deliveredByName"));
@@ -285,11 +288,13 @@ public class ChbDAO implements Serializable
                 maternity.setConditionOfMotherAtDischarge(rs.getString("conditionOfMotherAtDischarge"));
                 maternity.setNameOfPersonDischarging(rs.getString("nameOfPersonDischarging"));
                 maternity.setCadreOfPersonDischarging(rs.getString("cadreOfPersonDischarging"));
-                maternity.setDateOfDischarge(rs.getDate("dateOfDischarge").toLocalDate());
-                maternity.setTimeOfDischarge(rs.getTime("timeOfDischarge").toLocalTime());
-                maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
+                if(rs.getDate("dateOfDischarge") != null)
+                    maternity.setDateOfDischarge(rs.getDate("dateOfDischarge").toLocalDate());
+                if(rs.getTime("timeOfDischarge") != null)
+                    maternity.setTimeOfDischarge(rs.getTime("timeOfDischarge").toLocalTime());
+                if(rs.getDate("recordDate") != null)
+                    maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
                 maternity.setUserId(rs.getInt("userID"));
-                */
                 maternity_list.add(maternity);
             }
             con.close();
