@@ -119,6 +119,70 @@ public class ChbDAO implements Serializable
         }
     }
 
+    // Return a Parish object given the id of a village in that Parish
+    public static Parish Get_Parish_From_Village(String villageId) throws SQLException{
+        try{
+            Connection con;
+
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
+            con = DriverManager.getConnection(url, "root", "t00r");
+            now = LocalDateTime.now();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT ParishId FROM village WHERE VillageId='" + villageId + "'");
+
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            String parishId = rs.getString("ParishId");
+
+            stmt = con.prepareStatement("SELECT * FROM parishes WHERE ParishId='" + parishId + "'");
+
+            rs = stmt.executeQuery();
+            rs.next();
+
+            Parish parish = new Parish(parishId, rs.getString("SubcountyId"), rs.getString("ParishName"));
+
+            return parish;
+
+        } catch (Exception e){
+            ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Parish_From_Village", " Message: " + e.getMessage(), now));
+            return null;
+        }
+    }
+
+    // Return a Subcounty object given the id of a parish in that subcounty
+    public static Subcounty Get_Subcounty_From_Parish(String parishId) throws SQLException{
+        try{
+            Connection con;
+
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
+            con = DriverManager.getConnection(url, "root", "t00r");
+            now = LocalDateTime.now();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT SubcountyId FROM parishes WHERE ParishId='" + parishId + "'");
+
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            String subcountyId = rs.getString("SubcountyId");
+
+            stmt = con.prepareStatement("SELECT * FROM subcounty WHERE SubcountyId='" + subcountyId + "'");
+
+            rs = stmt.executeQuery();
+            rs.next();
+
+            Subcounty subcounty = new Subcounty(subcountyId, rs.getString("SubcountyName"));
+
+            return subcounty;
+
+        } catch (Exception e){
+            ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Parish_From_Village", " Message: " + e.getMessage(), now));
+            return null;
+        }
+    }
+
     public static List<Vht> Get_Vht_List() throws SQLException {
         try {
             Connection con;

@@ -201,7 +201,7 @@
 
                                                             <p:column>
                                                                 <h:outputLabel value="Subcounty:"/>
-                                                                <p:selectOneMenu
+                                                                <p:selectOneMenu id="subcounty"
                                                                         value="#{chbBean.new_maternity.subcountyId}"
                                                                         filter="true" filterMatchMode="contains"
                                                                         editable="false">
@@ -210,7 +210,7 @@
                                                                                    var="subcounty"
                                                                                    itemLabel="#{subcounty.subcountyName}"
                                                                                    itemValue="#{subcounty.subcountyId}"/>
-                                                                    <!--                                                        <p:ajax update="parish"/>-->
+                                                                    <p:ajax />
                                                                 </p:selectOneMenu>
                                                             </p:column>
 
@@ -226,7 +226,8 @@
                                                                                    var="parish"
                                                                                    itemLabel="#{parish.parishName}"
                                                                                    itemValue="#{parish.parishId}"/>
-                                                                    <!--                                                        <p:ajax update="village"/>-->
+                                                                    <p:ajax listener="#{chbBean.parishListener}"
+                                                                            update="subcounty"/>
                                                                 </p:selectOneMenu>
                                                             </p:column>
 
@@ -242,6 +243,8 @@
                                                                                    var="village"
                                                                                    itemLabel="#{village.villageName}"
                                                                                    itemValue="#{village.villageId}"/>
+                                                                    <p:ajax listener="#{chbBean.villageListener}"
+                                                                            update="parish, subcounty"/>
                                                                 </p:selectOneMenu>
                                                             </p:column>
 

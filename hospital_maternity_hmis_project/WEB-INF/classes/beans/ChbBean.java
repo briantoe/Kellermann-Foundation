@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UISelectOne;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
+
 import model.Village;
 import model.Parish;
 import model.Subcounty;
@@ -406,4 +410,39 @@ public class ChbBean
             return null;
         }
     }
+
+    // Listens to changes in the village input, then populate subcounty based on the selected village
+    public void villageListener(AjaxBehaviorEvent event){
+        try {
+            UISelectOne select = (UISelectOne) event.getSource();
+            String villageId = (String) select.getValue();
+
+            Parish parish = ChbDAO.Get_Parish_From_Village(villageId);
+            new_maternity.setParishName(parish.getParishName());
+            new_maternity.setParishId(parish.getParishId());
+
+            Subcounty subcounty = ChbDAO.Get_Subcounty_From_Parish(parish.getParishId());
+            new_maternity.setSubcountyName(subcounty.getSubcountyName());
+            new_maternity.setSubcountyId(subcounty.getSubcountyId());
+
+        } catch (final Exception ex) {
+            System.err.println("ChbBean Error: Method: villageListener" + ex.getMessage());
+        }
+    }
+
+    // Listens to changes in the parish input, then populate subcounty based on the selected village
+    public void parishListener(AjaxBehaviorEvent event){
+        try {
+            UISelectOne select = (UISelectOne) event.getSource();
+            String parishId = (String) select.getValue();
+
+            Subcounty subcounty = ChbDAO.Get_Subcounty_From_Parish(parishId);
+            new_maternity.setSubcountyName(subcounty.getSubcountyName());
+            new_maternity.setSubcountyId(subcounty.getSubcountyId());
+
+        } catch (final Exception ex) {
+            System.err.println("ChbBean Error: Method: villageListener" + ex.getMessage());
+        }
+    }
+
 }
