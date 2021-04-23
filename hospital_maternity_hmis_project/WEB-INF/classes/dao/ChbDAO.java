@@ -53,6 +53,7 @@ public class ChbDAO implements Serializable
             }
             con.close();
             return subcounty_list;
+
         } catch (Exception e) {
             ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Subcounties", " Message: " + e.getMessage(), now));
             return null;
@@ -60,7 +61,7 @@ public class ChbDAO implements Serializable
     }
 
     // Selects all parishes within a subcounty
-    public static List<Parish> Get_Parishes() throws SQLException {
+    public static List<Parish> Get_Parishes_From_Subcounty(String subcountyId) throws SQLException {
 
         try {
             Connection con;
@@ -72,7 +73,13 @@ public class ChbDAO implements Serializable
             con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM parishes");
+            PreparedStatement stmt;
+
+            if(subcountyId == null || subcountyId.length() == 0){
+                stmt = con.prepareStatement("SELECT * FROM parishes");
+            } else {
+                stmt = con.prepareStatement("SELECT * FROM parishes WHERE SubcountyId='" + subcountyId+ "'");
+            }
 
             ResultSet rs = stmt.executeQuery();
             List<Parish> parish_list = new ArrayList<>();
@@ -81,8 +88,10 @@ public class ChbDAO implements Serializable
                 parish = new Parish(rs.getString("ParishId"), rs.getString("SubcountyId"), rs.getString("ParishName"));
                 parish_list.add(parish);
             }
+
             con.close();
             return parish_list;
+
         } catch (Exception e) {
             ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Parishes", " Message: " + e.getMessage(), now));
             return null;
@@ -90,7 +99,7 @@ public class ChbDAO implements Serializable
     }
 
     // Selects all villages with a parish
-    public static List<Village> Get_Villages() throws SQLException {
+    public static List<Village> Get_Villages_From_Parish(String parishId) throws SQLException {
 
         try {
             Connection con;
@@ -102,7 +111,13 @@ public class ChbDAO implements Serializable
             con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM village");
+            PreparedStatement stmt;
+
+            if(parishId == null || parishId.length() == 0){
+                stmt = con.prepareStatement("SELECT * FROM village");
+            } else {
+                stmt = con.prepareStatement("SELECT * FROM village WHERE ParishId='" + parishId+ "'");
+            }
 
             ResultSet rs = stmt.executeQuery();
             List<Village> village_list = new ArrayList<>();
@@ -111,8 +126,50 @@ public class ChbDAO implements Serializable
                 village = new Village(rs.getString("VillageId"), rs.getString("ParishId"),  rs.getString("VillageName"));
                 village_list.add(village);
             }
+
             con.close();
+
             return village_list;
+
+        } catch (Exception e) {
+            ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Villages", " Message: " + e.getMessage(), now));
+            return null;
+        }
+    }
+
+    // Selects all villages with a subcounty
+    public static List<Village> Get_Villages_From_Subcounty(String subcountyId) throws SQLException {
+
+        try {
+            Connection con;
+
+            Village village;
+
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
+            con = DriverManager.getConnection(url, "root", "t00r");
+            now = LocalDateTime.now();
+
+            PreparedStatement stmt;
+
+            if(subcountyId == null || subcountyId.length() == 0){
+                stmt = con.prepareStatement("SELECT * FROM village");
+            } else {
+                stmt = con.prepareStatement("SELECT * FROM village WHERE ParishId IN (SELECT ParishId FROM parishes WHERE SubcountyId='" + subcountyId+ "')");
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            List<Village> village_list = new ArrayList<>();
+
+            while (rs.next()) {
+                village = new Village(rs.getString("VillageId"), rs.getString("ParishId"),  rs.getString("VillageName"));
+                village_list.add(village);
+            }
+
+            con.close();
+
+            return village_list;
+
         } catch (Exception e) {
             ErrorDAO.Error_Add(new Error("ChbDAO", "ChbDAO_Get_Villages", " Message: " + e.getMessage(), now));
             return null;
@@ -142,6 +199,8 @@ public class ChbDAO implements Serializable
             rs.next();
 
             Parish parish = new Parish(parishId, rs.getString("SubcountyId"), rs.getString("ParishName"));
+
+            con.close();
 
             return parish;
 
@@ -174,6 +233,8 @@ public class ChbDAO implements Serializable
             rs.next();
 
             Subcounty subcounty = new Subcounty(subcountyId, rs.getString("SubcountyName"));
+
+            con.close();
 
             return subcounty;
 
