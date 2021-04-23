@@ -17,6 +17,7 @@ public class Maternity implements Serializable {
     private Integer admissionNo;
     private String ancNo;
     private Integer ipdNo;
+    private boolean hasNin;
     private String nin;
     private String clientSurname;
     private String clientGivenName;
@@ -113,6 +114,14 @@ public class Maternity implements Serializable {
     private LocalTime timeOfDischarge;
     private LocalDateTime recordDate;
     private Integer userId;
+
+    public boolean getHasNin() {
+        return hasNin;
+    }
+
+    public void setHasNin(boolean hasNin) {
+        this.hasNin = hasNin;
+    }
 
     public Integer getMatId() {
         return matId;

@@ -112,7 +112,7 @@
                                                 <br/>
                                                 <h:panelGrid columns="1" columnClasses="topAligned" style="width:200px">
                                                     <h:panelGroup layout="block">
-                                                        <h:selectBooleanCheckbox binding="#{showNinBox}">
+                                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
                                                             <f:ajax render="ninPanel"/>
                                                         </h:selectBooleanCheckbox>
                                                         I have a NIN
@@ -120,7 +120,7 @@
 
                                                     <h:panelGroup id="ninPanel">
                                                         <ui:fragment
-                                                                rendered="#{not empty showNinBox.value and showNinBox.value}">
+                                                                rendered="#{chbBean.new_maternity.hasNin}">
                                                             NIN
                                                             <br/>
                                                             <p:inputText type="text"

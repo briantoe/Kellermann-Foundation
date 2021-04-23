@@ -193,6 +193,7 @@ public class ChbDAO implements Serializable
                 maternity.setAncNo(rs.getString("ancNo"));
                 maternity.setIpdNo(rs.getInt("ipdNo"));
                 maternity.setNin(rs.getString("nin"));
+                maternity.setHasNin(maternity.getNin() != null);
                 maternity.setClientSurname(rs.getString("clientSurname"));
                 maternity.setClientGivenName(rs.getString("clientGivenName"));
                 maternity.setAge(rs.getInt("age"));
