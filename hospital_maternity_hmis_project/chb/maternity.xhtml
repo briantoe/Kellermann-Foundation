@@ -124,7 +124,7 @@
                                                 <br/>
                                                 <h:panelGrid columns="1" columnClasses="topAligned" style="width:200px">
                                                     <h:panelGroup layout="block">
-                                                        <h:selectBooleanCheckbox binding="#{showNinBox}">
+                                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
                                                             <f:ajax render="ninPanel"/>
                                                         </h:selectBooleanCheckbox>
                                                         I have a NIN
@@ -132,7 +132,7 @@
 
                                                     <h:panelGroup id="ninPanel">
                                                         <ui:fragment
-                                                                rendered="#{not empty showNinBox.value and showNinBox.value}">
+                                                                rendered="#{chbBean.new_maternity.hasNin}">
                                                             NIN
                                                             <br/>
                                                             <p:inputText type="text"
@@ -506,10 +506,10 @@
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItem itemLabel="ART" itemValue="ART"/>
                                                                     <f:selectItem itemLabel="ART&#10003;"
-                                                                                  itemValue="ART&#10003;"/>
+                                                                                  itemValue="ARTChecked"/>
                                                                     <f:selectItem itemLabel="ART-K" itemValue="ART-K"/>
                                                                     <f:selectItem itemLabel="ARTK&#10003;"
-                                                                                  itemValue="F"/>
+                                                                                  itemValue="ARTKChecked"/>
                                                                     <f:selectItem itemLabel="NA" itemValue="NA"/>
                                                                     <f:selectItem itemLabel="ND" itemValue="ND"/>
                                                                 </p:selectOneMenu>
@@ -528,11 +528,11 @@
                                                                 CTX
                                                                 <br/>
                                                                 <p:selectOneMenu
-                                                                        value="#{chbBean.new_maternity.artCode}">
+                                                                        value="#{chbBean.new_maternity.ctxCode}">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
-                                                                    <f:selectItem itemLabel="CTX" itemValue="ART"/>
+                                                                    <f:selectItem itemLabel="CTX" itemValue="CTX"/>
                                                                     <f:selectItem itemLabel="CTX&#10003;"
-                                                                                  itemValue="ART&#10003;"/>
+                                                                                  itemValue="CTXChecked"/>
                                                                     <f:selectItem itemLabel="NA" itemValue="NA"/>
                                                                 </p:selectOneMenu>
                                                             </p:column>
@@ -1259,7 +1259,7 @@
                                                             <br/>
                                                             IYCF Option
                                                             <br/>
-                                                            <p:selectOneMenu value="#{chbBean.new_maternity.iycf}">
+                                                            <p:selectOneMenu value="#{chbBean.new_maternity.iycfOption}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="EBF" itemValue="EBF"/>
                                                                 <f:selectItem itemLabel="RF" itemValue="RF"/>
@@ -1294,7 +1294,7 @@
                                                             Maternal Nutrition Counseling
                                                             <br/>
                                                             <p:selectOneMenu
-                                                                    value="#{chbBean.new_maternity.counselingDischarged}">
+                                                                    value="#{chbBean.new_maternity.materNutrCouns}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="Y" itemValue="Y"/>
                                                                 <f:selectItem itemLabel="N" itemValue="N"/>
