@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UISelectOne;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
+import javax.faces.event.AjaxBehaviorEvent;
+
 import model.Village;
 import model.Parish;
 import model.Subcounty;
@@ -164,7 +167,11 @@ public class ChbBean
 
     public List<Village> get_villages() {
         try {
-            return ChbDAO.Get_Villages();
+            String parishId = new_maternity.getParishId();
+            if(parishId == null || parishId.length() == 0){
+                return ChbDAO.Get_Villages_From_Subcounty(new_maternity.getSubcountyId());
+            }
+            return ChbDAO.Get_Villages_From_Parish(parishId);
         } catch (final Exception ex) {
             System.err.println("ChbBean Error: Method: get_villages " + ex.getMessage());
         }
@@ -173,7 +180,7 @@ public class ChbBean
 
     public List<Parish> get_parishes() {
         try {
-            return ChbDAO.Get_Parishes();
+            return ChbDAO.Get_Parishes_From_Subcounty(new_maternity.getSubcountyId());
         } catch (final Exception e) {
             System.err.println("ChbBean Error: Method: get_parishes " + e.getMessage());
         }
@@ -404,6 +411,58 @@ public class ChbBean
         } catch (final Exception ex) {
             System.err.println("ChbBean Error: Method: update_existing_vht " + ex.getMessage());
             return null;
+        }
+    }
+
+    // Listens to changes in the village input, then deselect parish and village inputs
+    public void subcountyListener(AjaxBehaviorEvent event){
+        try {
+            new_maternity.setVillageName(null);
+            new_maternity.setVillageId(null);
+
+            new_maternity.setParishName(null);
+            new_maternity.setParishId(null);
+
+        } catch (final Exception ex) {
+            System.err.println("ChbBean Error: Method: subcountyListener" + ex.getMessage());
+        }
+    }
+
+    // Listens to changes in the parish input, then populate subcounty based on the selected village
+    public void parishListener(AjaxBehaviorEvent event){
+        try {
+            new_maternity.setVillageName(null);
+            new_maternity.setVillageId(null);
+
+            UISelectOne select = (UISelectOne) event.getSource();
+            String parishId = (String) select.getValue();
+
+            Subcounty subcounty = ChbDAO.Get_Subcounty_From_Parish(parishId);
+            new_maternity.setSubcountyName(subcounty.getSubcountyName());
+            new_maternity.setSubcountyId(subcounty.getSubcountyId());
+
+        } catch (final Exception ex) {
+            System.err.println("ChbBean Error: Method: parishListener" + ex.getMessage());
+        }
+    }
+
+
+    // Listens to changes in the village input, then populate subcounty based on the selected village
+    public void villageListener(AjaxBehaviorEvent event){
+        try {
+            UISelectOne select = (UISelectOne) event.getSource();
+            String villageId = (String) select.getValue();
+
+            Parish parish = ChbDAO.Get_Parish_From_Village(villageId);
+            new_maternity.setParishName(parish.getParishName());
+            new_maternity.setParishId(parish.getParishId());
+
+            Subcounty subcounty = ChbDAO.Get_Subcounty_From_Parish(parish.getParishId());
+            new_maternity.setSubcountyName(subcounty.getSubcountyName());
+            new_maternity.setSubcountyId(subcounty.getSubcountyId());
+
+        } catch (final Exception ex) {
+            System.err.println("ChbBean Error: Method: villageListener" + ex.getMessage());
         }
     }
 }
