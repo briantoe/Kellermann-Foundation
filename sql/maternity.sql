@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.5.6-MariaDB - mariadb.org binary distribution
+-- Server version:               10.5.9-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
 -- HeidiSQL Version:             11.0.0.5919
 -- --------------------------------------------------------
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `maternity` (
   `apgarScore` varchar(10) DEFAULT NULL,
   `sexOfBaby` varchar(1) DEFAULT NULL,
   `notBreathing` varchar(10) DEFAULT NULL,
-  `immediateSkinToSkin` bit(1) DEFAULT NULL,
+  `immediateSkinToSkin` tinytext DEFAULT NULL,
   `sourceOfWarmth` varchar(50) DEFAULT NULL,
   `breastFed` varchar(1) DEFAULT NULL,
   `teo` bit(1) DEFAULT NULL,
@@ -105,8 +105,8 @@ CREATE TABLE IF NOT EXISTS `maternity` (
   `babyCheckedCord24` varchar(10) DEFAULT NULL,
   `babyBreastFeeding24` varchar(10) DEFAULT NULL,
   `babyBreathing24` varchar(10) DEFAULT NULL,
-  `iycf` varchar(1) DEFAULT NULL,
-  `iycfOption` varchar(10) DEFAULT NULL,
+  `iycf` tinytext DEFAULT NULL,
+  `iycfOption` tinytext DEFAULT NULL,
   `counselingDischarged` varchar(10) DEFAULT NULL,
   `materNutrCouns` varchar(1) DEFAULT NULL,
   `conditionOfMotherAtDischarge` varchar(10) DEFAULT NULL,
@@ -124,10 +124,7 @@ CREATE TABLE IF NOT EXISTS `maternity` (
   KEY `userID` (`userId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table bwindihospital_reduced.maternity: ~0 rows (approximately)
-DELETE FROM `maternity`;
-/*!40000 ALTER TABLE `maternity` DISABLE KEYS */;
-/*!40000 ALTER TABLE `maternity` ENABLE KEYS */;
+-- Data exporting was unselected.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
