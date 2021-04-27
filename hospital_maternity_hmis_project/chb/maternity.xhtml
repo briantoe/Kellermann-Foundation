@@ -29,10 +29,10 @@
                             <!--The problem is here, it has to do with jsf update rendering
                             https://stackoverflow.com/questions/8634156/how-to-find-out-client-id-of-component-for-ajax-update-render-cannot-find-compo-->
                             <p:commandButton value="Save Maternity Form"
-                                             style="font-size: 12px;font-weight: bold;"
+                                             style="font-size: 12px;font-weight: bold; "
                                              action="#{chbBean.save_maternity(userid.value)}"
                                              update="new_maternity,maternity_list,:maternity_form:notification"/>
-                            <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold;"
+                            <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold; "
                                              action="#{chbBean.clear_maternity()}"
                                              update="new_maternity,maternity_list,:maternity_form"
                                              process="@this"/>
@@ -115,7 +115,7 @@
                                                 <br/>
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.ipdNo}" id="ipd_no"
-                                                             required="true"
+                                                             required="false"
                                                              requiredMessage="Please enter a valid IPD number"/>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="ipd_no"/>
@@ -125,28 +125,27 @@
                                         <!-- national identification number, client surname, client given name, age, client category -->
                                         <p:row>
                                             <p:column>
-                                                NIN
+                                                <h:panelGroup id="ninPanel">
+                                                    NIN
+                                                    <br/>
+                                                    <p:inputText type="text"
+                                                                 value="#{chbBean.new_maternity.nin}"
+                                                                 id="nin"
+                                                                 disabled="#{not chbBean.new_maternity.hasNin}"
+                                                                 required="#{not empty chbBean.new_maternity.hasNin and chbBean.new_maternity.hasNin}"
+                                                                 requiredMessage="Please enter a valid NIN"/>
+                                                    <br/>
+                                                    <h:message errorStyle="color: red" for="nin"/>
+                                                </h:panelGroup>
+
                                                 <br/>
-                                                <h:panelGrid columns="1" columnClasses="topAligned" style="width:200px">
-                                                    <h:panelGroup layout="block">
-                                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
-                                                            <f:ajax render="ninPanel"/>
-                                                        </h:selectBooleanCheckbox>
-                                                        I have a NIN
-                                                    </h:panelGroup>
 
-                                                    <h:panelGroup id="ninPanel">
-                                                        <ui:fragment
-                                                                rendered="#{chbBean.new_maternity.hasNin}">
-                                                            NIN
-                                                            <br/>
-                                                            <p:inputText type="text"
-                                                                         value="#{chbBean.new_maternity.nin}"
-                                                                         id="nin"/>
-                                                        </ui:fragment>
-                                                    </h:panelGroup>
-
-                                                </h:panelGrid>
+                                                <h:panelGroup layout="block">
+                                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
+                                                        <f:ajax render="ninPanel"/>
+                                                    </h:selectBooleanCheckbox>
+                                                    I have a NIN
+                                                </h:panelGroup>
                                             </p:column>
 
                                             <p:column colspan="2">
@@ -235,7 +234,7 @@
                                                                                    var="subcounty"
                                                                                    itemLabel="#{subcounty.subcountyName}"
                                                                                    itemValue="#{subcounty.subcountyId}"
-                                                                                   />
+                                                                    />
                                                                     <p:ajax listener="#{chbBean.subcountyListener}"
                                                                             update="parish, village"/>
                                                                 </p:selectOneMenu>
@@ -1283,7 +1282,8 @@
                                                             <br/>
                                                             IYCF Option
                                                             <br/>
-                                                            <p:selectOneMenu value="#{chbBean.new_maternity.iycfOption}">
+                                                            <p:selectOneMenu
+                                                                    value="#{chbBean.new_maternity.iycfOption}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="EBF" itemValue="EBF"/>
                                                                 <f:selectItem itemLabel="RF" itemValue="RF"/>
