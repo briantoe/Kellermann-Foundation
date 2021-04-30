@@ -38,7 +38,7 @@
                                              process="@this"/>
                         </p:panel>
 
-                        <p:tabView id="admissionPanel">
+                        <p:wizard id="admissionPanel">
 
                             <!-- ADMISSION information -->
                             <p:tab title="Admission Information">
@@ -63,15 +63,18 @@
                                                                 <br/>
                                                                 <!--                                                    <p:calendar value="#{chbBean.new_maternity.dateOfAdmission}" />-->
                                                                 <p:datePicker
-                                                                        value="#{chbBean.new_maternity.dateOfAdmission}"
-                                                                        readonlyInput="true"/>
+                                                                        id="admission_date" value="#{chbBean.new_maternity.dateOfAdmission}"
+                                                                        readonlyInput="true"
+                                                                        required="true" requiredMessage="Please fill out this field"/>
+                                                                <br/>
+                                                                <h:message errorStyle="color: red" for="admission_date"/>
                                                             </p:column>
 
                                                             <p:column>
                                                                 Time
                                                                 <br/>
                                                                 <pe:timePicker
-                                                                        value="#{chbBean.new_maternity.timeOfAdmission}"
+                                                                        id="admission_time" value="#{chbBean.new_maternity.timeOfAdmission}"
                                                                         timeSeparator=":"
                                                                         startHours="0" endHours="23" startMinutes="00"
                                                                         endMinutes="59"
@@ -79,8 +82,10 @@
                                                                         showDeselectButton="true"
                                                                         showNowButton="true" rows="6" showPeriod="true"
                                                                         readonlyInput="true"
-                                                                        style="width:100%;
-                                                                   display:block; max-width:150px;" required="false"/>
+                                                                        style="width:100%; display:block; max-width:150px;"
+                                                                        required="true" requiredMessage="Please fill out this field"/>
+                                                                <br/>
+                                                                <h:message errorStyle="color: red" for="admission_date"/>
                                                             </p:column>
                                                         </p:row>
                                                     </p:panelGrid>
@@ -93,8 +98,7 @@
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.admissionNo}"
                                                              id="admission_no"
-                                                             required="true"
-                                                             requiredMessage="Please enter an admission number"/>
+                                                             required="true" requiredMessage="Please fill out this field"/>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="admission_no"/>
                                             </p:column>
@@ -105,7 +109,7 @@
                                                 <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}"
                                                              id="anc_no"
                                                              required="true"
-                                                             requiredMessage="Please enter a valid number"/>
+                                                             requiredMessage="Please fill out this field"/>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="anc_no"/>
                                             </p:column>
@@ -115,8 +119,8 @@
                                                 <br/>
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.ipdNo}" id="ipd_no"
-                                                             required="false"
-                                                             requiredMessage="Please enter a valid IPD number"/>
+                                                             required="true"
+                                                             requiredMessage="Please fill out this field"/>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="ipd_no"/>
                                             </p:column>
@@ -133,7 +137,7 @@
                                                                  id="nin"
                                                                  disabled="#{not chbBean.new_maternity.hasNin}"
                                                                  required="#{not empty chbBean.new_maternity.hasNin and chbBean.new_maternity.hasNin}"
-                                                                 requiredMessage="Please enter a valid NIN"/>
+                                                                 requiredMessage="Please fill out this field"/>
                                                     <br/>
                                                     <h:message errorStyle="color: red" for="nin"/>
                                                 </h:panelGroup>
@@ -159,7 +163,7 @@
                                                                              value="#{chbBean.new_maternity.clientSurname}"
                                                                              id="surname"
                                                                              required="true"
-                                                                             requiredMessage="Please enter a surname"/>
+                                                                             requiredMessage="Please fill out this field"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color:red" for="surname"/>
                                                             </p:column>
@@ -171,7 +175,7 @@
                                                                              value="#{chbBean.new_maternity.clientGivenName}"
                                                                              id="given_name"
                                                                              required="true"
-                                                                             requiredMessage="Please enter a name"/>
+                                                                             requiredMessage="Please fill out this field"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color:red" for="given_name"/>
                                                             </p:column>
@@ -186,7 +190,7 @@
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.age}" id="age"
                                                              required="true"
-                                                             requiredMessage="Please enter a valid age"/>
+                                                             requiredMessage="Please fill out this field"/>
                                                 <br/>
                                                 <h:message errorStyle="color:red" for="age"/>
                                             </p:column>
@@ -835,8 +839,11 @@
                                             <p:column>
                                                 Source of Warmth
                                                 <br/>
-                                                <p:inputText type="text"
-                                                             value="#{chbBean.new_maternity.sourceOfWarmth}"/>
+                                                <p:inputText type="text" id="warmth"
+                                                             value="#{chbBean.new_maternity.sourceOfWarmth}"
+                                                             required="true" requiredMessage="here"/>
+                                                <br/>
+                                                <h:message errorStyle="color: red" for="warmth"/>
                                             </p:column>
                                         </p:row>
 
@@ -1399,7 +1406,7 @@
 
                                 </p:panel>
                             </p:tab>
-                        </p:tabView>
+                        </p:wizard>
                     </p:panel>
 
                 </p:tab>
