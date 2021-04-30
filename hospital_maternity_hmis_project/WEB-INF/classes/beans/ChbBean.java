@@ -461,6 +461,8 @@ public class ChbBean
             new_maternity.setSubcountyName(subcounty.getSubcountyName());
             new_maternity.setSubcountyId(subcounty.getSubcountyId());
 
+            System.out.println(FacesContext.class.getPackage().getImplementationVersion());
+
         } catch (final Exception ex) {
             System.err.println("ChbBean Error: Method: villageListener" + ex.getMessage());
         }

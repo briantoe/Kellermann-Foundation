@@ -5,8 +5,8 @@
 	 function call is needed -->
 <ui:composition template="/WEB-INF/templates/chb.xhtml" xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:pe="http://primefaces.org/ui/extensions">
+                xmlns:o="http://omnifaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 
     <ui:define name="title">Add or Edit Maternity</ui:define>
 
@@ -31,22 +31,24 @@
                             <p:commandButton value="Save Maternity Form"
                                              style="font-size: 12px;font-weight: bold; "
                                              action="#{chbBean.save_maternity(userid.value)}"
-                                             update="new_maternity,maternity_list,:maternity_form:notification"/>
+                                             update="new_maternity,maternity_list,:maternity_form:notification">
+                                <f:ajax execute="@form" render="@form"/>
+                            </p:commandButton>
                             <p:commandButton value="Clear" style="font-size: 12px;font-weight: bold; "
                                              action="#{chbBean.clear_maternity()}"
                                              update="new_maternity,maternity_list,:maternity_form"
                                              process="@this"/>
-                            <p:commandButton value="Save Without Validation"
-                                             style="font-size: 12px;font-weight: bold; "
-                                             action="#{chbBean.save_maternity(userid.value)}"
-                                             update="new_maternity,maternity_list,:maternity_form:notification"
-                                             immediate="true"/>
                         </p:panel>
 
                         <p:tabView id="admission_tab">
 
                             <!-- ADMISSION information -->
                             <p:tab title="Admission Information" titleStyle="font-size: 15px;">
+                                <o:validateAllOrNone id="validateAdmission" invalidateAll="false" showMessageFor="@invalid" message="Please fill out this field"
+                                                     components="admission_date admission_time admission_no anc_no ipd_no nin
+                                                     surname given_name age client_category subcounty parish village
+                                                     phone gravidity parity gestation_age term_preterm reason_admission
+                                                     who_clinical cd4_results cd4_date viral_results viral_date"/>
 
                                 <p:panel id="new_admission">
                                     <p:panelGrid>
@@ -71,9 +73,7 @@
                                                                 <p:datePicker
                                                                         id="admission_date"
                                                                         value="#{chbBean.new_maternity.dateOfAdmission}"
-                                                                        readonlyInput="true"
-                                                                        required="true"
-                                                                        requiredMessage="Please fill out this field"/>
+                                                                        readonlyInput="true"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color: red"
                                                                            for="admission_date"/>
@@ -92,9 +92,7 @@
                                                                         showDeselectButton="true"
                                                                         showNowButton="true" rows="6" showPeriod="true"
                                                                         readonlyInput="true"
-                                                                        style="width:100%; display:block; max-width:150px;"
-                                                                        required="true"
-                                                                        requiredMessage="Please fill out this field"/>
+                                                                        style="width:100%; display:block; max-width:150px;"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color: red"
                                                                            for="admission_time"/>
@@ -110,8 +108,7 @@
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.admissionNo}"
                                                              id="admission_no"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
+                                                             required="true" requiredMessage="Please fill out this field"
                                                              validatorMessage="Please enter a valid number">
                                                     <f:validateLongRange minimum="0"/>
                                                 </p:inputText>
@@ -124,8 +121,6 @@
                                                 <br/>
                                                 <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}"
                                                              id="anc_no"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
                                                              validatorMessage="Please enter a valid number">
                                                     <f:validateLongRange minimum="0"/>
                                                 </p:inputText>
@@ -137,10 +132,8 @@
                                             <p:column>
                                                 IPD No.
                                                 <br/>
-                                                <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.ipdNo}" id="ipd_no"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
+                                                <p:inputText type="number" id="ipd_no"
+                                                             value="#{chbBean.new_maternity.ipdNo}"
                                                              validatorMessage="Please enter a valid number">
                                                     <f:validateLongRange minimum="0"/>
                                                 </p:inputText>
@@ -160,10 +153,8 @@
                                                                  value="#{chbBean.new_maternity.nin}"
                                                                  id="nin"
                                                                  disabled="#{not chbBean.new_maternity.hasNin}"
-                                                                 required="#{not empty chbBean.new_maternity.hasNin and chbBean.new_maternity.hasNin}"
-                                                                 requiredMessage="Please fill out this field"
                                                                  validatorMessage="Please enter a valid NIN">
-                                                        <f:validateRegex pattern="[A-Za-z0-9]{14}"/>
+                                                        <f:validateRegex pattern="([A-Za-z0-9]{14})?"/>
                                                     </p:inputText>
                                                     <br/>
                                                     <h:message errorStyle="color: red" for="nin"/>
@@ -189,10 +180,8 @@
                                                                 <p:inputText type="text"
                                                                              value="#{chbBean.new_maternity.clientSurname}"
                                                                              id="surname"
-                                                                             required="true"
-                                                                             requiredMessage="Please fill out this field"
                                                                              validatorMessage="Name is invalid">
-                                                                    <f:validateRegex pattern="[A-Za-z]+"/>
+                                                                    <f:validateRegex pattern="[A-Za-z]*"/>
                                                                 </p:inputText>
                                                                 <br/>
                                                                 <h:message errorStyle="color:red" for="surname"/>
@@ -204,8 +193,6 @@
                                                                 <p:inputText type="text"
                                                                              value="#{chbBean.new_maternity.clientGivenName}"
                                                                              id="given_name"
-                                                                             required="true"
-                                                                             requiredMessage="Please fill out this field"
                                                                              validatorMessage="Name is invalid">
                                                                     <f:validateRegex pattern="[A-Za-z]+"/>
                                                                 </p:inputText>
@@ -220,10 +207,8 @@
                                             <p:column>
                                                 Age
                                                 <br/>
-                                                <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.age}" id="age"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
+                                                <p:inputText type="number" id="age"
+                                                             value="#{chbBean.new_maternity.age}"
                                                              validatorMessage="Age must be between 1 and 120">
                                                     <f:validateLongRange minimum="1" maximum="120"/>
                                                 </p:inputText>
@@ -235,9 +220,7 @@
                                                 Client Category
                                                 <br/>
                                                 <p:selectOneMenu id="client_category"
-                                                                 value="#{chbBean.new_maternity.clientCategory}"
-                                                                 required="true"
-                                                                 requiredMessage="Please select a category">
+                                                                 value="#{chbBean.new_maternity.clientCategory}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="National" itemValue="N"/>
                                                     <f:selectItem itemLabel="Foreigner" itemValue="F"/>
@@ -275,9 +258,7 @@
                                                                                  filter="true"
                                                                                  filterMatchMode="contains"
                                                                                  editable="false"
-                                                                                 style="width:200px"
-                                                                                 required="true"
-                                                                                 requiredMessage="Please select a subcounty">
+                                                                                 style="width:200px">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItems value="#{chbBean.get_subcounties()}"
                                                                                    var="subcounty"
@@ -298,9 +279,7 @@
                                                                                  filter="true"
                                                                                  filterMatchMode="contains"
                                                                                  editable="false"
-                                                                                 style="width:200px"
-                                                                                 required="true"
-                                                                                 requiredMessage="Please select a parish">
+                                                                                 style="width:200px">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItems value="#{chbBean.get_parishes()}"
                                                                                    var="parish"
@@ -321,9 +300,7 @@
                                                                                  filter="true"
                                                                                  filterMatchMode="contains"
                                                                                  editable="false"
-                                                                                 style="width:200px"
-                                                                                 required="true"
-                                                                                 requiredMessage="Please select a village">
+                                                                                 style="width:200px">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItems value="#{chbBean.get_villages()}"
                                                                                    var="village"
@@ -340,9 +317,8 @@
                                                                 Phone Number
                                                                 <br/>
                                                                 <p:inputText id="phone" type="number"
-                                                                             value="new_maternity.phoneNumber"
-                                                                             required="true"
-                                                                             requiredMessage="Please fill out this field" validatorMessage="Invalid phone number">
+                                                                             value="#{chbBean.new_maternity.phoneNumber}"
+                                                                             validatorMessage="Must be 9 digits">
                                                                     <f:validateRegex pattern="[0-9]{9}"/>
                                                                 </p:inputText>
                                                                 <br/>
@@ -359,10 +335,8 @@
                                             <p:column>
                                                 Gravidity
                                                 <br/>
-                                                <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.gravidity}" id="gravidity"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
+                                                <p:inputText type="number" id="gravidity"
+                                                             value="#{chbBean.new_maternity.gravidity}"
                                                              validatorMessage="Must be between 0 and 100">
                                                     <f:validateLongRange minimum="0" maximum="100"/>
                                                 </p:inputText>
@@ -373,10 +347,8 @@
                                             <p:column>
                                                 Parity
                                                 <br/>
-                                                <p:inputText type="number"
-                                                             value="#{chbBean.new_maternity.parity}" id="parity"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
+                                                <p:inputText type="number" id="parity"
+                                                             value="#{chbBean.new_maternity.parity}"
                                                              validatorMessage="Must be between 0 and 100">
                                                     <f:validateLongRange minimum="0" maximum="100"/>
                                                 </p:inputText>
@@ -390,8 +362,6 @@
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.gestationAge}"
                                                              id="gestation_age"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
                                                              validatorMessage="Must be between 0 and 60">
                                                     <f:validateLongRange minimum="0" maximum="100"/>
                                                 </p:inputText>
@@ -403,9 +373,7 @@
                                                 Term and Pre Term
                                                 <br/>
                                                 <p:selectOneMenu id="term_preterm"
-                                                                 value="#{chbBean.new_maternity.term}"
-                                                                 required="true"
-                                                                 requiredMessage="Please select a category">
+                                                                 value="#{chbBean.new_maternity.term}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="Term" itemValue="T"/>
                                                     <f:selectItem itemLabel="Pre-term" itemValue="P"/>
@@ -421,9 +389,7 @@
                                                 Reason for Admission
                                                 <br/>
                                                 <p:inputTextarea id="reason_admission" cols="50" rows="5"
-                                                                 value="#{chbBean.new_maternity.reasonForAdmission}"
-                                                                 required="true"
-                                                                 requiredMessage="Please fill out this field"/>
+                                                                 value="#{chbBean.new_maternity.reasonForAdmission}"/>
                                                 <br/>
                                                 <h:message errorStyle="color:red" for="reason_admission"/>
                                             </p:column>
@@ -443,8 +409,6 @@
                                                                 <br/>
                                                                 <p:inputText id="who_clinical" type="number"
                                                                              value="#{chbBean.new_maternity.whoClinicalStage}"
-                                                                             required="true"
-                                                                             requiredMessage="Please fill out this field"
                                                                              validatorMessage="Must be between 1 and 4">
                                                                     <f:validateLongRange minimum="1" maximum="4"/>
                                                                 </p:inputText>
@@ -457,8 +421,6 @@
                                                                 <br/>
                                                                 <p:inputText id="cd4_results" type="number"
                                                                              value="#{chbBean.new_maternity.cd4Results}"
-                                                                             required="true"
-                                                                             requiredMessage="Please fill out this field"
                                                                              validatorMessage="Must be at least 0">
                                                                     <f:validateLongRange minimum="0"/>
                                                                 </p:inputText>
@@ -469,9 +431,7 @@
                                                                 CD4 Test Date
                                                                 <br/>
                                                                 <p:calendar id="cd4_date" readonlyInput="true"
-                                                                            value="#{chbBean.new_maternity.cd4Date}"
-                                                                            required="true"
-                                                                            requiredMessage="Please fill out this field"/>
+                                                                            value="#{chbBean.new_maternity.cd4Date}"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color: red" for="cd4_date"/>
                                                             </p:column>
@@ -481,10 +441,8 @@
                                                                 <br/>
                                                                 <p:inputText id="viral_results" type="number"
                                                                              value="#{chbBean.new_maternity.viralLoadResults}"
-                                                                             required="true"
-                                                                             requiredMessage="Please fill out this field"
                                                                              validatorMessage="Must be at least 0">
-                                                                    <f:validateLongRange minimum="0" />
+                                                                    <f:validateLongRange minimum="0"/>
                                                                 </p:inputText>
                                                                 <br/>
                                                                 <h:message errorStyle="color: red" for="viral_results"/>
@@ -494,9 +452,7 @@
                                                                 <br/>
                                                                 <p:calendar id="viral_date"
                                                                             readonlyInput="true"
-                                                                            value="#{chbBean.new_maternity.viralLoadDate}"
-                                                                            required="true"
-                                                                            requiredMessage="Please fill out this field"/>
+                                                                            value="#{chbBean.new_maternity.viralLoadDate}"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color: red" for="viral_date"/>
                                                             </p:column>
