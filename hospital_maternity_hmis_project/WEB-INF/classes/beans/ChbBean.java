@@ -379,7 +379,7 @@ public class ChbBean
         }
     }
 
-    public String get_existing_maternity(final Integer matId, final String destination) {
+    public String get_existing_maternity(final String matId, final String destination) {
         try {
             existing_maternity = ChbDAO.Get_Existing_Maternity(matId);
             return destination;

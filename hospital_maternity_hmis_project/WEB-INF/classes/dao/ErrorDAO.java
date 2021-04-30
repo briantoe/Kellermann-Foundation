@@ -14,8 +14,7 @@ public class ErrorDAO implements Serializable {
     private static final long serialVersionUID = 1L;
     static DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_DATE;
 
-    public static void Error_Add(Error custom_error)
-            throws SQLException {
+    public static void Error_Add(Error custom_error) {
 
         try {
             Connection con;

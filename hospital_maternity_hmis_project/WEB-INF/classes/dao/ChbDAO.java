@@ -300,7 +300,7 @@ public class ChbDAO implements Serializable
 
                 Maternity maternity = new Maternity();
 
-                maternity.setMatId(rs.getInt("matId"));
+                maternity.setMatId(rs.getString("matId"));
                 maternity.setAdmissionNo(rs.getInt("admissionNo"));
                 maternity.setDateOfAdmission(rs.getDate("dateOfAdmission").toLocalDate());
                 maternity.setClientGivenName(rs.getString("clientGivenName"));
@@ -491,7 +491,7 @@ public class ChbDAO implements Serializable
 
                 Maternity maternity = new Maternity();
 
-                maternity.setMatId(rs.getInt("matId"));
+                maternity.setMatId(rs.getString("matId"));
                 maternity.setDateOfAdmission(rs.getDate("dateOfAdmission").toLocalDate());
                 maternity.setTimeOfAdmission(rs.getTime("timeOfAdmission").toLocalTime());
                 maternity.setAdmissionNo(rs.getInt("admissionNo"));
@@ -842,7 +842,7 @@ public class ChbDAO implements Serializable
         }
     }
 
-    public static Maternity Get_Existing_Maternity(Integer matId) throws SQLException {
+    public static Maternity Get_Existing_Maternity(String matId)  {
         try {
             Connection con;
 
@@ -1033,7 +1033,7 @@ public class ChbDAO implements Serializable
                     "WHERE matId=?");
 
             extract_maternity(stmt, maternity);
-            stmt.setInt(97, maternity.getMatId());
+            stmt.setString(97, maternity.getMatId());
             stmt.executeUpdate();
             con.close();
             return true;

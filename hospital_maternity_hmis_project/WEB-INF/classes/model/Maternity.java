@@ -11,7 +11,7 @@ import java.time.LocalTime;
 
 public class Maternity implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer matId;
+    private String matId;
     private LocalDate dateOfAdmission;
     private LocalTime timeOfAdmission;
     private Integer admissionNo;
@@ -123,11 +123,12 @@ public class Maternity implements Serializable {
         this.hasNin = hasNin;
     }
 
-    public Integer getMatId() {
-        return matId;
+    public String getMatId() {
+        if(this.matId == null) setMatId();
+        return this.matId;
     }
 
-    public void setMatId(Integer matId) {
+    public void setMatId(String matId) {
         this.matId = matId;
     }
 
