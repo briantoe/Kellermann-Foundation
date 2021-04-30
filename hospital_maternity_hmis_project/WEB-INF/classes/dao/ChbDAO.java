@@ -652,13 +652,14 @@ public class ChbDAO implements Serializable
                     + "babyBreathing6, llinsGiven, babyCondition, motherFinalDiagnosis, motherBleeding24, motherBP24, "
                     + "babyCheckedCord24, babyBreastFeeding24, babyBreathing24, iycf, iycfOption, "
                     + "counselingDischarged, materNutrCouns, conditionOfMotherAtDischarge, motherTransferredWhere, nameOfPersonDischarging, "
-                    + "cadreOfPersonDischarging, dateOfDischarge, timeOfDischarge, recordDate, userID)"
+                    + "cadreOfPersonDischarging, dateOfDischarge, timeOfDischarge, recordDate, userID, matID)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?)");
+                    + "?,?,?,?,?,?,?)");
 
             extract_maternity(stmt, maternity);
             stmt.setObject(97, userId);
+            stmt.setString(98, maternity.getMatId());
 
             stmt.executeUpdate();
             con.close();

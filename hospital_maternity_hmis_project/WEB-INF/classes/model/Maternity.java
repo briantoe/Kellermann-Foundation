@@ -4,6 +4,8 @@
 
 package model;
 
+import dao.ChbDAO;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -130,6 +132,18 @@ public class Maternity implements Serializable {
 
     public void setMatId(String matId) {
         this.matId = matId;
+    }
+
+    // Give the form a random ID instead of some specified one.
+    public void setMatId() {
+        this.matId = Misc.genFormID();
+
+        // Check if the id is already being used. If so, then get a new one and check again. Repeat until
+        // a unique ID is found. Given that there are 62^10 (or ~10^18) possible IDs, this is not likely to cost
+        // much time to compute.
+        while (ChbDAO.Get_Existing_Maternity(this.matId) != null) {
+            this.matId = Misc.genFormID();
+        }
     }
 
     public Integer getIpdNo() {
