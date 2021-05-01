@@ -112,7 +112,7 @@
                                                              required="true"
                                                              requiredMessage="Please fill out this field"
                                                              validatorMessage="Please enter a valid number">
-                                                    <f:validateLongRange minimum="0"/>
+                                                    <f:validateLongRange minimum="1"/>
                                                 </p:inputText>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="admission_no"/>
@@ -124,7 +124,6 @@
                                                 <p:inputText type="text" value="#{chbBean.new_maternity.ancNo}"
                                                              id="anc_no"
                                                              validatorMessage="Please enter a valid number">
-                                                    <f:validateLongRange minimum="0"/>
                                                 </p:inputText>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="anc_no"/>
@@ -137,7 +136,7 @@
                                                 <p:inputText type="number" id="ipd_no"
                                                              value="#{chbBean.new_maternity.ipdNo}"
                                                              validatorMessage="Please enter a valid number">
-                                                    <f:validateLongRange minimum="0"/>
+                                                    <f:validateLongRange minimum="1"/>
                                                 </p:inputText>
                                                 <br/>
                                                 <h:message errorStyle="color: red" for="ipd_no"/>
@@ -168,7 +167,7 @@
                                                     <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
                                                         <f:ajax render="ninPanel"/>
                                                     </h:selectBooleanCheckbox>
-                                                    I have a NIN
+                                                    Client has a NIN
                                                 </h:panelGroup>
                                             </p:column>
 
@@ -745,7 +744,11 @@
                                                                 MUAC
                                                                 <br/>
                                                                 <p:inputText id="muac" type="text"
-                                                                             value="#{chbBean.new_maternity.muac}"/>
+                                                                             value="#{chbBean.new_maternity.muac}"
+                                                                             validatorMessage="Invalid format">
+                                                                    <f:validateRegex
+                                                                            pattern="(ND|([0-90-9.0-9]+ (R|Y|G)))"/>
+                                                                </p:inputText>
                                                                 <br/>
                                                                 <br/>
                                                                 Inr No.
@@ -787,15 +790,17 @@
                                                             Time of Delivery
                                                             <br/>
                                                             <pe:timePicker id="delivery_time"
-                                                                    readonlyInput="true"
-                                                                    value="#{chbBean.new_maternity.timeOfDelivery}"
-                                                                    timeSeparator=":"
-                                                                    startHours="0" endHours="23" startMinutes="00"
-                                                                    endMinutes="59"
-                                                                    intervalMinutes="1" showCloseButton="true"
-                                                                    showDeselectButton="true"
-                                                                    showNowButton="true" rows="6" showPeriod="true"
-                                                                    style="width:100%; display:block; max-width:150px;"/>
+                                                                           readonlyInput="true"
+                                                                           value="#{chbBean.new_maternity.timeOfDelivery}"
+                                                                           timeSeparator=":"
+                                                                           startHours="0" endHours="23"
+                                                                           startMinutes="00"
+                                                                           endMinutes="59"
+                                                                           intervalMinutes="1" showCloseButton="true"
+                                                                           showDeselectButton="true"
+                                                                           showNowButton="true" rows="6"
+                                                                           showPeriod="true"
+                                                                           style="width:100%; display:block; max-width:150px;"/>
                                                             <br/>
                                                         </p:column>
 
@@ -803,8 +808,12 @@
                                                             Live Births
                                                             <br/>
                                                             <p:inputText id="live_births" type="text"
-                                                                         value="#{chbBean.new_maternity.liveBirths}"/>
+                                                                         value="#{chbBean.new_maternity.liveBirths}"
+                                                                         validatorMessage="Invalid number">
+                                                                <f:validateLongRange minimum="0"/>
+                                                            </p:inputText>
                                                             <br/>
+                                                            <h:message errorStyle="color: red" for="live_births"/>
                                                         </p:column>
                                                     </p:row>
                                                 </p:fieldset>
@@ -815,7 +824,7 @@
                                                     <p:row>
                                                         <p:column>
                                                             <h:selectBooleanCheckbox id="oxytocin"
-                                                                    value="#{chbBean.new_maternity.oxytocin}"/>
+                                                                                     value="#{chbBean.new_maternity.oxytocin}"/>
                                                             Oxytocin
                                                             <br/>
                                                             <br/>
@@ -823,7 +832,7 @@
 
                                                         <p:column>
                                                             <h:selectBooleanCheckbox id="misoprostol"
-                                                                    value="#{chbBean.new_maternity.misoprostol}"/>
+                                                                                     value="#{chbBean.new_maternity.misoprostol}"/>
                                                             Misoprotol
                                                             <br/>
                                                             <br/>
@@ -831,7 +840,7 @@
 
                                                         <p:column>
                                                             <h:selectBooleanCheckbox id="ergometrine"
-                                                                    value="#{chbBean.new_maternity.ergometrine}"/>
+                                                                                     value="#{chbBean.new_maternity.ergometrine}"/>
                                                             Ergometrine
                                                             <br/>
                                                             <br/>
@@ -879,7 +888,13 @@
                                             <p:column>
                                                 Apgar Score
                                                 <br/>
-                                                <p:inputText id="apgar" type="text" value="#{chbBean.new_maternity.apgarScore}"/>
+                                                <p:inputText id="apgar" type="text"
+                                                             value="#{chbBean.new_maternity.apgarScore}"
+                                                             validatorMessage="Invalid format">
+                                                    <f:validateRegex pattern="^(10|[0-9]{1})\/(10|[0-9]{1})( A)?"/>
+                                                </p:inputText>
+                                                <br/>
+                                                <h:message errorStyle="color: red" for="apgar"/>
                                             </p:column>
 
                                             <p:column>
@@ -895,7 +910,8 @@
                                             <p:column>
                                                 Not Breathing at Birth / Resuscitation
                                                 <br/>
-                                                <p:selectOneMenu id="breathing" value="#{chbBean.new_maternity.notBreathing}">
+                                                <p:selectOneMenu id="breathing"
+                                                                 value="#{chbBean.new_maternity.notBreathing}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="SS" itemValue="SS"/>
                                                     <f:selectItem itemLabel="BM" itemValue="BM"/>
@@ -907,7 +923,8 @@
                                             <p:column>
                                                 Immediate Skin to Skin
                                                 <br/>
-                                                <p:selectOneMenu id="skin" value="#{chbBean.new_maternity.immediateSkinToSkin}">
+                                                <p:selectOneMenu id="skin"
+                                                                 value="#{chbBean.new_maternity.immediateSkinToSkin}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="Yes" itemValue="Y"/>
                                                     <f:selectItem itemLabel="No" itemValue="N"/>
@@ -928,7 +945,8 @@
                                             <p:column>
                                                 Breast Fed Less or Equal to 1Hr
                                                 <br/>
-                                                <p:selectOneMenu id="breast_fed" value="#{chbBean.new_maternity.breastFed}">
+                                                <p:selectOneMenu id="breast_fed"
+                                                                 value="#{chbBean.new_maternity.breastFed}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="Yes" itemValue="Y"/>
                                                     <f:selectItem itemLabel="No" itemValue="N"/>
@@ -960,7 +978,14 @@
                                             <p:column>
                                                 Weight
                                                 <br/>
-                                                <p:inputText id="weight" type="number" value="#{chbBean.new_maternity.weight}"/>
+                                                <p:inputText id="weight" type="number"
+                                                             value="#{chbBean.new_maternity.weight}"
+                                                             validatorMessage="Invalid weight">
+                                                    <f:validateDoubleRange minimum="0.0"/>
+                                                </p:inputText>
+                                                <br/>
+                                                <h:message errorStyle="color: red" for="weight"/>
+
                                             </p:column>
 
                                             <p:column colspan="1">
@@ -971,7 +996,7 @@
                                                                 Risk Status
                                                                 <br/>
                                                                 <p:selectOneMenu id="risk_status"
-                                                                        value="#{chbBean.new_maternity.riskStatus}">
+                                                                                 value="#{chbBean.new_maternity.riskStatus}">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItem itemLabel="HIGH" itemValue="HIGH"/>
                                                                     <f:selectItem itemLabel="LOW" itemValue="LOW"/>
@@ -985,7 +1010,7 @@
                                                                 ARVs Administered
                                                                 <br/>
                                                                 <p:selectOneMenu id="arvs"
-                                                                        value="#{chbBean.new_maternity.arvsAdministered}">
+                                                                                 value="#{chbBean.new_maternity.arvsAdministered}">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItem itemLabel="Yes" itemValue="Y"/>
                                                                     <f:selectItem itemLabel="No" itemValue="N"/>
@@ -1014,7 +1039,7 @@
                                                                 BCG
                                                                 <br/>
                                                                 <p:selectOneMenu id="bcg"
-                                                                        value="#{chbBean.new_maternity.bcgImmunization}">
+                                                                                 value="#{chbBean.new_maternity.bcgImmunization}">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItem itemLabel="Y" itemValue="Y"/>
                                                                     <f:selectItem itemLabel="N" itemValue="N"/>
@@ -1027,7 +1052,7 @@
                                                                 Polio
                                                                 <br/>
                                                                 <p:selectOneMenu id="polio"
-                                                                        value="#{chbBean.new_maternity.polioImmunization}">
+                                                                                 value="#{chbBean.new_maternity.polioImmunization}">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItem itemLabel="Y" itemValue="Y"/>
                                                                     <f:selectItem itemLabel="N" itemValue="N"/>
@@ -1071,7 +1096,7 @@
                                                                 Method
                                                                 <br/>
                                                                 <p:selectOneMenu id="planning_method"
-                                                                        value="#{chbBean.new_maternity.familyPlanningMethod}">
+                                                                                 value="#{chbBean.new_maternity.familyPlanningMethod}">
                                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                                     <f:selectItem
                                                                             itemLabel="Post Partum Female Sterilization (Bilateral Tubal Ligation) (PP - BTL)"
@@ -1096,21 +1121,22 @@
                                                                     <f:selectItem
                                                                             itemLabel="No Family Planning Method Given"
                                                                             itemValue="8"/>
+                                                                    <f:ajax render="other_methods"/>
                                                                 </p:selectOneMenu>
                                                                 <br/>
                                                                 <br/>
                                                                 Other Methods
                                                                 <br/>
                                                                 <p:inputText id="other_methods"
-                                                                             type="text" value="#{chbBean.new_maternity.familyPlanningMethod}"
-                                                                             disabled="#{chbBean.new_maternity.familyPlanningMethod eq 7}"/>
+                                                                             type="text" value=""
+                                                                             disabled="#{not (chbBean.new_maternity.familyPlanningMethod eq 7)}"/>
                                                                 <br/>
                                                                 <br/>
                                                                 Date
                                                                 <br/>
                                                                 <p:calendar id="planning_date"
-                                                                        readonlyInput="true"
-                                                                        value="#{chbBean.new_maternity.familyPlanningDate}"/>
+                                                                            readonlyInput="true"
+                                                                            value="#{chbBean.new_maternity.familyPlanningDate}"/>
                                                             </p:column>
                                                         </p:row>
                                                     </p:panelGrid>
@@ -1181,7 +1207,8 @@
                                                                             <p:column>
                                                                                 Bleeding
                                                                                 <br/>
-                                                                                <p:inputText id="bleeding_6hrs" type="text"
+                                                                                <p:inputText id="bleeding_6hrs"
+                                                                                             type="text"
                                                                                              value="#{chbBean.new_maternity.motherBleeding6}"/>
                                                                                 <br/>
                                                                             </p:column>
@@ -1217,7 +1244,8 @@
                                                                             <p:column>
                                                                                 Breastfeeding
                                                                                 <br/>
-                                                                                <p:inputText id="breastfeeding_6hrs" type="text"
+                                                                                <p:inputText id="breastfeeding_6hrs"
+                                                                                             type="text"
                                                                                              value="#{chbBean.new_maternity.babyBreastFeeding6}"/>
                                                                                 <br/>
                                                                             </p:column>
@@ -1227,7 +1255,8 @@
                                                                             <p:column>
                                                                                 Breathing
                                                                                 <br/>
-                                                                                <p:inputText id="breathing_6hrs" type="text"
+                                                                                <p:inputText id="breathing_6hrs"
+                                                                                             type="text"
                                                                                              value="#{chbBean.new_maternity.babyBreathing6}"/>
                                                                                 <br/>
                                                                             </p:column>
@@ -1255,7 +1284,8 @@
                                                 <br/>
                                                 Condition of Baby at Discharge
                                                 <br/>
-                                                <p:selectOneMenu id="condition_baby" value="#{chbBean.new_maternity.babyCondition}">
+                                                <p:selectOneMenu id="condition_baby"
+                                                                 value="#{chbBean.new_maternity.babyCondition}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="MSB" itemValue="MSB"/>
                                                     <f:selectItem itemLabel="FSB" itemValue="FSB"/>
@@ -1269,7 +1299,8 @@
                                                 <br/>
                                                 Mother's Final Diagnosis
                                                 <br/>
-                                                <p:selectOneMenu id="final_diagnosis" value="#{chbBean.new_maternity.familyPlanningMethod}">
+                                                <p:selectOneMenu id="final_diagnosis"
+                                                                 value="#{chbBean.new_maternity.familyPlanningMethod}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="Abortions" itemValue="1"/>
                                                     <f:selectItem itemLabel="APH" itemValue="2"/>
@@ -1300,7 +1331,8 @@
                                                                             <p:column>
                                                                                 Bleeding
                                                                                 <br/>
-                                                                                <p:inputText id="bleeding_24hrs" type="text"
+                                                                                <p:inputText id="bleeding_24hrs"
+                                                                                             type="text"
                                                                                              value="#{chbBean.new_maternity.motherBleeding24}"/>
                                                                                 <br/>
                                                                                 <br/>
@@ -1327,7 +1359,8 @@
                                                                             <p:column>
                                                                                 Checked Cord
                                                                                 <br/>
-                                                                                <p:inputText id="cords_24hrs" type="text"
+                                                                                <p:inputText id="cords_24hrs"
+                                                                                             type="text"
                                                                                              value="#{chbBean.new_maternity.babyCheckedCord24}"/>
                                                                                 <br/>
                                                                             </p:column>
@@ -1337,7 +1370,8 @@
                                                                             <p:column>
                                                                                 Breastfeeding
                                                                                 <br/>
-                                                                                <p:inputText id="breastfeeding_24hrs" type="text"
+                                                                                <p:inputText id="breastfeeding_24hrs"
+                                                                                             type="text"
                                                                                              value="#{chbBean.new_maternity.babyBreastFeeding24}"/>
                                                                                 <br/>
                                                                             </p:column>
@@ -1347,7 +1381,8 @@
                                                                             <p:column>
                                                                                 Breathing
                                                                                 <br/>
-                                                                                <p:inputText id="beathing_24hrs" type="text"
+                                                                                <p:inputText id="beathing_24hrs"
+                                                                                             type="text"
                                                                                              value="#{chbBean.new_maternity.babyBreathing24}"/>
                                                                                 <br/>
                                                                             </p:column>
@@ -1366,7 +1401,8 @@
                                                         <p:column>
                                                             IYCF
                                                             <br/>
-                                                            <p:selectOneMenu id="iycf" value="#{chbBean.new_maternity.iycf}">
+                                                            <p:selectOneMenu id="iycf"
+                                                                             value="#{chbBean.new_maternity.iycf}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="Y" itemValue="Y"/>
                                                                 <f:selectItem itemLabel="N" itemValue="N"/>
@@ -1376,7 +1412,7 @@
                                                             IYCF Option
                                                             <br/>
                                                             <p:selectOneMenu id="iycf_options"
-                                                                    value="#{chbBean.new_maternity.iycfOption}">
+                                                                             value="#{chbBean.new_maternity.iycfOption}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="EBF" itemValue="EBF"/>
                                                                 <f:selectItem itemLabel="RF" itemValue="RF"/>
@@ -1401,7 +1437,7 @@
                                                             Discharged
                                                             <br/>
                                                             <p:selectOneMenu id="discharged"
-                                                                    value="#{chbBean.new_maternity.counselingDischarged}">
+                                                                             value="#{chbBean.new_maternity.counselingDischarged}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="C" itemValue="C"/>
                                                                 <f:selectItem itemLabel="NC" itemValue="NC"/>
@@ -1411,7 +1447,7 @@
                                                             Maternal Nutrition Counseling
                                                             <br/>
                                                             <p:selectOneMenu id="counseling"
-                                                                    value="#{chbBean.new_maternity.materNutrCouns}">
+                                                                             value="#{chbBean.new_maternity.materNutrCouns}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="Y" itemValue="Y"/>
                                                                 <f:selectItem itemLabel="N" itemValue="N"/>
@@ -1425,7 +1461,7 @@
                                                 <h:outputLabel value="Condition of Mother on Discharge"/>
                                                 <br/>
                                                 <p:selectOneMenu id="condition_mother"
-                                                        value="#{chbBean.new_maternity.conditionOfMotherAtDischarge}">
+                                                                 value="#{chbBean.new_maternity.conditionOfMotherAtDischarge}">
                                                     <f:selectItem itemLabel="Select" itemValue=""/>
                                                     <f:selectItem itemLabel="D" itemValue="D"/>
                                                     <f:selectItem itemLabel="DD" itemValue="DD"/>
@@ -1466,22 +1502,24 @@
                                                             Date
                                                             <br/>
                                                             <p:calendar id="discharge_date"
-                                                                    readonlyInput="true"
-                                                                    value="#{chbBean.new_maternity.dateOfDischarge}"/>
+                                                                        readonlyInput="true"
+                                                                        value="#{chbBean.new_maternity.dateOfDischarge}"/>
                                                             <br/>
                                                             <br/>
                                                             Time
                                                             <br/>
                                                             <pe:timePicker id="discharge_time"
-                                                                    readonlyInput="true"
-                                                                    value="#{chbBean.new_maternity.timeOfDischarge}"
-                                                                    timeSeparator=":"
-                                                                    startHours="0" endHours="23" startMinutes="00"
-                                                                    endMinutes="59"
-                                                                    intervalMinutes="1" showCloseButton="true"
-                                                                    showDeselectButton="true"
-                                                                    showNowButton="true" rows="6" showPeriod="true"
-                                                                    style="width:100%;
+                                                                           readonlyInput="true"
+                                                                           value="#{chbBean.new_maternity.timeOfDischarge}"
+                                                                           timeSeparator=":"
+                                                                           startHours="0" endHours="23"
+                                                                           startMinutes="00"
+                                                                           endMinutes="59"
+                                                                           intervalMinutes="1" showCloseButton="true"
+                                                                           showDeselectButton="true"
+                                                                           showNowButton="true" rows="6"
+                                                                           showPeriod="true"
+                                                                           style="width:100%;
                                                    display:block; max-width:150px;" required="false"/>
                                                         </p:column>
                                                     </p:row>
