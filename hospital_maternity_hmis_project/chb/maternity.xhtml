@@ -44,7 +44,7 @@
 
                             <!-- ADMISSION information -->
                             <p:tab title="Admission Information" titleStyle="font-size: 15px;">
-                                <o:validateAllOrNone id="validateAdmission" invalidateAll="false"
+                                <o:validateAll id="validateAdmission" invalidateAll="false"
                                                      components="admission_date admission_time admission_no anc_no ipd_no nin
                                                      surname given_name age client_category subcounty parish village
                                                      gravidity parity gestation_age term_preterm reason_admission
@@ -108,8 +108,6 @@
                                                 <p:inputText type="number"
                                                              value="#{chbBean.new_maternity.admissionNo}"
                                                              id="admission_no"
-                                                             required="true"
-                                                             requiredMessage="Please fill out this field"
                                                              validatorMessage="Please enter a valid number">
                                                     <f:validateLongRange minimum="1"/>
                                                 </p:inputText>
@@ -1549,7 +1547,8 @@
                                 <p:commandButton value="Edit"
                                                  style="font-size: 12px;font-weight: bold;"
                                                  action="#{chbBean.retrieveForm(maternity_list)}"
-                                                 update=":maternity_form" process="@this"/>
+                                                 update=":maternity_form" process="@this" onsuccess="location.reload();">
+                                </p:commandButton>
                             </p:column>
 
                             <!-- TODO: Add filter and change MatID's to use strings.-->
