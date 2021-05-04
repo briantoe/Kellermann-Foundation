@@ -16,14 +16,14 @@ public class Maternity implements Serializable {
     private String matId;
     private LocalDate dateOfAdmission;
     private LocalTime timeOfAdmission;
-    private Integer admissionNo;
+    private String admissionNo;
     private String ancNo;
-    private Integer ipdNo;
+    private String ipdNo;
     private boolean hasNin;
     private String nin;
     private String clientSurname;
     private String clientGivenName;
-    private Integer age;
+    private String age;
     private String clientCategory;
     private String villageId;
     private String villageName;
@@ -34,16 +34,16 @@ public class Maternity implements Serializable {
     private String districtId;
     private String districtName;
     private String phoneNumber;
-    private Integer gravidity;
-    private Integer parity;
-    private Integer gestationAge;
+    private String gravidity;
+    private String parity;
+    private String gestationAge;
     private String term;
     private String reasonForAdmission;
     private Boolean revisit;
-    private Integer whoClinicalStage;
-    private Integer cd4Results;
+    private String whoClinicalStage;
+    private String cd4Results;
     private LocalDate cd4Date;
-    private Integer viralLoadResults;
+    private String viralLoadResults;
     private LocalDate viralLoadDate;
     private String wInitialResult;
     private String wTfv;
@@ -58,7 +58,7 @@ public class Maternity implements Serializable {
     private String pSyphilis;
     private String pHepatitisB;
     private String muac;
-    private Integer inrNo;
+    private String inrNo;
     private String modeOfDelivery;
     private LocalDate dateOfDelivery;
     private LocalTime timeOfDelivery;
@@ -77,13 +77,13 @@ public class Maternity implements Serializable {
     private Boolean teo;
     private Boolean vitK;
     private Boolean chlorhexidine;
-    private Float weight;
+    private String weight;
     private String riskStatus;
     private String arvsAdministered;
-    private Integer syrupDuration;
+    private String syrupDuration;
     private String bcgImmunization;
     private String polioImmunization;
-    private Integer familyPlanningMethod;
+    private String familyPlanningMethod;
     private LocalDate familyPlanningDate;
     private String treatmentOffered;
     private String babyFinalDiagnosis;
@@ -92,7 +92,7 @@ public class Maternity implements Serializable {
     private String transferredByName;
     private String transferredByWhere;
     private String motherBleeding6;
-    private Integer motherBp6;
+    private String motherBp6;
     private String babyCheckedCord6;
     private String babyBreastFeeding6;
     private String babyBreathing6;
@@ -100,7 +100,7 @@ public class Maternity implements Serializable {
     private String babyCondition;
     private String motherFinalDiagnosis;
     private String motherBleeding24;
-    private Integer motherBp24;
+    private String motherBp24;
     private String babyCheckedCord24;
     private String babyBreastFeeding24;
     private String babyBreathing24;
@@ -115,7 +115,7 @@ public class Maternity implements Serializable {
     private LocalDate dateOfDischarge;
     private LocalTime timeOfDischarge;
     private LocalDateTime recordDate;
-    private Integer userId;
+    private String userId;
 
     public boolean getHasNin() {
         return hasNin;
@@ -146,11 +146,11 @@ public class Maternity implements Serializable {
         }
     }
 
-    public Integer getIpdNo() {
+    public String getIpdNo() {
         return ipdNo;
     }
 
-    public void setIpdNo(Integer ipdNo) {
+    public void setIpdNo(String ipdNo) {
         this.ipdNo = ipdNo;
     }
 
@@ -170,11 +170,11 @@ public class Maternity implements Serializable {
         this.timeOfAdmission = timeOfAdmission;
     }
 
-    public Integer getAdmissionNo() {
+    public String getAdmissionNo() {
         return admissionNo;
     }
 
-    public void setAdmissionNo(Integer admissionNo) {
+    public void setAdmissionNo(String admissionNo) {
         this.admissionNo = admissionNo;
     }
 
@@ -210,11 +210,11 @@ public class Maternity implements Serializable {
         this.clientGivenName = clientGivenName;
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -298,27 +298,27 @@ public class Maternity implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getGravidity() {
+    public String getGravidity() {
         return gravidity;
     }
 
-    public void setGravidity(Integer gravidity) {
+    public void setGravidity(String gravidity) {
         this.gravidity = gravidity;
     }
 
-    public Integer getParity() {
+    public String getParity() {
         return parity;
     }
 
-    public void setParity(Integer parity) {
+    public void setParity(String parity) {
         this.parity = parity;
     }
 
-    public Integer getGestationAge() {
+    public String getGestationAge() {
         return gestationAge;
     }
 
-    public void setGestationAge(Integer gestationAge) {
+    public void setGestationAge(String gestationAge) {
         this.gestationAge = gestationAge;
     }
 
@@ -346,19 +346,19 @@ public class Maternity implements Serializable {
         this.revisit = revisit;
     }
 
-    public Integer getWhoClinicalStage() {
+    public String getWhoClinicalStage() {
         return whoClinicalStage;
     }
 
-    public void setWhoClinicalStage(Integer whoClinicalStage) {
+    public void setWhoClinicalStage(String whoClinicalStage) {
         this.whoClinicalStage = whoClinicalStage;
     }
 
-    public Integer getCd4Results() {
+    public String getCd4Results() {
         return cd4Results;
     }
 
-    public void setCd4Results(Integer cd4Results) {
+    public void setCd4Results(String cd4Results) {
         this.cd4Results = cd4Results;
     }
 
@@ -370,11 +370,11 @@ public class Maternity implements Serializable {
         this.cd4Date = cd4Date;
     }
 
-    public Integer getViralLoadResults() {
+    public String getViralLoadResults() {
         return viralLoadResults;
     }
 
-    public void setViralLoadResults(Integer viralLoadResults) {
+    public void setViralLoadResults(String viralLoadResults) {
         this.viralLoadResults = viralLoadResults;
     }
 
@@ -490,11 +490,11 @@ public class Maternity implements Serializable {
         this.muac = muac;
     }
 
-    public Integer getInrNo() {
+    public String getInrNo() {
         return inrNo;
     }
 
-    public void setInrNo(Integer inrNo) {
+    public void setInrNo(String inrNo) {
         this.inrNo = inrNo;
     }
 
@@ -642,11 +642,11 @@ public class Maternity implements Serializable {
         this.chlorhexidine = chlorhexidine;
     }
 
-    public Float getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -666,11 +666,11 @@ public class Maternity implements Serializable {
         this.arvsAdministered = arvsAdministered;
     }
 
-    public Integer getSyrupDuration() {
+    public String getSyrupDuration() {
         return syrupDuration;
     }
 
-    public void setSyrupDuration(Integer syrupDuration) {
+    public void setSyrupDuration(String syrupDuration) {
         this.syrupDuration = syrupDuration;
     }
 
@@ -690,11 +690,11 @@ public class Maternity implements Serializable {
         this.polioImmunization = polioImmunization;
     }
 
-    public Integer getFamilyPlanningMethod() {
+    public String getFamilyPlanningMethod() {
         return familyPlanningMethod;
     }
 
-    public void setFamilyPlanningMethod(Integer familyPlanningMethod) {
+    public void setFamilyPlanningMethod(String familyPlanningMethod) {
         this.familyPlanningMethod = familyPlanningMethod;
     }
 
@@ -762,11 +762,11 @@ public class Maternity implements Serializable {
         this.motherBleeding6 = motherBleeding6;
     }
 
-    public Integer getMotherBp6() {
+    public String getMotherBp6() {
         return motherBp6;
     }
 
-    public void setMotherBp6(Integer motherBp6) {
+    public void setMotherBp6(String motherBp6) {
         this.motherBp6 = motherBp6;
     }
 
@@ -826,11 +826,11 @@ public class Maternity implements Serializable {
         this.motherBleeding24 = motherBleeding24;
     }
 
-    public Integer getMotherBp24() {
+    public String getMotherBp24() {
         return motherBp24;
     }
 
-    public void setMotherBp24(Integer motherBp24) {
+    public void setMotherBp24(String motherBp24) {
         this.motherBp24 = motherBp24;
     }
 
@@ -946,11 +946,11 @@ public class Maternity implements Serializable {
         this.recordDate = recordDate;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }
