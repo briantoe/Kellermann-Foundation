@@ -92,7 +92,8 @@ public class Maternity implements Serializable {
     private String transferredByName;
     private String transferredByWhere;
     private String motherBleeding6;
-    private String motherBp6;
+    private String motherSyst6;
+    private String motherDias6;
     private String babyCheckedCord6;
     private String babyBreastFeeding6;
     private String babyBreathing6;
@@ -100,7 +101,8 @@ public class Maternity implements Serializable {
     private String babyCondition;
     private String motherFinalDiagnosis;
     private String motherBleeding24;
-    private String motherBp24;
+    private String motherSyst24;
+    private String motherDias24;
     private String babyCheckedCord24;
     private String babyBreastFeeding24;
     private String babyBreathing24;
@@ -762,12 +764,21 @@ public class Maternity implements Serializable {
         this.motherBleeding6 = motherBleeding6;
     }
 
-    public String getMotherBp6() {
-        return motherBp6;
+
+    public String getMotherDias6() {
+        return motherDias6;
     }
 
-    public void setMotherBp6(String motherBp6) {
-        this.motherBp6 = motherBp6;
+    public void setMotherDias6(String motherDias6) {
+        this.motherDias6 = motherDias6;
+    }
+
+    public String getMotherSyst6() {
+        return motherSyst6;
+    }
+
+    public void setMotherSyst6(String motherSyst6) {
+        this.motherSyst6 = motherSyst6;
     }
 
     public String getBabyCheckedCord6() {
@@ -826,12 +837,20 @@ public class Maternity implements Serializable {
         this.motherBleeding24 = motherBleeding24;
     }
 
-    public String getMotherBp24() {
-        return motherBp24;
+    public String getMotherDias24() {
+        return motherDias24;
     }
 
-    public void setMotherBp24(String motherBp24) {
-        this.motherBp24 = motherBp24;
+    public void setMotherDias24(String motherDias24) {
+        this.motherDias24 = motherDias24;
+    }
+
+    public String getMotherSyst24() {
+        return motherSyst24;
+    }
+
+    public void setMotherSyst24(String motherSyst24) {
+        this.motherSyst24 = motherSyst24;
     }
 
     public String getBabyCheckedCord24() {
