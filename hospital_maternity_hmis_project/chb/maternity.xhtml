@@ -1070,11 +1070,12 @@
                                 <o:validateAllOrNone id="validateDischarge" invalidateAll="false"
                                                      components="planning_method other_methods planning_date treatment
                                                      diagnosis deliver_name deliver_cadre transfer_name transfer_where
-                                                     bleeding_6hrs bp_6hrs cord_6hrs breastfeeding_6hrs cord_6hrs
-                                                     breathing_6hrs llins condition_baby final_diagnosis bleeding_24hrs
-                                                     bp_24hrs cords_24hrs breastfeeding_24hrs beathing_24hrs iycf
-                                                     iycf_options discharged counseling condition_mother discharge_name
-                                                     discharge_cadre discharge_date discharge_time"/>
+                                                     bleeding_6hrs motherSyst6 motherDias6 cord_6hrs breastfeeding_6hrs
+                                                     cord_6hrs breathing_6hrs llins condition_baby final_diagnosis
+                                                     bleeding_24hrs motherSyst24 motherDias24 cords_24hrs breastfeeding_24hrs
+                                                     beathing_24hrs iycf iycf_options discharged counseling
+                                                     condition_mother discharge_name discharge_cadre discharge_date
+                                                     discharge_time"/>
                                 <p:panel id="new_discharge">
                                     <p:panelGrid>
                                         <f:facet name="header">
@@ -1213,10 +1214,13 @@
 
                                                                         <p:row>
                                                                             <p:column>
-                                                                                BP
+                                                                                Blood Pressure
                                                                                 <br/>
-                                                                                <p:inputText id="bp_6hrs" type="number"
-                                                                                             value="#{chbBean.new_maternity.motherBp6}"/>
+                                                                                <p:inputText id="motherSyst6" type="number"
+                                                                                             value="#{chbBean.new_maternity.motherSyst6}"/>
+                                                                                /
+                                                                                <p:inputText id="motherDias6" type="number"
+                                                                                             value="#{chbBean.new_maternity.motherDias6}"/>
                                                                                 <br/>
                                                                             </p:column>
                                                                         </p:row>
@@ -1338,10 +1342,13 @@
 
                                                                         <p:row>
                                                                             <p:column>
-                                                                                BP
+                                                                                Blood Pressure
                                                                                 <br/>
-                                                                                <p:inputText id="bp_24hrs" type="text"
-                                                                                             value="#{chbBean.new_maternity.motherBp24}"/>
+                                                                                <p:inputText id="motherSyst24" type="number"
+                                                                                             value="#{chbBean.new_maternity.motherSyst24}"/>
+                                                                                /
+                                                                                <p:inputText id="motherDias24" type="number"
+                                                                                             value="#{chbBean.new_maternity.motherDias24}"/>
                                                                                 <br/>
                                                                             </p:column>
                                                                         </p:row>
