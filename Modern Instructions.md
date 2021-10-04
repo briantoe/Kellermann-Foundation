@@ -9,6 +9,8 @@ An IDE with Java and server capabilities, you can use [Intellij IDEA Ultimate](h
 
 >Make sure you use the Ultimate edition as that is the only way to interact with databases in Intellij. It is [free for students](https://www.jetbrains.com/student/).
 
+These instructures are for windows, scroll further down for mac instructions.
+
 ## Installing Tomcat and MariaDB
 
 ### Tomcat
@@ -151,3 +153,187 @@ Add dependencies to Visual Studio Code using the "Java Dependencies" pane.
 2. Same as the first button but smaller and less blue.
 
 3. Your un-commited changes. These would be files you haven't finished editing or files you don't want to upload.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step-by-step instructions for installing the required tools on MacOS Locally
+
+Locally: 
+
+Installing the Environment: 
+
+Install IntelliJ IDEA Ultimate (recommended) or Visual Studio Code with Java and Tomcat extensions. Follow the instructions in the “Modern Instructions.md” file on GitHub for setting up the environment, running Tomcat inside the IDE and populating the Database. This file provides instructions for installing required tools and fixing common issues you might run into on your MacOS. 
+
+Note: Windows users can use the “Modern Instructions.md” file on GitHub  
+
+Installing Tomcat on macOS: 
+
+Prerequisite: Java, Java Development Kit 
+
+Open Terminal app and run the following command: 
+
+java –version 
+
+This lets you ensure that java is correctly installed with the correct version. 
+
+Tomcat 9.x requires Java 8 or later  
+
+Download tar.gz in Binary Distribution under the Core section of Tomcat software download page here: http://tomcat.apache.org/download-90.cgi 
+
+Open the archive in the Downloads folder and you should see a filename that looks like the following: 
+
+apache-tomcat-9.0.xx (Our version was 9.0.45) 
+
+Open Terminal App and enter the following commands: 
+
+sudo mkdir -p /usr/local 
+
+sudo mv ~/Downloads/apache-tomcat-9.0.35 /usr/local 
+
+sudo rm -f /Library/Tomcat 
+
+sudo ln -s /usr/local/apache-tomcat-9.0.35 /Library/Tomcat 
+
+ 
+
+Change the ownership of the Library/Tomcat/ folder hierarchy: 
+
+sudo chown -R <your_username> /Library/Tomcat 
+
+ 
+
+Make scripts within Tomcat executable: 
+
+sudo chmod +x /Library/Tomcat/bin/*.sh  
+
+ 
+
+Running and stopping Tomcat: 
+
+/Library/Tomcat/bin/startup.sh 
+
+/Library/Tomcat/bin/shutdown.sh 
+
+ 
+
+Installing MariaDB on macOS (Using Homebrew package manager): 
+
+ 
+
+The easiest way to install MariaDB is by doing so using the Homebrew Package Manager.  
+
+ 
+
+Install homebrew if not already available on your MacOS X: 
+
+/bin/bash -c "$(curl –fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
+
+ 
+
+After installing Homebrew, install MariaDB with the following commands: 
+
+brew install mariadb 
+
+ 
+
+Start MariaDB server: 
+
+mysql.server start 
+
+ 
+
+(OR) 
+
+ 
+
+Alternatively, MariaDB can be started using Homebrew’s funcitonalities: 
+
+brew services start mariadb 
+
+ 
+
+Login as root: 
+
+sudo mysql -u root 
+
+ 
+
+Enter the password when prompted to do so. 
+
+ 
+
+Issues you might run into while installing MariaDB with Homebrew: 
+
+ 
+
+“The post-install step did not complete successfully” 
+
+Stop any MySQL service on you computer by running the following command in the Terminal: 
+
+ 
+
+brew services stop mariadb 
+
+ 
+
+You will need to delete contents of /usr/local/var/mysql by using the following command: 
+
+ 
+
+sudo rm -rf /usr/local/var/mysql 
+
+ 
+
+Enter your password 
+
+ 
+
+Run the following command: 
+
+ 
+
+mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mariadb)" --datadir=/usr/local/var/mysql --tmpdir=/tmp 
+
+ 
+
+Startup MariaDB: 
+
+brew services start mariadb 
+
+ 
+
+Log into MySQL: 
+
+sudo mariadb -u root 
+
+ 
+
+Finally, you’ll need to change the user’s root password: 
+
+use mysql; 
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'enter-your-new-password'; 
+
+flush privileges; 
+
+quit 
+
+ 
+
+Log into MariaDB again: 
+
+mariadb -u root –p 
+
+ 
+
+Issues installing MariaBD when the native MySQL is already installed on MacOS: 
+
+It is very likely that you will run into issues when you’re trying to install MariaDB with 	the native MySQL server already installed on your OSX. 
+
+ 
+
+Follow this tutorial to learn how to uninstall MySQL and upgrade to MariaDB without 	any conflicts: 
+
+ 
+
+https://gist.github.com/brandonsimpson/5204ce8a46f7a20071b5 
