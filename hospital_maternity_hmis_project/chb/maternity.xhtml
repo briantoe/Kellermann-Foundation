@@ -147,6 +147,14 @@
                                                 <h:panelGroup id="ninPanel">
                                                     NIN
                                                     <br/>
+                                                    <br/>
+                                                    <h:panelGroup layout="block">
+                                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
+                                                            <f:ajax render="ninPanel"/>
+                                                        </h:selectBooleanCheckbox>
+                                                        Client has a NIN
+                                                    </h:panelGroup>
+                                                    <br/>
                                                     <p:inputText type="text"
                                                                  value="#{chbBean.new_maternity.nin}"
                                                                  id="nin"
@@ -159,14 +167,7 @@
                                                 </h:panelGroup>
 
                                                 <br/>
-
-                                                <h:panelGroup layout="block">
-                                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
-                                                        <f:ajax render="ninPanel"/>
-                                                    </h:selectBooleanCheckbox>
-                                                    Client has a NIN
-                                                </h:panelGroup>
-                                            </p:column>
+                                            </p:column>-
 
                                             <p:column colspan="2">
                                                 <p:fieldset legend="Client Name">
@@ -400,7 +401,6 @@
                                                                 <h:selectBooleanCheckbox
                                                                         value="#{chbBean.new_maternity.revisit}"/>
                                                                 Revisit
-                                                                <br/>
                                                                 <br/>
                                                                 <br/>
                                                                 WHO Clinical Stage
@@ -744,7 +744,7 @@
                                                                              value="#{chbBean.new_maternity.muac}"
                                                                              validatorMessage="Invalid format">
                                                                     <f:validateRegex
-                                                                            pattern="(ND|([0-90-9.0-9]+ (R|Y|G)))"/>
+                                                                            pattern="(ND|([0-90-9.0-9]+[ ]*(R|Y|G)))"/>
                                                                 </p:inputText>
                                                                 <br/>
                                                                 <br/>
@@ -1318,6 +1318,7 @@
                                                     <f:selectItem itemLabel="Ectopic pregnancy" itemValue="11"/>
                                                     <f:selectItem itemLabel="Other complications of pregnancy"
                                                                   itemValue="12"/>
+                                                    <f:selectItem itemLabel="No complications" itemValue="13"/>
                                                 </p:selectOneMenu>
                                             </p:column>
 
