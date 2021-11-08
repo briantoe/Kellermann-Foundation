@@ -172,7 +172,8 @@ VALUES
 ('9', 'Anaemia in pregnancy'),
 ('10', 'Ruptured uterus'),
 ('11', 'Ectopic pregnancy'),
-('12', 'Other Complications of pregnancy')
+('12', 'Other Complications of pregnancy'),
+('13', 'No Complications')
 ;
 
 CREATE TABLE IF NOT EXISTS `hmis` (
