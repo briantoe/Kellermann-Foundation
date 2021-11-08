@@ -247,6 +247,7 @@ public class ChbBean
             existing_maternity.setGestationAge(null);
             existing_maternity.setTerm(null);
             existing_maternity.setReasonForAdmission(null);
+            existing_maternity.setHivPositive(null);
             existing_maternity.setRevisit(null);
             existing_maternity.setWhoClinicalStage(null);
             existing_maternity.setCd4Date(null);

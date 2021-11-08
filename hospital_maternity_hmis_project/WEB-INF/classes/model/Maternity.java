@@ -39,6 +39,7 @@ public class Maternity implements Serializable {
     private String gestationAge;
     private String term;
     private String reasonForAdmission;
+    private Boolean hivPositive;
     private Boolean revisit;
     private String whoClinicalStage;
     private String cd4Results;
@@ -338,6 +339,14 @@ public class Maternity implements Serializable {
 
     public void setReasonForAdmission(String reasonForAdmission) {
         this.reasonForAdmission = reasonForAdmission;
+    }
+
+    public Boolean getHivPositive(){
+        return hivPositive;
+    }
+
+    public void setHivPositive(Boolean hivPositive){
+        this.hivPositive = hivPositive;
     }
 
     public Boolean getRevisit() {
