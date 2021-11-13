@@ -148,6 +148,14 @@
                                                 <h:panelGroup id="ninPanel">
                                                     NIN
                                                     <br/>
+                                                    <br/>
+                                                    <h:panelGroup layout="block">
+                                                        <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
+                                                            <f:ajax render="ninPanel"/>
+                                                        </h:selectBooleanCheckbox>
+                                                        Client has a NIN
+                                                    </h:panelGroup>
+                                                    <br/>
                                                     <p:inputText type="text"
                                                                  value="#{chbBean.new_maternity.nin}"
                                                                  id="nin"
@@ -161,12 +169,6 @@
 
                                                 <br/>
 
-                                                <h:panelGroup layout="block">
-                                                    <h:selectBooleanCheckbox value="#{chbBean.new_maternity.hasNin}">
-                                                        <f:ajax render="ninPanel"/>
-                                                    </h:selectBooleanCheckbox>
-                                                    Client has a NIN
-                                                </h:panelGroup>
                                             </p:column>-
 
                                             <p:column colspan="2">
@@ -1312,27 +1314,42 @@
                                                 </p:selectOneMenu>
                                                 <br/>
                                                 <br/>
-                                                Mother's Final Diagnosis
-                                                <br/>
-                                                <p:selectOneMenu id="final_diagnosis"
-                                                                 value="#{chbBean.new_maternity.familyPlanningMethod}">
-                                                    <f:selectItem itemLabel="Select" itemValue=""/>
-                                                    <f:selectItem itemLabel="Abortions" itemValue="1"/>
-                                                    <f:selectItem itemLabel="APH" itemValue="2"/>
-                                                    <f:selectItem itemLabel="PPH" itemValue="3"/>
-                                                    <f:selectItem itemLabel="Malaria in Pregnancy" itemValue="4"/>
-                                                    <f:selectItem itemLabel="High Blood Pressure in Pregnancy"
-                                                                  itemValue="5"/>
-                                                    <f:selectItem itemLabel="Obstructed Labour" itemValue="6"/>
-                                                    <f:selectItem itemLabel="Puerperal sepsis" itemValue="7"/>
-                                                    <f:selectItem itemLabel="Sepsis related to pregnancy"
-                                                                  itemValue="8"/>
-                                                    <f:selectItem itemLabel="Anaemia in pregnancy" itemValue="9"/>
-                                                    <f:selectItem itemLabel="Ruptered uterus" itemValue="10"/>
-                                                    <f:selectItem itemLabel="Ectopic pregnancy" itemValue="11"/>
-                                                    <f:selectItem itemLabel="Other complications of pregnancy"
-                                                                  itemValue="12"/>
-                                                </p:selectOneMenu>
+                                                <p:fieldset legend="Mother's Final Diagnosis">
+                                                    Obstetric Diagnosis
+                                                    <br/>
+                                                    <p:selectOneMenu id="obstetric_diagnosis"
+                                                                     value="#{chbBean.new_maternity.obstetricDiagnosis}">
+                                                        <f:selectItem itemLabel="Select" itemValue=""/>
+                                                        <f:selectItem itemLabel="Normal Delivery" itemValue="1"/>
+                                                        <f:selectItem itemLabel="Caesarean Section" itemValue="2"/>
+                                                        <f:selectItem itemLabel="Transverse Position" itemValue="3"/>
+                                                        <f:selectItem itemLabel="Born Before Delivery" itemValue="4"/>
+                                                    </p:selectOneMenu>
+                                                    <br/>
+                                                    <br/>
+                                                    Complications
+                                                    <br/>
+                                                    <p:selectOneMenu id="final_diagnosis"
+                                                                     value="#{chbBean.new_maternity.motherFinalDiagnosis}">
+                                                        <f:selectItem itemLabel="Select" itemValue=""/>
+                                                        <f:selectItem itemLabel="Abortions" itemValue="1"/>
+                                                        <f:selectItem itemLabel="APH" itemValue="2"/>
+                                                        <f:selectItem itemLabel="PPH" itemValue="3"/>
+                                                        <f:selectItem itemLabel="Malaria in Pregnancy" itemValue="4"/>
+                                                        <f:selectItem itemLabel="High Blood Pressure in Pregnancy"
+                                                                      itemValue="5"/>
+                                                        <f:selectItem itemLabel="Obstructed Labour" itemValue="6"/>
+                                                        <f:selectItem itemLabel="Puerperal sepsis" itemValue="7"/>
+                                                        <f:selectItem itemLabel="Sepsis related to pregnancy"
+                                                                      itemValue="8"/>
+                                                        <f:selectItem itemLabel="Anaemia in pregnancy" itemValue="9"/>
+                                                        <f:selectItem itemLabel="Ruptered uterus" itemValue="10"/>
+                                                        <f:selectItem itemLabel="Ectopic pregnancy" itemValue="11"/>
+                                                        <f:selectItem itemLabel="Other complications of pregnancy"
+                                                                      itemValue="12"/>
+                                                    </p:selectOneMenu>
+                                                </p:fieldset>
+
                                             </p:column>
 
                                             <p:column colspan="2">
@@ -1421,6 +1438,7 @@
                                                             <br/>
                                                             <p:selectOneMenu id="iycf"
                                                                              value="#{chbBean.new_maternity.iycf}">
+                                                                            <f:ajax render = "iycf_options"/>
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="Y" itemValue="Y"/>
                                                                 <f:selectItem itemLabel="N" itemValue="N"/>
@@ -1430,7 +1448,8 @@
                                                             IYCF Option
                                                             <br/>
                                                             <p:selectOneMenu id="iycf_options"
-                                                                             value="#{chbBean.new_maternity.iycfOption}">
+                                                                             value="#{chbBean.new_maternity.iycfOption}"
+                                                                             disabled="#{not (chbBean.new_maternity.iycf eq 'Y')}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="EBF" itemValue="EBF"/>
                                                                 <f:selectItem itemLabel="RF" itemValue="RF"/>

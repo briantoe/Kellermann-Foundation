@@ -100,6 +100,7 @@ public class Maternity implements Serializable {
     private String babyBreathing6;
     private String llinsGiven;
     private String babyCondition;
+    private String obstetricDiagnosis;
     private String motherFinalDiagnosis;
     private String motherBleeding24;
     private String motherSyst24;
@@ -828,6 +829,12 @@ public class Maternity implements Serializable {
 
     public void setBabyCondition(String babyCondition) {
         this.babyCondition = babyCondition;
+    }
+
+    public String getObstetricDiagnosis(){return obstetricDiagnosis;}
+
+    public void setObstetricDiagnosis(String obstetricDiagnosis){
+        this.obstetricDiagnosis = obstetricDiagnosis;
     }
 
     public String getMotherFinalDiagnosis() {

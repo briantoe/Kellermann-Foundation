@@ -148,6 +148,25 @@ VALUES
 ('TRR+', 'Client was originally negative but sero-converted at this test')
 ;
 
+CREATE TABLE IF NOT EXISTS `obstetric_diagnosis` (
+	`obstetricDiagNum` INT(1) NOT NULL,
+	`obstetricDiagDesc` VARCHAR(100) NULL DEFAULT NULL,
+	PRIMARY KEY (`obstetricDiagNum`),
+	INDEX `obstetricDiagNum` (`obstetricDiagNum`)
+)
+COMMENT='This table holds the obstetric diagnosis codes and descriptions.'
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+INSERT INTO `obstetric_diagnosis` (`obstetricDiagNum`, `obstetricDiagDesc`)
+VALUES
+('1', 'Normal Delivery'),
+('2', 'Caesarean Section'),
+('3', 'Transverse Position'),
+('4', 'Born Before Delivery')
+;
+
 CREATE TABLE IF NOT EXISTS `final_diagnosis` (
 	`finalDiagNum` INT(1) NOT NULL,
 	`finalDiagDesc` VARCHAR(100) NULL DEFAULT NULL,
