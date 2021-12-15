@@ -39,6 +39,7 @@ public class Maternity implements Serializable {
     private String gestationAge;
     private String term;
     private String reasonForAdmission;
+    private Boolean hivPositive;
     private Boolean revisit;
     private String whoClinicalStage;
     private String cd4Results;
@@ -99,6 +100,7 @@ public class Maternity implements Serializable {
     private String babyBreathing6;
     private String llinsGiven;
     private String babyCondition;
+    private String obstetricDiagnosis;
     private String motherFinalDiagnosis;
     private String motherBleeding24;
     private String motherSyst24;
@@ -338,6 +340,14 @@ public class Maternity implements Serializable {
 
     public void setReasonForAdmission(String reasonForAdmission) {
         this.reasonForAdmission = reasonForAdmission;
+    }
+
+    public Boolean getHivPositive(){
+        return hivPositive;
+    }
+
+    public void setHivPositive(Boolean hivPositive){
+        this.hivPositive = hivPositive;
     }
 
     public Boolean getRevisit() {
@@ -819,6 +829,12 @@ public class Maternity implements Serializable {
 
     public void setBabyCondition(String babyCondition) {
         this.babyCondition = babyCondition;
+    }
+
+    public String getObstetricDiagnosis(){return obstetricDiagnosis;}
+
+    public void setObstetricDiagnosis(String obstetricDiagnosis){
+        this.obstetricDiagnosis = obstetricDiagnosis;
     }
 
     public String getMotherFinalDiagnosis() {

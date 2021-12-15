@@ -6,7 +6,8 @@
 <ui:composition template="/WEB-INF/templates/chb.xhtml" xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:o="http://omnifaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+                xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
     <ui:define name="title">Add or Edit Maternity</ui:define>
 
@@ -167,6 +168,7 @@
                                                 </h:panelGroup>
 
                                                 <br/>
+
                                             </p:column>-
 
                                             <p:column colspan="2">
@@ -399,7 +401,16 @@
                                                         <p:row>
                                                             <p:column>
                                                                 <h:selectBooleanCheckbox
-                                                                        value="#{chbBean.new_maternity.revisit}"/>
+                                                                        value="#{chbBean.new_maternity.hivPositive}">
+                                                                        <f:ajax render="revisit who_clinical cd4_results cd4_date viral_results viral_date"/>
+                                                                </h:selectBooleanCheckbox>
+                                                                Is the patient HIV+?
+                                                                <br/>
+                                                                <br/>
+                                                                <h:selectBooleanCheckbox
+                                                                        id="revisit"
+                                                                        value="#{chbBean.new_maternity.revisit}"
+                                                                        disabled="#{not chbBean.new_maternity.hivPositive}"/>
                                                                 Revisit
                                                                 <br/>
                                                                 <br/>
@@ -407,7 +418,8 @@
                                                                 <br/>
                                                                 <p:inputText id="who_clinical" type="number"
                                                                              value="#{chbBean.new_maternity.whoClinicalStage}"
-                                                                             validatorMessage="Must be between 1 and 4">
+                                                                             validatorMessage="Must be between 1 and 4"
+                                                                             disabled="#{not chbBean.new_maternity.hivPositive}">
                                                                     <f:validateLongRange minimum="1" maximum="4"/>
                                                                 </p:inputText>
                                                                 <br/>
@@ -419,7 +431,8 @@
                                                                 <br/>
                                                                 <p:inputText id="cd4_results" type="number"
                                                                              value="#{chbBean.new_maternity.cd4Results}"
-                                                                             validatorMessage="Must be at least 0">
+                                                                             validatorMessage="Must be at least 0"
+                                                                             disabled="#{not chbBean.new_maternity.hivPositive}">
                                                                     <f:validateLongRange minimum="0"/>
                                                                 </p:inputText>
                                                                 <br/>
@@ -429,7 +442,8 @@
                                                                 CD4 Test Date
                                                                 <br/>
                                                                 <p:calendar id="cd4_date" readonlyInput="true"
-                                                                            value="#{chbBean.new_maternity.cd4Date}"/>
+                                                                            value="#{chbBean.new_maternity.cd4Date}"
+                                                                            disabled="#{not chbBean.new_maternity.hivPositive}"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color: red" for="cd4_date"/>
                                                             </p:column>
@@ -439,7 +453,8 @@
                                                                 <br/>
                                                                 <p:inputText id="viral_results" type="number"
                                                                              value="#{chbBean.new_maternity.viralLoadResults}"
-                                                                             validatorMessage="Must be at least 0">
+                                                                             validatorMessage="Must be at least 0"
+                                                                             disabled="#{not chbBean.new_maternity.hivPositive}">
                                                                     <f:validateLongRange minimum="0"/>
                                                                 </p:inputText>
                                                                 <br/>
@@ -450,7 +465,8 @@
                                                                 <br/>
                                                                 <p:calendar id="viral_date"
                                                                             readonlyInput="true"
-                                                                            value="#{chbBean.new_maternity.viralLoadDate}"/>
+                                                                            value="#{chbBean.new_maternity.viralLoadDate}"
+                                                                            disabled="#{not chbBean.new_maternity.hivPositive}"/>
                                                                 <br/>
                                                                 <h:message errorStyle="color: red" for="viral_date"/>
                                                             </p:column>
@@ -743,6 +759,7 @@
                                                                 <p:inputText id="muac" type="text"
                                                                              value="#{chbBean.new_maternity.muac}"
                                                                              validatorMessage="Invalid format">
+                                                                    <f:ajax render="inr_no"/>
                                                                     <f:validateRegex
                                                                             pattern="(ND|([0-90-9.0-9]+[ ]*(R|Y|G)))"/>
                                                                 </p:inputText>
@@ -751,7 +768,8 @@
                                                                 Inr No.
                                                                 <br/>
                                                                 <p:inputText id="inr_no" type="text"
-                                                                             value="#{chbBean.new_maternity.inrNo}"/>
+                                                                             value="#{chbBean.new_maternity.inrNo}"
+                                                                             disabled = "#{not (fn:contains(chbBean.new_maternity.muac, 'Y') or fn:contains(chbBean.new_maternity.muac, 'R'))}"/>
                                                                 <br/>
                                                             </p:column>
                                                         </p:row>
@@ -1070,10 +1088,8 @@
                                 <o:validateAllOrNone id="validateDischarge" invalidateAll="false"
                                                      components="planning_method other_methods planning_date treatment
                                                      diagnosis deliver_name deliver_cadre transfer_name transfer_where
-                                                     bleeding_6hrs motherSyst6 motherDias6 cord_6hrs breastfeeding_6hrs
-                                                     cord_6hrs breathing_6hrs llins condition_baby final_diagnosis
-                                                     bleeding_24hrs motherSyst24 motherDias24 cords_24hrs breastfeeding_24hrs
-                                                     beathing_24hrs iycf iycf_options discharged counseling
+                                                     llins condition_baby final_diagnosis
+                                                     iycf iycf_options discharged counseling
                                                      condition_mother discharge_name discharge_cadre discharge_date
                                                      discharge_time"/>
                                 <p:panel id="new_discharge">
@@ -1298,28 +1314,42 @@
                                                 </p:selectOneMenu>
                                                 <br/>
                                                 <br/>
-                                                Mother's Final Diagnosis
-                                                <br/>
-                                                <p:selectOneMenu id="final_diagnosis"
-                                                                 value="#{chbBean.new_maternity.familyPlanningMethod}">
-                                                    <f:selectItem itemLabel="Select" itemValue=""/>
-                                                    <f:selectItem itemLabel="Abortions" itemValue="1"/>
-                                                    <f:selectItem itemLabel="APH" itemValue="2"/>
-                                                    <f:selectItem itemLabel="PPH" itemValue="3"/>
-                                                    <f:selectItem itemLabel="Malaria in Pregnancy" itemValue="4"/>
-                                                    <f:selectItem itemLabel="High Blood Pressure in Pregnancy"
-                                                                  itemValue="5"/>
-                                                    <f:selectItem itemLabel="Obstructed Labour" itemValue="6"/>
-                                                    <f:selectItem itemLabel="Puerperal sepsis" itemValue="7"/>
-                                                    <f:selectItem itemLabel="Sepsis related to pregnancy"
-                                                                  itemValue="8"/>
-                                                    <f:selectItem itemLabel="Anaemia in pregnancy" itemValue="9"/>
-                                                    <f:selectItem itemLabel="Ruptered uterus" itemValue="10"/>
-                                                    <f:selectItem itemLabel="Ectopic pregnancy" itemValue="11"/>
-                                                    <f:selectItem itemLabel="Other complications of pregnancy"
-                                                                  itemValue="12"/>
-                                                    <f:selectItem itemLabel="No complications" itemValue="13"/>
-                                                </p:selectOneMenu>
+                                                <p:fieldset legend="Mother's Final Diagnosis">
+                                                    Obstetric Diagnosis
+                                                    <br/>
+                                                    <p:selectOneMenu id="obstetric_diagnosis"
+                                                                     value="#{chbBean.new_maternity.obstetricDiagnosis}">
+                                                        <f:selectItem itemLabel="Select" itemValue=""/>
+                                                        <f:selectItem itemLabel="Normal Delivery" itemValue="1"/>
+                                                        <f:selectItem itemLabel="Caesarean Section" itemValue="2"/>
+                                                        <f:selectItem itemLabel="Transverse Position" itemValue="3"/>
+                                                        <f:selectItem itemLabel="Born Before Delivery" itemValue="4"/>
+                                                    </p:selectOneMenu>
+                                                    <br/>
+                                                    <br/>
+                                                    Complications
+                                                    <br/>
+                                                    <p:selectOneMenu id="final_diagnosis"
+                                                                     value="#{chbBean.new_maternity.motherFinalDiagnosis}">
+                                                        <f:selectItem itemLabel="Select" itemValue=""/>
+                                                        <f:selectItem itemLabel="Abortions" itemValue="1"/>
+                                                        <f:selectItem itemLabel="APH" itemValue="2"/>
+                                                        <f:selectItem itemLabel="PPH" itemValue="3"/>
+                                                        <f:selectItem itemLabel="Malaria in Pregnancy" itemValue="4"/>
+                                                        <f:selectItem itemLabel="High Blood Pressure in Pregnancy"
+                                                                      itemValue="5"/>
+                                                        <f:selectItem itemLabel="Obstructed Labour" itemValue="6"/>
+                                                        <f:selectItem itemLabel="Puerperal sepsis" itemValue="7"/>
+                                                        <f:selectItem itemLabel="Sepsis related to pregnancy"
+                                                                      itemValue="8"/>
+                                                        <f:selectItem itemLabel="Anaemia in pregnancy" itemValue="9"/>
+                                                        <f:selectItem itemLabel="Ruptered uterus" itemValue="10"/>
+                                                        <f:selectItem itemLabel="Ectopic pregnancy" itemValue="11"/>
+                                                        <f:selectItem itemLabel="Other complications of pregnancy"
+                                                                      itemValue="12"/>
+                                                    </p:selectOneMenu>
+                                                </p:fieldset>
+
                                             </p:column>
 
                                             <p:column colspan="2">
@@ -1408,6 +1438,7 @@
                                                             <br/>
                                                             <p:selectOneMenu id="iycf"
                                                                              value="#{chbBean.new_maternity.iycf}">
+                                                                            <f:ajax render = "iycf_options"/>
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="Y" itemValue="Y"/>
                                                                 <f:selectItem itemLabel="N" itemValue="N"/>
@@ -1417,7 +1448,8 @@
                                                             IYCF Option
                                                             <br/>
                                                             <p:selectOneMenu id="iycf_options"
-                                                                             value="#{chbBean.new_maternity.iycfOption}">
+                                                                             value="#{chbBean.new_maternity.iycfOption}"
+                                                                             disabled="#{not (chbBean.new_maternity.iycf eq 'Y')}">
                                                                 <f:selectItem itemLabel="Select" itemValue=""/>
                                                                 <f:selectItem itemLabel="EBF" itemValue="EBF"/>
                                                                 <f:selectItem itemLabel="RF" itemValue="RF"/>

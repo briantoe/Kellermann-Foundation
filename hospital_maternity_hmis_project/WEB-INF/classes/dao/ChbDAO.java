@@ -337,6 +337,7 @@ public class ChbDAO implements Serializable
                 maternity.setGestationAge(rs.getString("gestationAge"));
                 maternity.setTerm(rs.getString("term"));
                 maternity.setReasonForAdmission(rs.getString("reasonForAdmission"));
+                maternity.setHivPositive(rs.getBoolean("hivPositive"));
                 maternity.setRevisit(rs.getBoolean("revisit"));
                 maternity.setWhoClinicalStage(rs.getString("whoClinicalStage"));
                 maternity.setCd4Results(rs.getString("cd4Results"));
@@ -402,6 +403,7 @@ public class ChbDAO implements Serializable
                 maternity.setBabyBreathing6(rs.getString("babyBreathing6"));
                 maternity.setLlinsGiven(rs.getString("llinsGiven"));
                 maternity.setBabyCondition(rs.getString("babyCondition"));
+                maternity.setObstetricDiagnosis(rs.getString("obstetricDiagnosis"));
                 maternity.setMotherFinalDiagnosis(rs.getString("motherFinalDiagnosis"));
                 maternity.setMotherBleeding24(rs.getString("motherBleeding24"));
                 maternity.setMotherDias24(rs.getString("motherDias24"));
@@ -514,6 +516,7 @@ public class ChbDAO implements Serializable
                 maternity.setGestationAge(rs.getString("gestationAge"));
                 maternity.setTerm(rs.getString("term"));
                 maternity.setReasonForAdmission(rs.getString("reasonForAdmission"));
+                maternity.setHivPositive(rs.getBoolean("hivPositive"));
                 maternity.setRevisit(rs.getBoolean("revisit"));
                 maternity.setWhoClinicalStage(rs.getString("whoClinicalStage"));
                 maternity.setCd4Results(rs.getString("cd4Results"));
@@ -574,6 +577,7 @@ public class ChbDAO implements Serializable
                 maternity.setBabyBreathing6(rs.getString("babyBreathing6"));
                 maternity.setLlinsGiven(rs.getString("llinsGiven"));
                 maternity.setBabyCondition(rs.getString("babyCondition"));
+                maternity.setObstetricDiagnosis(rs.getString("obstetricDiagnosis"));
                 maternity.setMotherFinalDiagnosis(rs.getString("motherFinalDiagnosis"));
                 maternity.setMotherBleeding24(rs.getString("motherBleeding24"));
                 maternity.setMotherDias24(rs.getString("motherDias24"));
@@ -657,14 +661,14 @@ public class ChbDAO implements Serializable
                     + "babyCheckedCord24, babyBreastFeeding24, babyBreathing24, iycf, iycfOption, "
                     + "counselingDischarged, materNutrCouns, conditionOfMotherAtDischarge, motherTransferredWhere, nameOfPersonDischarging, "
                     + "cadreOfPersonDischarging, dateOfDischarge, motherDias6, motherSyst6, motherDias24, "
-                    + "motherSyst24, userID, matID)"
+                    + "motherSyst24, hivPositive, obstetricDiagnosis, userID, matID)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?)");
+                    + "?,?,?,?,?,?,?,?,?,?,?)");
 
             extract_maternity(stmt, maternity);
-            stmt.setObject(99, userId);
-            stmt.setString(100, maternity.getMatId());
+            stmt.setObject(101, userId);
+            stmt.setString(102, maternity.getMatId());
 
             stmt.executeUpdate();
             con.close();
@@ -708,18 +712,18 @@ public class ChbDAO implements Serializable
         stmt.setObject(18, maternity.getGestationAge());
         stmt.setString(19, maternity.getTerm());
         stmt.setString(20, maternity.getReasonForAdmission());
-        stmt.setBoolean(21, maternity.getRevisit());
-        stmt.setObject(22, maternity.getWhoClinicalStage());
-        stmt.setObject(23, maternity.getCd4Results());
-        if(maternity.getCd4Date()  ==  null)
-            stmt.setNull(24, Types.DATE);
-        else
-            stmt.setDate(24, Date.valueOf(maternity.getCd4Date()));
-        stmt.setObject(25, maternity.getViralLoadResults());
-        if(maternity.getViralLoadDate()  ==  null)
-            stmt.setNull(26, Types.DATE);
-        else
-            stmt.setDate(26, Date.valueOf(maternity.getViralLoadDate()));
+        //stmt.setBoolean(21, maternity.getRevisit());
+        //stmt.setObject(22, maternity.getWhoClinicalStage());
+        //stmt.setObject(23, maternity.getCd4Results());
+        //if(maternity.getCd4Date()  ==  null)
+        //    stmt.setNull(24, Types.DATE);
+        //else
+        //    stmt.setDate(24, Date.valueOf(maternity.getCd4Date()));
+        //stmt.setObject(25, maternity.getViralLoadResults());
+        //if(maternity.getViralLoadDate()  ==  null)
+        //    stmt.setNull(26, Types.DATE);
+        //else
+        //    stmt.setDate(26, Date.valueOf(maternity.getViralLoadDate()));
         stmt.setString(27, maternity.getwInitialResult());
         stmt.setString(28, maternity.getwTfv());
         stmt.setString(29, maternity.getpInitialResult());
@@ -733,7 +737,11 @@ public class ChbDAO implements Serializable
         stmt.setString(37, maternity.getpSyphilis());
         stmt.setString(38, maternity.getpHepatitisB());
         stmt.setString(39, maternity.getMuac());
-        stmt.setObject(40, maternity.getInrNo());
+        //stmt.setObject(40, maternity.getInrNo());
+        if(maternity.getInrNo() == null)
+            stmt.setString(40, null);
+        else
+            stmt.setObject(40, maternity.getInrNo());
         stmt.setString(41, maternity.getModeOfDelivery());
         if(maternity.getDateOfDelivery()  ==  null)
             stmt.setNull(42, Types.DATE);
@@ -795,7 +803,11 @@ public class ChbDAO implements Serializable
         stmt.setString(84, maternity.getBabyBreastFeeding24());
         stmt.setString(85, maternity.getBabyBreathing24());
         stmt.setString(86, maternity.getIycf());
-        stmt.setString(87, maternity.getIycfOption());
+        //stmt.setString(87, maternity.getIycfOption());
+        if(maternity.getIycfOption() == null)
+            stmt.setString(87, null);
+        else
+            stmt.setString(87, maternity.getIycfOption());
         stmt.setString(88, maternity.getCounselingDischarged());
         stmt.setString(89, maternity.getMaterNutrCouns());
         stmt.setString(90, maternity.getConditionOfMotherAtDischarge());
@@ -810,6 +822,30 @@ public class ChbDAO implements Serializable
         stmt.setString(96, maternity.getMotherDias6());
         stmt.setString(97, maternity.getMotherSyst24());
         stmt.setString(98, maternity.getMotherDias24());
+        stmt.setBoolean(99, maternity.getHivPositive());
+        if(maternity.getHivPositive()){
+            stmt.setBoolean(21, maternity.getRevisit());
+            stmt.setObject(22, maternity.getWhoClinicalStage());
+            stmt.setObject(23, maternity.getCd4Results());
+            //if(maternity.getCd4Date()  ==  null)
+            //    stmt.setNull(24, Types.DATE);
+            //else
+            stmt.setDate(24, Date.valueOf(maternity.getCd4Date()));
+            stmt.setObject(25, maternity.getViralLoadResults());
+            //if(maternity.getViralLoadDate()  ==  null)
+            //    stmt.setNull(26, Types.DATE);
+            //else
+            stmt.setDate(26, Date.valueOf(maternity.getViralLoadDate()));
+        }
+        else{
+            stmt.setNull(21, Types.BOOLEAN);
+            stmt.setNull(22, Types.INTEGER);
+            stmt.setNull(23, Types.INTEGER);
+            stmt.setNull(24, Types.DATE);
+            stmt.setNull(25, Types.INTEGER);
+            stmt.setNull(26, Types.DATE);
+        }
+        stmt.setString(100, maternity.getObstetricDiagnosis());
     }
 
     public static Vht Get_Existing_Vht(Integer VhtId) throws SQLException {
@@ -904,6 +940,7 @@ public class ChbDAO implements Serializable
                 maternity.setGestationAge(rs.getString("gestationAge"));
                 maternity.setTerm(rs.getString("term"));
                 maternity.setReasonForAdmission(rs.getString("reasonForAdmission"));
+                maternity.setHivPositive(rs.getBoolean("hivPositive"));
                 maternity.setRevisit(rs.getBoolean("revisit"));
                 maternity.setWhoClinicalStage(rs.getString("whoClinicalStage"));
                 maternity.setCd4Results(rs.getString("cd4Results"));
@@ -969,6 +1006,7 @@ public class ChbDAO implements Serializable
                 maternity.setBabyBreathing6(rs.getString("babyBreathing6"));
                 maternity.setLlinsGiven(rs.getString("llinsGiven"));
                 maternity.setBabyCondition(rs.getString("babyCondition"));
+                maternity.setObstetricDiagnosis("obstetricDiagnosis");
                 maternity.setMotherFinalDiagnosis(rs.getString("motherFinalDiagnosis"));
                 maternity.setMotherBleeding24(rs.getString("motherBleeding24"));
                 maternity.setMotherDias24(rs.getString("motherDias24"));
@@ -1053,11 +1091,11 @@ public class ChbDAO implements Serializable
                     "recordDate=?, babyCheckedCord24=?, babyBreastFeeding24=?, babyBreathing24=?, iycf=?, " +
                     "iycfOption=?, counselingDischarged=?, materNutrCouns=?, conditionOfMotherAtDischarge=?, " +
                     "motherTransferredWhere=?, nameOfPersonDischarging=?, cadreOfPersonDischarging=?, " +
-                    "dateOfDischarge=?, motherDias6=?, motherSyst6=?, motherDias24=?, motherSyst24=?" +
+                    "dateOfDischarge=?, motherDias6=?, motherSyst6=?, motherDias24=?, motherSyst24=?, hivPositive=?, obstetricDiagnosis=?" +
                     "WHERE matId=?");
 
             extract_maternity(stmt, maternity);
-            stmt.setString(99, maternity.getMatId());
+            stmt.setString(100, maternity.getMatId());
             stmt.executeUpdate();
             con.close();
             return true;
