@@ -27,4 +27,4 @@ The web application will allow for efficient monitoring and care of mothers and 
 - Continually accept feedback from project partner and make changes accordingly
 - Test data entry functionality
 
-### For inquiries, email bht170030@utdallas.edu (Fall 2019), art170230@utdallas.edu (Spring 2020), zxt180005@utdallas.edu (Fall 2020), or txn180008@utdallas.edu (Spring 2021)
+### For inquiries, email bht170030@utdallas.edu (Fall 2019), art170230@utdallas.edu (Spring 2020), zxt180005@utdallas.edu (Fall 2020), txn180008@utdallas.edu (Spring 2021), or tkl180001@utdallas.edu (Fall 2021)
