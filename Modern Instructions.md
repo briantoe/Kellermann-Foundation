@@ -6,6 +6,7 @@ Latest stable version of [Tomcat](https://tomcat.apache.org/download-80.cgi).
 Latest version of [MariaDB](https://mariadb.org/download/).
 An IDE with Java and server capabilities, you can use [Intellij IDEA Ultimate](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/) with [Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug) and [Tomcat](https://marketplace.visualstudio.com/items?itemName=adashen.vscode-tomcat) extentions.
 [Java Development Kit](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) is also needed but you likely already have installed on your system.
+[HeidiSQL](https://www.heidisql.com/download.php) is recommended for easier viewing and interaction with the database.
 
 >Make sure you use the Ultimate edition as that is the only way to interact with databases in Intellij. It is [free for students](https://www.jetbrains.com/student/).
 >Between IntelliJ IDEA Ultimate and Visual Studio Code, it is much easier working with the former.
