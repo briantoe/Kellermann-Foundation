@@ -14,11 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import model.Village;
-import model.Parish;
-import model.Subcounty;
-import model.Vht;
-import model.Maternity;
+import model.*;
 
 
 @ManagedBean(name = "chbBean")
@@ -469,4 +465,12 @@ public class ChbBean
             System.err.println("ChbBean Error: Method: villageListener" + ex.getMessage());
         }
     }
+
+    /*REMEMBER TO COMPLETE, use the setter functions
+    public String addChild(){
+        Maternity_Child newChild = new Maternity_Child();
+        return null;
+    }
+    */
+    
 }
