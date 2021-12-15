@@ -1,5 +1,5 @@
 
-# utdEPICS Kellermann Foundation Spring 2021
+# utdEPICS Kellermann Foundation Fall 2021
 
 ## Project Partner Description
 
@@ -11,11 +11,12 @@ This project focuses on development of a web application to be used by the mater
 
 ## Members of this Project
 
-- Tri Nguyen    - Computer Science
-- Terry Garcia  - Computer Science
-- Mansha Fatima - Computer Science
-- Nikita Bantey - Computer Science
-- Aidan Turgut  - Computer Science
+- Tracey Le    - Computer Science
+- Nikhil Manda  - Computer Science
+- Hieu Tran - Computer Science
+- Sri Remella - Computer Science
+- Alexandra Martinez  - Biology
+- Durga Mandadpu  - Biology
 
 ## Impact
 
