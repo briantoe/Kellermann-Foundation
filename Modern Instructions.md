@@ -11,7 +11,7 @@ An IDE with Java and server capabilities, you can use [Intellij IDEA Ultimate](h
 >Between IntelliJ IDEA Ultimate and Visual Studio Code, it is much easier working with the former.
 
 These instructions are for windows, scroll further down for mac instructions.
->Since the instructions for windows are more straight-forward, it may be ideal to install a VM to run windows and follow the instructions for windows.
+>For mac users: since the instructions for windows are more straight-forward, it may be ideal to install a VM to run windows and follow the instructions for windows.
 
 ## Installing Tomcat and MariaDB
 
