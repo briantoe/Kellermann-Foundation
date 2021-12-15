@@ -988,4 +988,5 @@ public class Maternity implements Serializable {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
 }

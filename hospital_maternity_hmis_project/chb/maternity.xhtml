@@ -319,8 +319,8 @@
                                                                 <br/>
                                                                 <p:inputText id="phone" type="number"
                                                                              value="#{chbBean.new_maternity.phoneNumber}"
-                                                                             validatorMessage="Must be 9 digits">
-                                                                    <f:validateRegex pattern="[0-9]{9}"/>
+                                                                             validatorMessage="Must be 10 digits">
+                                                                    <f:validateRegex pattern="[0-9]{10}"/>
                                                                 </p:inputText>
                                                                 <br/>
                                                                 <h:message errorStyle="color:red" for="phone"/>
@@ -1079,7 +1079,7 @@
                                             </p:column>
                                         </p:row>
                                     </p:panelGrid>
-                                    <br/>
+                                
                                 </p:panel>
                             </p:tab>
 
@@ -1088,7 +1088,7 @@
                                 <o:validateAllOrNone id="validateDischarge" invalidateAll="false"
                                                      components="planning_method other_methods planning_date treatment
                                                      diagnosis deliver_name deliver_cadre transfer_name transfer_where
-                                                     llins condition_baby final_diagnosis
+                                                     llins condition_baby obstetric_diagnosis final_diagnosis
                                                      iycf iycf_options discharged counseling
                                                      condition_mother discharge_name discharge_cadre discharge_date
                                                      discharge_time"/>
@@ -1347,6 +1347,7 @@
                                                         <f:selectItem itemLabel="Ectopic pregnancy" itemValue="11"/>
                                                         <f:selectItem itemLabel="Other complications of pregnancy"
                                                                       itemValue="12"/>
+                                                        <f:selectItem itemLabel="No Complications" itemValue="13"/>
                                                     </p:selectOneMenu>
                                                 </p:fieldset>
 

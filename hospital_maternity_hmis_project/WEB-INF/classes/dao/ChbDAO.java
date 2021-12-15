@@ -645,7 +645,7 @@ public class ChbDAO implements Serializable
             Connection con = DriverManager.getConnection(url, "root", "t00r");
             now = LocalDateTime.now();
 
-            PreparedStatement stmt = con.prepareStatement("insert into maternity"
+             PreparedStatement stmt= con.prepareStatement("insert into maternity"
                     + "(dateOfAdmission, timeOfAdmission, admissionNo, ancNo, ipdNo, nin, clientSurname, "
                     + "clientGivenName, age, clientCategory, matVillage, matParish, matSubcounty, matDistrict, "
                     + "phoneNumber, gravidity, parity, gestationAge, term, reasonForAdmission, revisit, "
@@ -896,6 +896,7 @@ public class ChbDAO implements Serializable
             now = LocalDateTime.now();
 
             PreparedStatement stmt = con.prepareStatement("SELECT * From maternity where matID=?");
+
             stmt.setString(1, matId);
             ResultSet rs = stmt.executeQuery();
 
@@ -1028,6 +1029,7 @@ public class ChbDAO implements Serializable
                 if(rs.getDate("recordDate") != null)
                     maternity.setRecordDate(rs.getTimestamp("recordDate").toLocalDateTime());
                 maternity.setUserId(rs.getString("userID"));
+
                 con.close();
                 return maternity;
             }
@@ -1095,7 +1097,7 @@ public class ChbDAO implements Serializable
                     "WHERE matId=?");
 
             extract_maternity(stmt, maternity);
-            stmt.setString(100, maternity.getMatId());
+            stmt.setString(101, maternity.getMatId());
             stmt.executeUpdate();
             con.close();
             return true;
