@@ -8,10 +8,10 @@ An IDE with Java and server capabilities, you can use [Intellij IDEA Ultimate](h
 [Java Development Kit](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) is also needed but you likely already have installed on your system.
 
 >Make sure you use the Ultimate edition as that is the only way to interact with databases in Intellij. It is [free for students](https://www.jetbrains.com/student/).
->Between IntelliJ IDEA Ultimate and Visual Studio Code, it is much easier working with the former
+>Between IntelliJ IDEA Ultimate and Visual Studio Code, it is much easier working with the former.
 
 These instructions are for windows, scroll further down for mac instructions.
->Since the instructions for windows are more straight-forward, it may be ideal to install a VM to run windows and follow the instructions for windows
+>Since the instructions for windows are more straight-forward, it may be ideal to install a VM to run windows and follow the instructions for windows.
 
 ## Installing Tomcat and MariaDB
 
