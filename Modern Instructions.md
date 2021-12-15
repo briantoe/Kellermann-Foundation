@@ -97,7 +97,7 @@ Build & Run the program and this time, you will be able to log in with the crede
 > **Password:** bwindi
 
 Congratulations, you're finished, you will never have to do this ever again! (hopefully)
->If able to successfully run the application, but unable to save a maternity form, it could be that the maternity.sql table does not currently exist in the database. To create the maternity.sql table, run the following command:
+>If able to successfully run the application, but unable to save a maternity form, it could be that the maternity.sql table does not currently exist in the database. To create the maternity.sql table, run the following command in the MariaDB Command Prompt:
 `source maternity.sql`
 
 ## Miscellaneous
