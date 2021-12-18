@@ -1,10 +1,9 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-public class Vht
-  implements Serializable
+public class Vht implements Serializable
 {
   private static final long serialVersionUID = 1L;
   private Integer vhtId;
@@ -15,7 +14,7 @@ public class Vht
   private String isCBD;
   private String villageId;
   private String villageName;
-  private Date recordDate;
+  private LocalDateTime recordDate;
   private Integer userId;
   
 
@@ -84,11 +83,11 @@ public class Vht
     this.villageName = villageName;
   }
 
-  public Date getRecordDate() {
+  public LocalDateTime getRecordDate() {
     return this.recordDate;
   }
 
-  public void setRecordDate(Date recordDate) {
+  public void setRecordDate(LocalDateTime recordDate) {
     this.recordDate = recordDate;
   }
 
@@ -103,7 +102,7 @@ public class Vht
   public Vht() {
   }
 
-  public Vht(Integer vhtId, String vhtName, Integer age, String sex, String vhtPhoneNumber, String isCBD, String villageId, String villageName, Date recordDate, Integer userId) {
+  public Vht(Integer vhtId, String vhtName, Integer age, String sex, String vhtPhoneNumber, String isCBD, String villageId, String villageName, LocalDateTime recordDate, Integer userId) {
     this.vhtId = vhtId;
     this.vhtName = vhtName;
     this.age = age;

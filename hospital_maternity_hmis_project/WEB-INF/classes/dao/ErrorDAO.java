@@ -5,22 +5,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import model.Error;
 
-public class ErrorDAO
-        implements Serializable {
+public class ErrorDAO implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    static DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_DATE;
 
-    public static void Error_Add(Error custom_error)
-            throws SQLException {
+    public static void Error_Add(Error custom_error) {
 
         try {
             Connection con;
-
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/bwindihospital_reduced";
@@ -31,7 +28,7 @@ public class ErrorDAO
             ps.setString(1, custom_error.getController_Name());
             ps.setString(2, custom_error.getMethod_Name());
             ps.setString(3, custom_error.getError());
-            ps.setString(4, dateFormat.format(custom_error.getError_date()));
+            ps.setString(4, custom_error.getError_date().format(dateFormatter));
             
             ps.executeUpdate();
             

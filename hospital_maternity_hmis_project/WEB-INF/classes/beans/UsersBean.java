@@ -14,7 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import model.Loggedin;
 import model.Users;
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
 
 @ManagedBean(name = "usersBean")
 @SessionScoped
@@ -154,8 +154,7 @@ public class UsersBean
                 return "admin";
             }
 
-            Users user = new Users();
-            user = UsersDAO.User_Login(this.userName, encryptpass(this.password));
+            Users user = UsersDAO.User_Login(this.userName, encryptpass(this.password));
 
             if (user != null) {
                 this.fullName = user.getFullName();
@@ -166,7 +165,7 @@ public class UsersBean
                 String _department = UsersDAO.User_Department(this.uid).trim();
 
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", this.userName);
-                
+
                 //Reception,
                 //Consultant, -OPD and IPD -AIP
                 //CHB,
@@ -180,9 +179,9 @@ public class UsersBean
                 //Administrator,
                 //Accounts,
                 //Dispensery
-                
+
                 System.out.println("_department :: " + _department);
-                
+
                 if (_department.equalsIgnoreCase("Reception")) {
                     opd_enabled = false;
                     ipd_enabled = false;
@@ -193,7 +192,7 @@ public class UsersBean
                     if (ipd_enabled == false) {
                         return "consultant/opd/incoming";
                     }
-                    return "consultant";                    
+                    return "consultant";
                 } else if (_department.equalsIgnoreCase("AIP") || _department.equalsIgnoreCase("PAED")) {
                     opd_enabled = false;
                     ipd_enabled = false;
@@ -275,7 +274,6 @@ public class UsersBean
         String encryptionKey = "bwindi";
         SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes(), "Blowfish");
 
-        String encryptedData = "";
         try {
             Cipher cipher = Cipher.getInstance("Blowfish");
 
@@ -283,7 +281,8 @@ public class UsersBean
 
             byte[] encryptedBytes = cipher.doFinal(dataToEncrypt.getBytes("UTF-8"));
 
-            return new BASE64Encoder().encode(encryptedBytes);
+            String encryptedpass = Base64.getEncoder().encodeToString(encryptedBytes);
+            return encryptedpass;
         } catch (Exception ex) {
             System.err.println("Error Message: " + ex.getMessage());
         }

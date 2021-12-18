@@ -1,5 +1,4 @@
 /* Need to create scipts to find the totals at the end of the HMIS data form*/
-
 CREATE TABLE IF NOT EXISTS `bwindihospital_reduced`.`babyCondition`(
 	`code` VARCHAR(5) NOT NULL,
 	`description` VARCHAR(100) NULL DEFAULT NULL,
@@ -149,6 +148,25 @@ VALUES
 ('TRR+', 'Client was originally negative but sero-converted at this test')
 ;
 
+CREATE TABLE IF NOT EXISTS `obstetric_diagnosis` (
+	`obstetricDiagNum` INT(1) NOT NULL,
+	`obstetricDiagDesc` VARCHAR(100) NULL DEFAULT NULL,
+	PRIMARY KEY (`obstetricDiagNum`),
+	INDEX `obstetricDiagNum` (`obstetricDiagNum`)
+)
+COMMENT='This table holds the obstetric diagnosis codes and descriptions.'
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+INSERT INTO `obstetric_diagnosis` (`obstetricDiagNum`, `obstetricDiagDesc`)
+VALUES
+('1', 'Normal Delivery'),
+('2', 'Caesarean Section'),
+('3', 'Transverse Position'),
+('4', 'Born Before Delivery')
+;
+
 CREATE TABLE IF NOT EXISTS `final_diagnosis` (
 	`finalDiagNum` INT(1) NOT NULL,
 	`finalDiagDesc` VARCHAR(100) NULL DEFAULT NULL,
@@ -173,7 +191,8 @@ VALUES
 ('9', 'Anaemia in pregnancy'),
 ('10', 'Ruptured uterus'),
 ('11', 'Ectopic pregnancy'),
-('12', 'Other Complications of pregnancy')
+('12', 'Other Complications of pregnancy'),
+('13', 'No Complications')
 ;
 
 CREATE TABLE IF NOT EXISTS `hmis` (
